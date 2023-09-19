@@ -1,0 +1,14 @@
+.header-form {
+    /* background-color: red; */
+    display: flex;
+    gap: 6px;
+}
+
+#navbar {
+    background-color: rgb(230, 231, 198);
+}
+
+#navbar-nav {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
