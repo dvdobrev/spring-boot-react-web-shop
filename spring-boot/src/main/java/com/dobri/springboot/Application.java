@@ -29,7 +29,7 @@ public class Application {
 	public Map<String, Object> getData() {
 		Map<String, Object> responseData = new HashMap<>();
 		responseData.put("name", responseName);
-		responseData.put("colors", colorObject);
+		responseData.put("data", colorObject);
 		System.out.println("Name: " + responseName.get("name"));
 		System.out.println("Color: " + colorObject.get("colors"));
 		return responseData;
@@ -47,8 +47,9 @@ public class Application {
 	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/data")
 	public void addColor(@RequestBody Map<String, String> request) {
-//		System.out.println("Color: " + request.get("color"));
-		String color = request.get("color");
+		System.out.println("--------------------------");
+		System.out.println("In Post - Color: " + request.get("colors"));
+		String color = request.get("colors");
 		List<String> colors = colorObject.get("colors");
 		colors.add(color);
 		colorObject.put("colors", colors);

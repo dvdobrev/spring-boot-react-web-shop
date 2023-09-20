@@ -19,8 +19,6 @@ import { NavLink } from 'react-router-dom';
 
 //TODO: Make pdf invoice
 
-// TODO: Make 
-
 
 export const Header = () => {
     return (

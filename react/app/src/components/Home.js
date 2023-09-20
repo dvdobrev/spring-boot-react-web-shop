@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+//TODO: Make the delete request
+
 export const Home = () => {
     const [name, setName] = useState('');
     const [allColors, setAllColors] = useState([]);
+    const [color, setColor] = useState('');
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    const fetchData = () => {
+    const fetchData = async (e) => {
         axios
             .get("http://localhost:8080/data")
             .then((response) => {
                 setName(response.data.name.name);
-                setAllColors(response.data.colors.colors);
-                console.log("Response: " + response.data.colors.colors);
+                setAllColors(response.data.data.colors);
+                console.log("Response: " + response.data.data.colors);
                 console.log('color: ', allColors);
-                // console.log(response.data.colors.colorObject);
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
@@ -39,10 +41,11 @@ export const Home = () => {
     const addColor = async (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:8080/data", { color: allColors })
+            .post("http://localhost:8080/data", { colors: color })
             .then(() => {
                 console.log("Color added successfully.");
                 fetchData();
+                setColor("");
             })
             .catch((error) => {
                 console.error("Failed to add color:", error);
@@ -53,8 +56,9 @@ export const Home = () => {
         <>
             <h1>Hello from Home</h1>
             <h1>Name: {name}</h1>
-            {allColors.map((color, index) => 
-            <h1 key={index}>Color: {color} </h1>)}
+            {allColors.map((color, index) =>
+                <h1 key={index}>Color: {color} </h1>)}
+
             <form onSubmit={updateName}>
                 <label htmlFor="name">Add Name
                     <input
@@ -71,7 +75,8 @@ export const Home = () => {
                     <input
                         type="text"
                         name="color"
-                        onChange={(e) => setAllColors(e.target.value)}
+                        value={color}
+                        onChange={(e) => setColor(e.target.value)}
                     />
                 </label>
                 <button type="submit">Set Color</button>
