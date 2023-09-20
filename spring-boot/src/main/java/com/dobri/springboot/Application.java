@@ -2,27 +2,57 @@ package com.dobri.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootApplication
 @RestController
 public class Application {
+	static private Map<String, String> responseName = new HashMap<>();
+	static private Map<String, List<String>> colorObject = new HashMap<>();
+	List<String> colors = new ArrayList<>();
+
+	public Application() {
+		responseName.put("name", "Dobri");
+		colors.add("white");
+		colorObject.put("colors", colors);
+
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
 	@CrossOrigin(origins = "http://localhost:3000")
-	@GetMapping("/name")
-	public Map<String, String> getName() {
-		Map<String, String> response = new HashMap<>();
-		response.put("name", "Pestho Goshev");
-		return response;
+	@GetMapping("/data")
+	public Map<String, Object> getData() {
+		Map<String, Object> responseData = new HashMap<>();
+		responseData.put("name", responseName);
+		responseData.put("colors", colorObject);
+		System.out.println("Name: " + responseName.get("name"));
+		System.out.println("Color: " + colorObject.get("colors"));
+		return responseData;
+	}
+
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/data")
+	public void editName(@RequestBody Map<String, String> request) {
+		String newName = request.get("name");
+		System.out.println(request.get("name"));
+
+		responseName.put("name", newName);
+	}
+
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping("/data")
+	public void addColor(@RequestBody Map<String, String> request) {
+//		System.out.println("Color: " + request.get("color"));
+		String color = request.get("color");
+		List<String> colors = colorObject.get("colors");
+		colors.add(color);
+		colorObject.put("colors", colors);
+		System.out.println(colorObject.get("colors"));
+
 	}
 }
