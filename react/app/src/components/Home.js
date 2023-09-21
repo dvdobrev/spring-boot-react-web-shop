@@ -52,6 +52,22 @@ export const Home = () => {
             });
     };
 
+
+    
+    const deleteColor = async (e) => {
+        e.preventDefault();
+        axios
+        .delete(`http://localhost:8080/data/${color}`)
+        .then(() => {
+            console.log("Color deleted successfully.");
+            fetchData();
+            setColor("");
+        })
+            .catch((error) => {
+                console.error("Failed to add color:", error);
+            });
+    };
+
     return (
         <>
             <h1>Hello from Home</h1>
@@ -80,6 +96,18 @@ export const Home = () => {
                     />
                 </label>
                 <button type="submit">Set Color</button>
+
+            </form>
+
+            <form onSubmit={deleteColor}>
+                <label htmlFor="color">Color
+                    <input
+                        type="text"
+                        name="color"
+                        onChange={(e) => setColor(e.target.value)}
+                    />
+                </label>
+                <button type="submit">Delete Color</button>
             </form>
         </>
     );
