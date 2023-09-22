@@ -13,6 +13,7 @@ import { AboutUs } from './components/AboutUs';
 import { Offers } from './components/Offers';
 import { Shoppingcart } from './components/Shoppingcart';
 import { Logout } from './components/Logout';
+import { AddContry } from './components/AddCountry';
 
 const App = () => {
   return (
@@ -30,6 +31,9 @@ const App = () => {
         <Route path="/shopping-cart" element={<Shoppingcart />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
+
+      <AddContry/>
+
     </div>
   );
 };
