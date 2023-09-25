@@ -1,0 +1,23 @@
+.custom-carousel .carousel .slid {
+    background-color: red;
+    transition: transform 8s ease-in-out;
+    /* Adjust the duration (2s) for slower sliding */
+}
+
+.ok {
+    background-color: greenyellow;
+    transition-duration: 1550ms;
+}
+
+.cardSlide {
+    animation: slide 5s linear infinite; /* Adjust the animation duration as needed */
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

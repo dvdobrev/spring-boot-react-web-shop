@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import baseUrl from "./baseUrl";
+
 //TODO: Make the delete request
 
 export const Home = () => {
@@ -10,7 +12,7 @@ export const Home = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:8080/countries')
+        fetch(baseUrl)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -32,17 +34,21 @@ export const Home = () => {
     }
 
     return (
-        <div>
-            <h1>List of Countries</h1>
-            <ul>
-                {countries.map(country => (
-                    <div>
-                        <li key={country.id}>Name: {country.name}</li>
-                        <li key={country.id}>ID: {country.id}</li>
-                    </div>
 
-                ))}
-            </ul>
-        </div>
+        <></>
+        // <div>
+        //     <h1>List of Countries</h1>
+        //     <ul>
+        //         {countries.map(country => (
+        //             <div>
+        //                 <li key={country.id}>
+        //                     Name: {country.name}
+        //                     ; ID: {country.id}
+        //                 </li>
+        //             </div>
+
+        //         ))}
+        //     </ul>
+        // </div>
     );
 };

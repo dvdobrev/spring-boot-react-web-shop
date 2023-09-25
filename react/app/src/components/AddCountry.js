@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import axios from 'axios';
+import baseUrl from "./baseUrl";
 
 
 export const AddContry = () => {
@@ -21,7 +22,7 @@ export const AddContry = () => {
 
         try {
             // Send a POST request to your Spring Boot backend
-            const response = await axios.post('http://localhost:8080/countries', formData);
+            const response = await axios.post(baseUrl, formData);
 
             // Handle the response as needed
             console.log('Country added:', response.data);

@@ -1,6 +1,7 @@
 import './App.css';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 import { Header } from './components/Header';
 import { Login } from './components/Login';
@@ -14,12 +15,14 @@ import { Offers } from './components/Offers';
 import { Shoppingcart } from './components/Shoppingcart';
 import { Logout } from './components/Logout';
 import { AddContry } from './components/AddCountry';
+import { CardCarousel } from './components/CardCarousel';
 
 const App = () => {
   return (
 
     <div className="App">
       <Header />
+      <CardCarousel />
 
       <Routes>
         <Route path="/" element={<Home />} />
