@@ -3,6 +3,8 @@ package com.dobri.springboot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CountryService {
     private final CountryRepository countryRepository;
@@ -10,6 +12,10 @@ public class CountryService {
     @Autowired
     public CountryService(CountryRepository countryRepository) {
         this.countryRepository = countryRepository;
+    }
+
+    public List<Country> getAllCountries() {
+        return countryRepository.findAll();
     }
 
     public Country saveCountry(Country country) {

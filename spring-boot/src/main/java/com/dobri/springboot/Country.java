@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Country {
 
+
     @Id
 //    @SequenceGenerator(
 //            name="clothes_id_sequence",
@@ -24,11 +25,17 @@ public class Country {
     private Integer plz;
     private String city;
 
+    public Country() {
+    }
 
     public Country(String name, Integer plz, String city) {
         this.name = name;
         this.plz = plz;
         this.city = city;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {

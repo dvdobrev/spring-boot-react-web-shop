@@ -6,15 +6,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @SpringBootApplication
 @RestController
 public class Application {
 
 
-//    private final ClothesRepository clothesRepository;
+    //    private final ClothesRepository clothesRepository;
 //    private final CountryRepository countryRepository;
     private final CountryService countryService;
-
 
 
 //    static private final Map<String, String> responseName = new HashMap<>();
@@ -32,11 +35,21 @@ public class Application {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/countries")
+    public List<Country> getAllCountries() {
+        System.out.println("Dobrin in GetMapping");
+        System.out.println("All countries: " + countryService.getAllCountries());
+        return countryService.getAllCountries();
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/countries")
     public ResponseEntity<Country> addCountry(@RequestBody Country country) {
         Country savedCountry = countryService.saveCountry(country);
         return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
     }
+
 
 //    public Application(CountryRepository countryRepository) {
 ////        this.clothesRepository = clothesRepository;
