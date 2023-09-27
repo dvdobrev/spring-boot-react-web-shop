@@ -1,7 +1,7 @@
 import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
 
-//TODO: Make the docker compose to can run the whole app
+//TODO: Make the css for cards 
 
 //TODO: Make the header with the add country / clothes
 

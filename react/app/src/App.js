@@ -14,7 +14,7 @@ import { AboutUs } from './components/AboutUs';
 import { Offers } from './components/Offers';
 import { Shoppingcart } from './components/Shoppingcart';
 import { Logout } from './components/Logout';
-import { AddContry } from './components/AddCountry';
+import { AddClothes } from './components/AddClothes';
 import { CardCarousel } from './components/CardCarousel';
 
 const App = () => {
@@ -35,7 +35,7 @@ const App = () => {
         <Route path="/logout" element={<Logout />} />
       </Routes>
 
-      <AddContry/>
+      <AddClothes/>
 
     </div>
   );

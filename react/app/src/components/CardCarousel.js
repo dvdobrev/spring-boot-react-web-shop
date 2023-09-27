@@ -1,6 +1,9 @@
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import { useEffect, useState } from "react";
+import baseUrl from "./baseUrl";
+
+import cardsCSS from "../components/cards.module.css";
 
 export const CardCarousel = () => {
     const responsive = {
@@ -26,13 +29,13 @@ export const CardCarousel = () => {
         }
     };
 
-    const [countries, setCountries] = useState([]);
+    const [clothes, setClothes] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch data from the API and set the countries state
-        fetch('http://localhost:8080/countries')
+        // Fetch data from the API and set the clothes state
+        fetch(baseUrl)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -40,7 +43,7 @@ export const CardCarousel = () => {
                 return response.json();
             })
             .then((data) => {
-                setCountries(data);
+                setClothes(data);
             })
             .catch((error) => {
                 setError(error);
@@ -78,6 +81,7 @@ export const CardCarousel = () => {
                 "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTdvuww0JDC7nFRxiFL6yFiAxRJgM-1tvJTxA&usqp=CAU"
         }
     ];
+
     return (
 
         <div>
@@ -96,18 +100,23 @@ export const CardCarousel = () => {
                 dotListClass="custom-dot-list-style"
 
             >
-                {countries.map(country => {
+                {clothes.map(clothe => {
                     return (
-                        <div className="card">Name {country.name}
-                            <img className="product--image" src="https://images.pexels.com/photos/2002717/pexels-photo-2002717.jpeg?auto=compress&cs=tinysrgb&w=1600" />
-                            <h2>Type</h2>
-                            <p className="price">29.0</p>
-                            <p>Description (ID): {country.id}</p>
-                            <p>
-                                <button>Add to cart</button>
-                            </p>
-                        </div>)
-                })}
+                        <div key={clothe.id} className={`card ${cardsCSS["cards"]}`}>
+                            <img
+                                className={`card-img-top ${cardsCSS["card-img"]}`}
+                                src={clothe.img_link}
+                                alt="Card Image"
+                            />
+                            <div className="card-body">
+                                <h5 className="card-title">Name: {clothe.type}</h5>
+                                {/* <p className="card-text">Type: {clothes.type}</p> */}
+                                <p className="card-text">Price: {clothe.price}</p>
+                                <p className="card-text">Description (ID): {clothe.id}</p>
+                                <button className="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                )})}
 
             </Carousel>
         </div>
