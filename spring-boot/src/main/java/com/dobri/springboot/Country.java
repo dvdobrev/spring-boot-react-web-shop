@@ -9,8 +9,7 @@ import jakarta.persistence.Id;
 public class Country {
 
 
-    @Id
-//    @SequenceGenerator(
+    //    @SequenceGenerator(
 //            name="clothes_id_sequence",
 //            sequenceName = "clothes_id_sequence"
 //    )
@@ -18,6 +17,7 @@ public class Country {
 //            strategy = GenerationType.SEQUENCE,
 //            generator = "clothes_id_sequence"
 //    )
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //TODO: this is from ChatGPT
     private Integer id;
 

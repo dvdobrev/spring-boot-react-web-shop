@@ -1,11 +1,21 @@
 import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
 
+//TODO: Make the docker compose to can run the whole app
+
+//TODO: Make the header with the add country / clothes
+
+// TODO: Make login, register (with address), logout
+
+//TODO: Make the localstorage
+
+//TODO: make admin in the user database
+
+//TODO: make if admin to can add the clothes
+
 //TODO: Make RouterGuard and page not found
 
 //TODO: Make Footer
-
-// TODO: Make login, register (with address), logout 
 
 //TODO: Make the home page
 
