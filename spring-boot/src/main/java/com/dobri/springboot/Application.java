@@ -6,48 +6,49 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @SpringBootApplication
 @RestController
 public class Application {
 
+    private final String reactURL = "http://localhost:3000";
 
-    //    private final ClothesRepository clothesRepository;
+
+//    private final ClothesRepository clothesRepository;
+    private final ClothesService clothesService;
 //    private final CountryRepository countryRepository;
-    private final CountryService countryService;
+//    private final CountryService countryService;
 
 
 //    static private final Map<String, String> responseName = new HashMap<>();
 //    static private final Map<String, List<String>> colorObject = new HashMap<>();
 //    List<String> colors = new ArrayList<>();
 
-    public Application(CountryService countryService) {
-        //        this.clothesRepository = clothesRepository;
+    public Application(CountryService countryService, ClothesService clothService) {
+        this.clothesService = clothService;
 
-        this.countryService = countryService;
+//        this.countryService = countryService;
     }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/countries")
-    public List<Country> getAllCountries() {
+    @CrossOrigin(origins = reactURL)
+    @GetMapping("/clothes")
+    public List<Clothes> getAllClothes() {
         System.out.println("Dobrin in GetMapping");
-        System.out.println("All countries: " + countryService.getAllCountries());
-        return countryService.getAllCountries();
+        System.out.println("All clothes: " + clothesService.getAllClothes());
+        return clothesService.getAllClothes();
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("/countries")
-    public ResponseEntity<Country> addCountry(@RequestBody Country country) {
-        Country savedCountry = countryService.saveCountry(country);
-        return new ResponseEntity<>(savedCountry, HttpStatus.CREATED);
+    @CrossOrigin(origins = reactURL)
+    @PostMapping("/clothes")
+    public ResponseEntity<Clothes> addCountry(@RequestBody Clothes clothes) {
+        Clothes savedClothes = clothesService.saveClothes(clothes);
+        return new ResponseEntity<>(savedClothes, HttpStatus.CREATED);
     }
 
 

@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 @Entity
 public class Clothes {
 
-    @Id
-//    @SequenceGenerator(
+
+    //    @SequenceGenerator(
 //            name="clothes_id_sequence",
 //            sequenceName = "clothes_id_sequence"
 //    )
@@ -14,6 +14,7 @@ public class Clothes {
 //            strategy = GenerationType.SEQUENCE,
 //            generator = "clothes_id_sequence"
 //    )
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //TODO: this is from ChatGPT
     private Integer id;
 
@@ -25,6 +26,9 @@ public class Clothes {
     private float price;
     private String img_link;
     private String description;
+
+
+    public Clothes(){}
 
     public Clothes(Integer id,
                    String type,
