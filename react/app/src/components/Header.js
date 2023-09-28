@@ -3,12 +3,9 @@ import { NavLink } from 'react-router-dom';
 
 //TODO: Make Deails Clothes page
 
-//TODO: Make delete Clothes logik
+//TODO: Edit Clothes page
 
 // TODO: Make login, register (with address), logout
-
-//TODO: Make the delete request
-
 
 //TODO: Make the localstorage
 

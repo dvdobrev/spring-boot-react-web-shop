@@ -2,11 +2,13 @@ import { useState } from "react";
 
 import axios from 'axios';
 import baseUrl from "./baseUrl";
+import { useNavigate } from "react-router-dom";
 
 
 export const AddClothes = () => {
 
     let clothesURL = '/addClothes';
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         gender: '',
@@ -46,8 +48,10 @@ export const AddClothes = () => {
                 size: '',
                 type: '',
             });
+            navigate(`/`);
+
         } catch (error) {
-            console.error('Error adding country:', error);
+            console.error('Error adding clothes:', error);
         }
     };
 
