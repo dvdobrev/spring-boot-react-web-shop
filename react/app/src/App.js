@@ -15,17 +15,16 @@ import { Offers } from './components/Offers';
 import { Shoppingcart } from './components/Shoppingcart';
 import { Logout } from './components/Logout';
 import { AddClothes } from './components/AddClothes';
-import { CardCarousel } from './components/CardCarousel';
 
 const App = () => {
   return (
 
     <div className="App">
-      <Header />
-      <CardCarousel />
+      <Header />    
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/addClothes" element={<AddClothes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
@@ -34,8 +33,6 @@ const App = () => {
         <Route path="/shopping-cart" element={<Shoppingcart />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
-
-      <AddClothes/>
 
     </div>
   );

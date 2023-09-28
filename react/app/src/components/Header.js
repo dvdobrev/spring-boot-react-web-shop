@@ -1,11 +1,14 @@
 import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
 
-//TODO: Make the css for cards 
+//TODO: Make Deails Clothes page
 
-//TODO: Make the header with the add country / clothes
+//TODO: Make delete Clothes logik
 
 // TODO: Make login, register (with address), logout
+
+//TODO: Make the delete request
+
 
 //TODO: Make the localstorage
 
@@ -17,7 +20,9 @@ import { NavLink } from 'react-router-dom';
 
 //TODO: Make Footer
 
-//TODO: Make the home page
+//TODO: The buttons for the card carousel
+
+//TODO: Make the css for cards 
 
 //TODO: Make profile page with CRUD
 
@@ -53,6 +58,12 @@ export const Header = () => {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/">
                             Home
+                        </NavLink>
+                    </li>
+
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/addClothes">
+                            Add Clothes
                         </NavLink>
                     </li>
 

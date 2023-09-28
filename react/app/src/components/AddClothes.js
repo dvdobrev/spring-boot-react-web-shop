@@ -6,6 +6,8 @@ import baseUrl from "./baseUrl";
 
 export const AddClothes = () => {
 
+    let clothesURL = '/addClothes';
+
     const [formData, setFormData] = useState({
         gender: '',
         color: '',
@@ -24,11 +26,11 @@ export const AddClothes = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); console.log();
+        e.preventDefault();
 
         try {
             // Send a POST request to your Spring Boot backend
-            const response = await axios.post(baseUrl, formData);
+            const response = await axios.post(baseUrl + clothesURL, formData);
 
             // Handle the response as needed
             console.log('Country added:', response.data);
@@ -144,9 +146,6 @@ export const AddClothes = () => {
                         required
                     />
                 </div>
-
-
-
 
                 <button type="submit">Add</button>
             </form>
