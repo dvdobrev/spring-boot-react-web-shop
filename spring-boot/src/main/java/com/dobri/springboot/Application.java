@@ -45,10 +45,19 @@ public class Application {
 
 
     @CrossOrigin(origins = reactURL)
-    @PostMapping("/clothes")
-    public ResponseEntity<Clothes> addCountry(@RequestBody Clothes clothes) {
+    @PostMapping("/addClothes")
+    public ResponseEntity<Clothes> addClothes(@RequestBody Clothes clothes) {
         Clothes savedClothes = clothesService.saveClothes(clothes);
         return new ResponseEntity<>(savedClothes, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = reactURL)
+    @DeleteMapping("/clothes/{id}")
+    public void deleteItemById(@PathVariable int id) {
+        System.out.println("--------------------------");
+        System.out.println("In Delete - Cloth ID: " +id);
+        clothesService.deleteItemById(id);
+        
     }
 
 
@@ -94,20 +103,6 @@ public class Application {
 //
 //    }
 //
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    @DeleteMapping("/data/{color}")
-//    public void deleteColor(@PathVariable String color) {
-//        System.out.println("--------------------------");
-//        System.out.println("In Delete - Color: " + color);
-//
-//        List<String> allColors = colorObject.get("colors");
-//
-//        if (allColors.remove(color)) {
-//            colorObject.put("colors", allColors);
-//            System.out.println("Color removed successfully.");
-//        } else {
-//            System.out.println("Color not found.");
-//        }
-//    }
+
 }
 

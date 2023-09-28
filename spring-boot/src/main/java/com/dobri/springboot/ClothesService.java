@@ -23,5 +23,9 @@ public class ClothesService {
         return clothesRepository.save(clothes);
     }
 
+    public void deleteItemById(int id) {
+        clothesRepository.deleteById(id);
+    }
+
     // Add other service methods as needed
 }
