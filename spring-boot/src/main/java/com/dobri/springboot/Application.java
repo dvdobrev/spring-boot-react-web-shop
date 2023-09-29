@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 @RestController
@@ -15,7 +16,7 @@ public class Application {
     private final String reactURL = "http://localhost:3000";
 
 
-//    private final ClothesRepository clothesRepository;
+    //    private final ClothesRepository clothesRepository;
     private final ClothesService clothesService;
 //    private final CountryRepository countryRepository;
 //    private final CountryService countryService;
@@ -38,9 +39,16 @@ public class Application {
     @CrossOrigin(origins = reactURL)
     @GetMapping("/clothes")
     public List<Clothes> getAllClothes() {
-        System.out.println("Dobrin in GetMapping");
-        System.out.println("All clothes: " + clothesService.getAllClothes());
+
         return clothesService.getAllClothes();
+    }
+
+    @CrossOrigin(origins = reactURL)
+    @GetMapping("/clothes/details/{id}")
+    public Clothes findItemById(@PathVariable int id) {
+        Optional<Clothes> entity = clothesService.findItemById(id);
+
+        return entity.orElse(null);
     }
 
 
@@ -55,9 +63,9 @@ public class Application {
     @DeleteMapping("/clothes/{id}")
     public void deleteItemById(@PathVariable int id) {
         System.out.println("--------------------------");
-        System.out.println("In Delete - Cloth ID: " +id);
+        System.out.println("In Delete - Cloth ID: " + id);
         clothesService.deleteItemById(id);
-        
+
     }
 
 

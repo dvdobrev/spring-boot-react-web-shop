@@ -16,6 +16,7 @@ import { Shoppingcart } from './components/Shoppingcart';
 import { Logout } from './components/Logout';
 import { AddClothes } from './components/AddClothes';
 import { ClothesProvider } from './context/ClothesContext';
+import { Itemdetails } from './components/ItemDetails';
 
 const App = () => {
   return (
@@ -27,13 +28,15 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/clothes/details/:itemId" element={<Itemdetails />} />
         </Routes>
 
       </ClothesProvider>
-      
+
 
       <Routes>
         <Route path="/addClothes" element={<AddClothes />} />
+      
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
@@ -41,6 +44,8 @@ const App = () => {
         <Route path="/offers" element={<Offers />} />
         <Route path="/shopping-cart" element={<Shoppingcart />} />
         <Route path="/logout" element={<Logout />} />
+
+
       </Routes>
 
 

@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import cardsCSS from "../components/cards.module.css";
 import { ClothesContext } from "../context/ClothesContext";
+import { Link } from 'react-router-dom';
+
 
 
 export const ClothesItem = ({ cloth }) => {
@@ -22,7 +24,8 @@ export const ClothesItem = ({ cloth }) => {
                 <button className="btn btn-primary">Add to Cart</button>
                 <button onClick={() => deleteHandler(cloth.id)} className="btn btn-primary">Delete Item</button>
 
-                <button onClick={() => deleteHandler(cloth.id)} className="btn btn-primary">Details</button>
+                <Link to={`/clothes/details/${cloth.id}`} className="btn btn-primary">Details
+                </Link>
 
             </div>
         </div>

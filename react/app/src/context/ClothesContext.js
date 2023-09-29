@@ -14,16 +14,13 @@ export const ClothesProvider = ({
     const [error, setError] = useState(null);
 
 
-    let fetchURL = "/clothes";
-
     useEffect(() => {
 
         getItems();
     }, []);
 
-
     const getItems = () => {
-        fetch(baseUrl + fetchURL)
+        fetch(baseUrl + "/clothes")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -47,16 +44,14 @@ export const ClothesProvider = ({
 
     const deleteClothes = async (id) => {
         try {
-            // Send a DELETE request using an API library like Axios or Fetch
-            // Replace the API endpoint with your actual endpoint
             const response = await axios.delete(`${baseUrl}/clothes/${id}`, {
             });
-    
+
             if (response.status === 200) {
                 // Delete was successful, you can update your UI accordingly
                 console.log(`Clothe with ID ${id} deleted.`);
                 getItems();
-    
+
             } else {
                 console.error(`Failed to delete clothe with ID ${id}`);
             }
@@ -70,7 +65,7 @@ export const ClothesProvider = ({
             clothes,
             getItems,
             deleteHandler,
-            deleteClothes
+            deleteClothes,
 
         }}>
             {children}
