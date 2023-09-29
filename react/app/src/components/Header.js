@@ -1,7 +1,6 @@
 import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
 
-//TODO: Make Deails Clothes page
 
 //TODO: Edit Clothes page
 

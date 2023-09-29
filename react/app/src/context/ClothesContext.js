@@ -19,6 +19,7 @@ export const ClothesProvider = ({
         getItems();
     }, []);
 
+
     const getItems = () => {
         fetch(baseUrl + "/clothes")
             .then((response) => {

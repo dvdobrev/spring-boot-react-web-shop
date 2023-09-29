@@ -17,6 +17,7 @@ import { Logout } from './components/Logout';
 import { AddClothes } from './components/AddClothes';
 import { ClothesProvider } from './context/ClothesContext';
 import { Itemdetails } from './components/ItemDetails';
+import { EditItem } from './components/EditItem';
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/clothes/details/:itemId" element={<Itemdetails />} />
+          <Route path="/clothes/edit/:itemId" element={<EditItem />} />
         </Routes>
 
       </ClothesProvider>
@@ -36,10 +38,10 @@ const App = () => {
 
       <Routes>
         <Route path="/addClothes" element={<AddClothes />} />
-      
+
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/shopping-cart" element={<Shoppingcart />} />

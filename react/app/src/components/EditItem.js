@@ -1,14 +1,19 @@
-import { useState } from "react";
-
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import baseUrl from "./baseUrl";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
-export const AddClothes = () => {
+export const EditItem = () => {
 
-    let url = '/addClothes';
+    const { itemId } = useParams();
+
+    const [item, setItem] = useState({});
+    const [error, setError] = useState('');
+
     const navigate = useNavigate();
+
+    let url = `/clothes/edit/${itemId}`;
 
     const [formData, setFormData] = useState({
         gender: '',
@@ -22,6 +27,34 @@ export const AddClothes = () => {
 
     });
 
+    const getItemById = () => {
+        fetch(`${baseUrl}/clothes/edit/${itemId}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setItem(data);
+
+                setFormData({
+                    gender: data.gender || '',
+                    color: data.color || '',
+                    description: data.description || '',
+                    img_link: data.img_link || '',
+                    price: data.price || '',
+                    quantity: data.quantity || '',
+                    size: data.size || '',
+                    type: data.type || '',
+                });
+            })
+            .catch((error) => {
+                setError(error);
+            });
+    }
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -31,39 +64,38 @@ export const AddClothes = () => {
         e.preventDefault();
 
         try {
-            // Send a POST request to your Spring Boot backend
-            const response = await axios.post(baseUrl + url, formData);
+            // Send a PUT request to your Spring Boot backend
+            const response = await axios.put(baseUrl + url, formData);
 
-            // Clear the form after successful submission
-            setFormData({
-                gender: '',
-                color: '',
-                description: '',
-                img_link: '',
-                price: '',
-                quantity: '',
-                size: '',
-                type: '',
-            });
-            navigate(`/`);
+            if (response.status === 200) {
+                // Successfully updated the item, navigate to the item details page
+                navigate(`/clothes/details/${itemId}`);
+            } else {
+                console.error('Error updating item:', response.data);
+            }
 
         } catch (error) {
             console.error('Error adding clothes:', error);
         }
     };
 
+    useEffect(() => {
+
+        getItemById();
+    }, [itemId]);
 
     return (
         <div>
-            <h2>Add Clothes</h2>
+            <h1>Edit Item</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>gender:</label>
                     <select
                         id="gender"
                         name="gender"
-                        value={formData.gender}
+                        defaultValue={item.gender}
                         onChange={handleChange}
+
                         required
                     >
                         <option value="male">Male</option>
@@ -76,8 +108,9 @@ export const AddClothes = () => {
                     <input
                         type="text"
                         name="color"
-                        value={formData.color}
+                        defaultValue={item.color}
                         onChange={handleChange}
+
                         required
                     />
                 </div>
@@ -85,9 +118,9 @@ export const AddClothes = () => {
                 <div>
                     <label>Description:</label>
                     <textarea
-                        type="textarea"
+                        type="text"
                         name="description"
-                        value={formData.description}
+                        defaultValue={item.description}
                         onChange={handleChange}
                         rows="4"
                         required
@@ -99,8 +132,9 @@ export const AddClothes = () => {
                     <input
                         type="text"
                         name="img_link"
-                        value={formData.img_link}
+                        defaultValue={item.img_link}
                         onChange={handleChange}
+
                         required
                     />
                 </div>
@@ -110,8 +144,9 @@ export const AddClothes = () => {
                     <input
                         type="text"
                         name="price"
-                        value={formData.price}
+                        defaultValue={item.price}
                         onChange={handleChange}
+
                         required
                     />
                 </div>
@@ -121,8 +156,9 @@ export const AddClothes = () => {
                     <input
                         type="text"
                         name="quantity"
-                        value={formData.quantity}
+                        defaultValue={item.quantity}
                         onChange={handleChange}
+
                         required
                     />
                 </div>
@@ -132,8 +168,9 @@ export const AddClothes = () => {
                     <input
                         type="text"
                         name="size"
-                        value={formData.size}
+                        defaultValue={item.size}
                         onChange={handleChange}
+
                         required
                     />
                 </div>
@@ -143,13 +180,14 @@ export const AddClothes = () => {
                     <input
                         type="text"
                         name="type"
-                        value={formData.type}
+                        defaultValue={item.type}
                         onChange={handleChange}
+
                         required
                     />
                 </div>
 
-                <button type="submit">Add</button>
+                <button type="submit">Edit</button>
             </form>
         </div>
     );

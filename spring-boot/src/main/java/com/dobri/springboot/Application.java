@@ -44,7 +44,7 @@ public class Application {
     }
 
     @CrossOrigin(origins = reactURL)
-    @GetMapping("/clothes/details/{id}")
+    @RequestMapping(value = {"/clothes/details/{id}", "/clothes/edit/{id}"}, method = RequestMethod.GET)
     public Clothes findItemById(@PathVariable int id) {
         Optional<Clothes> entity = clothesService.findItemById(id);
 
@@ -60,6 +60,50 @@ public class Application {
     }
 
     @CrossOrigin(origins = reactURL)
+    @PutMapping("/clothes/edit/{id}")
+    public ResponseEntity<String> updateItem(
+            @PathVariable int id,
+            @RequestBody Clothes updatedItem
+    ) {
+        try {
+            // Retrieve the existing item by ID (you need to implement this)
+            Optional<Clothes> existingItem = clothesService.findItemById(id);
+            System.out.println("Put Method: " + existingItem );
+
+
+            if (existingItem.isPresent()) {
+                Clothes item = existingItem.get();
+                // Update the existing item with the new data
+                item.setGender(updatedItem.getGender());
+                item.setColor(updatedItem.getColor());
+                item.setDescription(updatedItem.getDescription());
+                item.setImg_link(updatedItem.getImg_link());
+                item.setPrice(updatedItem.getPrice());
+                item.setQuantity(updatedItem.getQuantity());
+                item.setSize(updatedItem.getSize());
+                item.setType(updatedItem.getType());
+
+                // Save the updated item (you need to implement this)
+//                clothesService.updateItem(item);
+                    clothesService.saveClothes(item);
+
+            } else {
+                // Item not found, return a 404 response
+
+                return ResponseEntity.notFound().build();
+            }
+            
+            // Return a success response
+            return ResponseEntity.ok("Item updated successfully");
+        } catch (Exception e) {
+            // Handle any exceptions, e.g., database errors
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error updating item: " + e.getMessage());
+        }
+    }
+
+
+    @CrossOrigin(origins = reactURL)
     @DeleteMapping("/clothes/{id}")
     public void deleteItemById(@PathVariable int id) {
         System.out.println("--------------------------");
@@ -69,26 +113,6 @@ public class Application {
     }
 
 
-//    public Application(CountryRepository countryRepository) {
-////        this.clothesRepository = clothesRepository;
-//        this.countryRepository = countryRepository;
-//    }
-//
-//    public static void main(String[] args) {
-//        SpringApplication.run(Application.class, args);
-//    }
-
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    @GetMapping("/data")
-//    public Map<String, Object> getData() {
-//        Map<String, Object> responseData = new HashMap<>();
-//        responseData.put("name", responseName);
-//        responseData.put("data", colorObject);
-//        System.out.println("Name: " + responseName.get("name"));
-//        System.out.println("Color: " + colorObject.get("colors"));
-//        return responseData;
-//    }
-//
 //    @CrossOrigin(origins = "http://localhost:3000")
 //    @PutMapping("/data")
 //    public void editName(@RequestBody Map<String, String> request) {
@@ -97,18 +121,7 @@ public class Application {
 //
 //        responseName.put("name", newName);
 //    }
-//
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    @PostMapping("/data")
-//    public void addColor(@RequestBody Map<String, String> request) {
-//        System.out.println("--------------------------");
-//        System.out.println("In Post - Color: " + request.get("colors"));
-//        String color = request.get("colors");
-//        List<String> colors = colorObject.get("colors");
-//        colors.add(color);
-//        colorObject.put("colors", colors);
-//        System.out.println(colorObject.get("colors"));
-//
+
 //    }
 //
 

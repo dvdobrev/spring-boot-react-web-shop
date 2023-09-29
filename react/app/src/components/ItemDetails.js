@@ -55,6 +55,9 @@ export const Itemdetails = () => {
             <Link to={`/clothes/details/${item.id}`} className="btn btn-primary">Details
             </Link>
 
+            <Link to={`/clothes/edit/${item.id}`} className="btn btn-primary">Edit
+            </Link>
+
         </div>
     </div>
 
