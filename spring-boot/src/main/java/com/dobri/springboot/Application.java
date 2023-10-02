@@ -4,32 +4,29 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.util.HtmlUtils;
+
 
 import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
 @RestController
+@Validated
 public class Application {
 
     private final String reactURL = "http://localhost:3000";
 
-
-    //    private final ClothesRepository clothesRepository;
     private final ClothesService clothesService;
-//    private final CountryRepository countryRepository;
-//    private final CountryService countryService;
+    private final UserService userService;
 
 
-//    static private final Map<String, String> responseName = new HashMap<>();
-//    static private final Map<String, List<String>> colorObject = new HashMap<>();
-//    List<String> colors = new ArrayList<>();
-
-    public Application(CountryService countryService, ClothesService clothService) {
+    public Application(ClothesService clothService, UserService userService) {
         this.clothesService = clothService;
-
-//        this.countryService = countryService;
+        this.userService = userService;
     }
 
     public static void main(String[] args) {
@@ -57,6 +54,30 @@ public class Application {
     public ResponseEntity<Clothes> addClothes(@RequestBody Clothes clothes) {
         Clothes savedClothes = clothesService.saveClothes(clothes);
         return new ResponseEntity<>(savedClothes, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = reactURL)
+    @PostMapping("/register")
+    public ResponseEntity<Users> addUser(@Validated @RequestBody Users user) {
+
+        String sanitizedEmail = HtmlUtils.htmlEscape(user.getEmail());
+        String sanitizedPassword = HtmlUtils.htmlEscape(user.getPassword());
+//        String sanitizedCountry = HtmlUtils.htmlEscape(user.getCountry());
+//        String sanitizedCity = HtmlUtils.htmlEscape(user.getCity());
+//        String sanitizedAddress = HtmlUtils.htmlEscape(user.getAddress());
+//        String sanitizedAddressNumber = HtmlUtils.htmlEscape(user.getAddress_number());
+//        Integer sanitizedPostcode = Integer.valueOf(HtmlUtils.htmlEscape(String.valueOf(user.getPostcode())));
+
+        user.setEmail(sanitizedEmail);
+        user.setPassword(sanitizedPassword);
+//        user.setCountry(sanitizedCountry);
+//        user.setCity(sanitizedCity);
+//        user.setAddress(sanitizedAddress);
+//        user.setAddress_number(sanitizedAddressNumber);
+//        user.setPostcode(sanitizedPostcode);
+
+        Users savedUser = userService.saveUser(user);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = reactURL)
@@ -92,7 +113,7 @@ public class Application {
 
                 return ResponseEntity.notFound().build();
             }
-            
+
             // Return a success response
             return ResponseEntity.ok("Item updated successfully");
         } catch (Exception e) {

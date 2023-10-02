@@ -2,25 +2,23 @@ import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
 
 
-//TODO: Edit Clothes page
-
-// TODO: Make login, register (with address), logout
+// TODO: Make login, logout
 
 //TODO: Make the localstorage
-
-//TODO: make admin in the user database
 
 //TODO: make if admin to can add the clothes
 
 //TODO: Make RouterGuard and page not found
+
+//TODO: Make profile page with CRUD
+
+//TODO: make form to add address
 
 //TODO: Make Footer
 
 //TODO: The buttons for the card carousel
 
 //TODO: Make the css for cards 
-
-//TODO: Make profile page with CRUD
 
 //TODO: Make shopping cart page
 

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const AddClothes = () => {
 
-    let url = '/addClothes';
+    const url = '/addClothes';
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({

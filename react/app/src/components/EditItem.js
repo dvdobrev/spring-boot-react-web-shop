@@ -134,7 +134,6 @@ export const EditItem = () => {
                         name="img_link"
                         defaultValue={item.img_link}
                         onChange={handleChange}
-
                         required
                     />
                 </div>
@@ -146,7 +145,6 @@ export const EditItem = () => {
                         name="price"
                         defaultValue={item.price}
                         onChange={handleChange}
-
                         required
                     />
                 </div>
@@ -158,7 +156,6 @@ export const EditItem = () => {
                         name="quantity"
                         defaultValue={item.quantity}
                         onChange={handleChange}
-
                         required
                     />
                 </div>
@@ -170,7 +167,6 @@ export const EditItem = () => {
                         name="size"
                         defaultValue={item.size}
                         onChange={handleChange}
-
                         required
                     />
                 </div>
@@ -182,7 +178,6 @@ export const EditItem = () => {
                         name="type"
                         defaultValue={item.type}
                         onChange={handleChange}
-
                         required
                     />
                 </div>

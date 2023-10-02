@@ -16,7 +16,7 @@ public class Clothes {
 //    )
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //TODO: this is from ChatGPT
-    private Integer id;
+    private Integer item_id;
 
     private String type;
     private Integer quantity;
@@ -30,7 +30,7 @@ public class Clothes {
 
     public Clothes(){}
 
-    public Clothes(Integer id,
+    public Clothes(Integer item_id,
                    String type,
                    Integer quantity,
                    String gender,
@@ -41,7 +41,7 @@ public class Clothes {
                    String description) {
 
 
-        this.id = id;
+        this.item_id = item_id;
         this.type = type;
         this.quantity = quantity;
         this.gender = gender;
@@ -60,12 +60,12 @@ public class Clothes {
         this.type = type;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getItem_id() {
+        return item_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setItem_id(Integer customer_id) {
+        this.item_id = customer_id;
     }
 
     public Integer getQuantity() {

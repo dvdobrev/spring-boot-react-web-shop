@@ -32,7 +32,4 @@ public class ClothesService {
         return clothesRepository.findById(id);
     }
 
-
-
-    // Add other service methods as needed
 }

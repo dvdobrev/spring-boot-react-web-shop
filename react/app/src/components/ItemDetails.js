@@ -48,14 +48,14 @@ export const Itemdetails = () => {
             <h5 className="card-title">Name: {item.type}</h5>
             {/* <p className="card-text">Type: {itemes.type}</p> */}
             <p className="card-text">Price: {item.price}</p>
-            <p className="card-text">Description (ID): {item.id}</p>
+            <p className="card-text">Description (ID): {item.item_id}</p>
             <button className="btn btn-primary">Add to Cart</button>
-            <button onClick={() => deleteHandler(item.id)} className="btn btn-primary">Delete Item</button>
+            <button onClick={() => deleteHandler(item.item_id)} className="btn btn-primary">Delete Item</button>
 
-            <Link to={`/clothes/details/${item.id}`} className="btn btn-primary">Details
+            <Link to={`/clothes/details/${item.item_id}`} className="btn btn-primary">Details
             </Link>
 
-            <Link to={`/clothes/edit/${item.id}`} className="btn btn-primary">Edit
+            <Link to={`/clothes/edit/${item.item_id}`} className="btn btn-primary">Edit
             </Link>
 
         </div>
