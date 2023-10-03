@@ -16,8 +16,6 @@ import { UserContext } from '../context/UserContext';
 
 //TODO: The buttons for the card carousel
 
-//TODO: Make the css for cards 
-
 //TODO: Make shopping cart page
 
 //TODO: Make add product to shopping cart
@@ -26,7 +24,7 @@ import { UserContext } from '../context/UserContext';
 
 //TODO: Make pdf invoice
 
-//TODO: Make the password to be hashed
+//TODO: Make the css for cards 
 
 //TODO: Delete all console.log
 

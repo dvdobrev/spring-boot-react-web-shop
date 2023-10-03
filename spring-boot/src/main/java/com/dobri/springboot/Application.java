@@ -2,13 +2,14 @@ package com.dobri.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.util.HtmlUtils;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,8 @@ import java.util.Optional;
 @RestController
 @Validated
 public class Application {
+
+
 
     private final String reactURL = "http://localhost:3000";
 
@@ -27,6 +30,11 @@ public class Application {
     public Application(ClothesService clothService, UserService userService) {
         this.clothesService = clothService;
         this.userService = userService;
+    }
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     public static void main(String[] args) {
@@ -62,6 +70,7 @@ public class Application {
 
         String sanitizedEmail = HtmlUtils.htmlEscape(user.getEmail());
         String sanitizedPassword = HtmlUtils.htmlEscape(user.getPassword());
+        String hashedPassword = bCryptPasswordEncoder().encode(user.getPassword());
 //        String sanitizedCountry = HtmlUtils.htmlEscape(user.getCountry());
 //        String sanitizedCity = HtmlUtils.htmlEscape(user.getCity());
 //        String sanitizedAddress = HtmlUtils.htmlEscape(user.getAddress());
@@ -69,7 +78,7 @@ public class Application {
 //        Integer sanitizedPostcode = Integer.valueOf(HtmlUtils.htmlEscape(String.valueOf(user.getPostcode())));
 
         user.setEmail(sanitizedEmail);
-        user.setPassword(sanitizedPassword);
+        user.setPassword(hashedPassword);
 //        user.setCountry(sanitizedCountry);
 //        user.setCity(sanitizedCity);
 //        user.setAddress(sanitizedAddress);
