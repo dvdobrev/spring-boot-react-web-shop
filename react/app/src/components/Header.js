@@ -6,7 +6,7 @@ import { UserContext } from '../context/UserContext';
 
 // TODO: Make login
 
-//TODO: make if admin to can add the clothes
+//TODO: test if admin to can add the clothes
 
 //TODO: Make profile page with CRUD
 
@@ -33,6 +33,7 @@ export const Header = () => {
 
     const { userData } = useContext(UserContext);
     console.log('userData: ', userData);
+    console.log("Admin: " + userData.admin);
 
 
 
@@ -64,11 +65,12 @@ export const Header = () => {
                         </NavLink>
                     </li>
 
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/addClothes">
-                            Add Clothes
-                        </NavLink>
-                    </li>
+                    {userData.admin &&
+                        <li className="nav-item">
+                            <NavLink className="nav-link" to="/addClothes">
+                                Add Clothes
+                            </NavLink>
+                        </li>}
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/offers">

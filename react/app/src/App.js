@@ -21,6 +21,7 @@ import { EditItem } from './components/EditItem';
 import { AdminGuard } from './components/routGuards/AdminGuard';
 import { LoginGuard } from './components/routGuards/LoginGuard';
 import { RouteGuard } from './components/routGuards/RouteGuard';
+import { PageNotFound } from './components/PageNotFound';
 
 const App = () => {
     return (
@@ -30,17 +31,17 @@ const App = () => {
                 <Header />
 
                 <ClothesProvider>
-
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/clothes/details/:itemId" element={<Itemdetails />} />
                         <Route path="/clothes/edit/:itemId" element={<EditItem />} />
                     </Routes>
-
                 </ClothesProvider>
 
 
                 <Routes>
+
+                    <Route path="/pageNotFound" element={<PageNotFound />} />
 
                     <Route element={<AdminGuard />}>
                         <Route path="/addClothes" element={<AddClothes />} />

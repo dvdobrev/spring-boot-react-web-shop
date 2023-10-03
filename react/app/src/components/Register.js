@@ -61,9 +61,6 @@ export const Register = () => {
             // Send a POST request to the Spring Boot backend
             const response = await axios.post(baseUrl + url, formData);
 
-            console.log("Emai: " + formData.email);
-            console.log("Password: " + formData.password);
-
             if (response.status === 201) {
                 await userDataHandler({ email: formData.email });
             }
