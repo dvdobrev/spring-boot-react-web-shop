@@ -1,12 +1,16 @@
 import axios, { formToJSON } from 'axios';
 import baseUrl from "./baseUrl";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import DOMPurify from 'dompurify';
+import { UserContext } from '../context/UserContext';
 
 
 export const Register = () => {
+
+    const { userDataHandler } = useContext(UserContext);
+
 
     const url = '/register';
     const navigate = useNavigate();
@@ -59,6 +63,11 @@ export const Register = () => {
 
             console.log("Emai: " + formData.email);
             console.log("Password: " + formData.password);
+
+            if (response.status === 201) {
+                await userDataHandler({ email: formData.email });
+            }
+
             // Clear the form after successful submission
             setFormData({
                 email: '',

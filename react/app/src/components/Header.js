@@ -1,14 +1,12 @@
+import { useContext } from 'react';
 import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 
-// TODO: Make login, logout
-
-//TODO: Make the localstorage
+// TODO: Make login
 
 //TODO: make if admin to can add the clothes
-
-//TODO: Make RouterGuard and page not found
 
 //TODO: Make profile page with CRUD
 
@@ -28,10 +26,18 @@ import { NavLink } from 'react-router-dom';
 
 //TODO: Make pdf invoice
 
+//TODO: Make the password to be hashed
+
 //TODO: Delete all console.log
 
 
 export const Header = () => {
+
+    const { userData } = useContext(UserContext);
+    console.log('userData: ', userData);
+
+
+
     return (
         <nav id={headerCSS["navbar"]} className="navbar navbar-expand-lg navbar-light container-fluid">
             <NavLink className="nav-link" to="/">
@@ -49,6 +55,9 @@ export const Header = () => {
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id={headerCSS["navbar-nav"]}>
+
+                {userData?.email && <span id={headerCSS["welcomeSpan"]} >Hello {userData.email}</span>}
+
                 <ul className="navbar-nav ml-auto">
 
                     <li className="nav-item">
@@ -75,35 +84,42 @@ export const Header = () => {
                         </NavLink>
                     </li>
 
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/profile">
-                            Profile
-                        </NavLink>
-                    </li>
+                    {!userData.email ?
+                        <div className="navbar-nav ml-auto">
+                            <li>
+                                <NavLink className="nav-link" to="/login">
+                                    Login
+                                </NavLink>
+                            </li>
 
-                    <li>
-                        <NavLink className="nav-link" to="/login">
-                            Login
-                        </NavLink>
-                    </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/register">
+                                    Register
+                                </NavLink>
+                            </li>
+                        </div>
+                        :
+                        <div className="navbar-nav ml-auto">
 
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/register">
-                            Register
-                        </NavLink>
-                    </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/profile">
+                                    Profile
+                                </NavLink>
+                            </li>
 
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/shopping-cart">
-                            Shoppingcart
-                        </NavLink>
-                    </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/shopping-cart">
+                                    Shoppingcart
+                                </NavLink>
+                            </li>
 
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/">
-                            Logout
-                        </NavLink>
-                    </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/logout">
+                                    Logout
+                                </NavLink>
+                            </li>
+                        </div>
+                    }
 
                 </ul>
                 <form className={`form-inline my-2 my-lg-0 ${headerCSS["header-form"]}`}>

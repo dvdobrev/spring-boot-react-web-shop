@@ -22,9 +22,9 @@ export const UserProvider = ({
     return (
 
         <UserContext.Provider value={{
-            // userData,
-            // userDataHandler,
-            // logoutHandler,
+            userData,
+            userDataHandler,
+            logoutHandler,
         }}>
 
             {children}

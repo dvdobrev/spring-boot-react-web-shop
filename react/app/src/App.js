@@ -18,42 +18,56 @@ import { AddClothes } from './components/AddClothes';
 import { ClothesProvider } from './context/ClothesContext';
 import { Itemdetails } from './components/ItemDetails';
 import { EditItem } from './components/EditItem';
+import { AdminGuard } from './components/routGuards/AdminGuard';
+import { LoginGuard } from './components/routGuards/LoginGuard';
+import { RouteGuard } from './components/routGuards/RouteGuard';
 
 const App = () => {
-  return (
+    return (
 
-    <div className="App">
-      <Header />
+        <UserProvider>
+            <div className="App">
+                <Header />
 
-      <ClothesProvider>
+                <ClothesProvider>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/clothes/details/:itemId" element={<Itemdetails />} />
-          <Route path="/clothes/edit/:itemId" element={<EditItem />} />
-        </Routes>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/clothes/details/:itemId" element={<Itemdetails />} />
+                        <Route path="/clothes/edit/:itemId" element={<EditItem />} />
+                    </Routes>
 
-      </ClothesProvider>
-
-
-      <Routes>
-        <Route path="/addClothes" element={<AddClothes />} />
-
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/offers" element={<Offers />} />
-        <Route path="/shopping-cart" element={<Shoppingcart />} />
-        <Route path="/logout" element={<Logout />} />
+                </ClothesProvider>
 
 
-      </Routes>
+                <Routes>
+
+                    <Route element={<AdminGuard />}>
+                        <Route path="/addClothes" element={<AddClothes />} />
+                    </Route>
 
 
+                    <Route element={<LoginGuard />}>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Route>
 
-    </div>
-  );
+                    <Route element={<RouteGuard />}>
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/shopping-cart" element={<Shoppingcart />} />
+                        <Route path="/logout" element={<Logout />} />
+                    </Route>
+
+                    <Route path="/about" element={<AboutUs />} />
+                    <Route path="/offers" element={<Offers />} />
+
+
+                </Routes>
+
+            </div >
+
+        </UserProvider>
+    );
 };
 
 export default App;
