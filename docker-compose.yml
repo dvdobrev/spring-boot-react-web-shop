@@ -22,7 +22,7 @@ services:
         depends_on:
             - postgres   # Ensure that PostgreSQL starts first
         environment:
-            SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/countriesDB
+            SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/shopDB
             SPRING_DATASOURCE_USERNAME: user
             SPRING_DATASOURCE_PASSWORD: password
 
