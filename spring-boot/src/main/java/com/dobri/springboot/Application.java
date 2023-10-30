@@ -1,5 +1,6 @@
 package com.dobri.springboot;
 
+import com.dobri.springboot.user.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.util.HtmlUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
@@ -18,7 +18,6 @@ import java.util.Optional;
 @RestController
 @Validated
 public class Application {
-
 
 
     private final String reactURL = "http://localhost:3000";
@@ -32,10 +31,10 @@ public class Application {
         this.userService = userService;
     }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -64,30 +63,30 @@ public class Application {
         return new ResponseEntity<>(savedClothes, HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = reactURL)
-    @PostMapping("/register")
-    public ResponseEntity<Users> addUser(@Validated @RequestBody Users user) {
-
-        String sanitizedEmail = HtmlUtils.htmlEscape(user.getEmail());
-        String sanitizedPassword = HtmlUtils.htmlEscape(user.getPassword());
-        String hashedPassword = bCryptPasswordEncoder().encode(user.getPassword());
-//        String sanitizedCountry = HtmlUtils.htmlEscape(user.getCountry());
-//        String sanitizedCity = HtmlUtils.htmlEscape(user.getCity());
-//        String sanitizedAddress = HtmlUtils.htmlEscape(user.getAddress());
-//        String sanitizedAddressNumber = HtmlUtils.htmlEscape(user.getAddress_number());
-//        Integer sanitizedPostcode = Integer.valueOf(HtmlUtils.htmlEscape(String.valueOf(user.getPostcode())));
-
-        user.setEmail(sanitizedEmail);
-        user.setPassword(hashedPassword);
-//        user.setCountry(sanitizedCountry);
-//        user.setCity(sanitizedCity);
-//        user.setAddress(sanitizedAddress);
-//        user.setAddress_number(sanitizedAddressNumber);
-//        user.setPostcode(sanitizedPostcode);
-
-        Users savedUser = userService.saveUser(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-    }
+//    @CrossOrigin(origins = reactURL)
+//    @PostMapping("/register")
+//    public ResponseEntity<User> addUser(@Validated @RequestBody User user) {
+//
+//        String sanitizedEmail = HtmlUtils.htmlEscape(user.getEmail());
+//        String sanitizedPassword = HtmlUtils.htmlEscape(user.getPassword());
+//        String hashedPassword = bCryptPasswordEncoder().encode(user.getPassword());
+////        String sanitizedCountry = HtmlUtils.htmlEscape(user.getCountry());
+////        String sanitizedCity = HtmlUtils.htmlEscape(user.getCity());
+////        String sanitizedAddress = HtmlUtils.htmlEscape(user.getAddress());
+////        String sanitizedAddressNumber = HtmlUtils.htmlEscape(user.getAddress_number());
+////        Integer sanitizedPostcode = Integer.valueOf(HtmlUtils.htmlEscape(String.valueOf(user.getPostcode())));
+//
+//        user.setEmail(sanitizedEmail);
+//        user.setPassword(hashedPassword);
+////        user.setCountry(sanitizedCountry);
+////        user.setCity(sanitizedCity);
+////        user.setAddress(sanitizedAddress);
+////        user.setAddress_number(sanitizedAddressNumber);
+////        user.setPostcode(sanitizedPostcode);
+//
+//        User savedUser = userService.saveUser(user);
+//        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+//    }
 
     @CrossOrigin(origins = reactURL)
     @PutMapping("/clothes/edit/{id}")

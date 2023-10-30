@@ -3,7 +3,7 @@ port: 8080
 
 spring:
     datasource:
-        url: jdbc:postgresql://localhost:5432/countriesDB
+        url: jdbc:postgresql://localhost:5432/shopDB
         username: user
         password: password
 
@@ -17,3 +17,16 @@ spring:
         show_sql: true
     main:
         web-application-type: servlet
+
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: dobrev.testmail@gmail.com
+        password: gxmboitkckkloeeh
+
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
