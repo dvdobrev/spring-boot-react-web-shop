@@ -61,6 +61,7 @@ export const ClothesProvider = ({
         }
     }
 
+
     return (
         <ClothesContext.Provider value={{
             clothes,

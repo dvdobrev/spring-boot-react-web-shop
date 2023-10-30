@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 
-// TODO: Make login
+//TODO: Make login and register from a video
+
+//TODO: Change the name of the db in application.yml file to the appDB or something similar
 
 //TODO: test if admin to can add the clothes
 
 //TODO: Make profile page with CRUD
 
 //TODO: make form to add address
-
-//TODO: Make Footer
 
 //TODO: The buttons for the card carousel
 
@@ -25,6 +25,12 @@ import { UserContext } from '../context/UserContext';
 //TODO: Make pdf invoice
 
 //TODO: Make the css for cards 
+
+//TODO: Make the search bar in the nav
+
+//TODO: Make Footer
+
+//TODO: Make the spring security configuration
 
 //TODO: Delete all console.log
 
