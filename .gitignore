@@ -23,3 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 react/app/node_modules/
+
+
+# Spring Boot
+/mvnw
+/mvnw.cmd
