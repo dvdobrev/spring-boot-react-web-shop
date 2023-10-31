@@ -4,9 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 
-
-//TODO: Make the delete button to be hide if its not admin in Item details
-
 //TODO: Make input validation in the items, for example string instead of int
 
 //TODO: Make profile page with CRUD
