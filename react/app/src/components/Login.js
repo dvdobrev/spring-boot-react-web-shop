@@ -1,9 +1,10 @@
 import axios, { formToJSON } from 'axios';
 import baseUrl from "./baseUrl";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import DOMPurify from 'dompurify';
+import { UserContext } from '../context/UserContext';
 
 
 export const Login = () => {
@@ -12,10 +13,15 @@ export const Login = () => {
     const navigate = useNavigate();
     const inputErrorMessage = "The username or password are incorrect!"
 
+    const { userDataHandler } = useContext(UserContext);
+
+
     const [errorMessage, setErrorMessage] = useState({
         inputMessage: '',
         error: '',
     });
+
+    const [userData, setUserData] = useState({});
 
     const [formData, setFormData] = useState({
         email: '',
@@ -38,12 +44,20 @@ export const Login = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        console.log("Email: " + formData.email);
-        console.log("Password: " + formData.password);
-
         try {
             // Send a POST request to the Spring Boot backend
             const response = await axios.post(baseUrl + url, formData);
+
+            // Check if the response data is not empty
+            if (response.data) {
+
+                // const userEmail = response.data.email;
+                const user = response.data;
+                userDataHandler(user);
+
+            } else {
+                console.log("Response data is empty.");
+            }
 
             // Clear the form after successful submission
             setFormData({

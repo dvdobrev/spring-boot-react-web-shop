@@ -4,11 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 
-//TODO: Make login and register from a video
-
-//TODO: Change the name of the db in application.yml file to the appDB or something similar
-
-//TODO: test if admin to can add the clothes
+//TODO: Make the Add Items and edit Items
 
 //TODO: Make profile page with CRUD
 
@@ -61,7 +57,7 @@ export const Header = () => {
             </button>
             <div className="collapse navbar-collapse" id={headerCSS["navbar-nav"]}>
 
-                {userData?.email && <span id={headerCSS["welcomeSpan"]} >Hello {userData.email}</span>}
+                {userData?.email && <span id={headerCSS["welcomeSpan"]} >Hello {userData.firstName}  {userData.lastName}!</span>}
 
                 <ul className="navbar-nav ml-auto">
 
@@ -71,7 +67,7 @@ export const Header = () => {
                         </NavLink>
                     </li>
 
-                    {userData.admin &&
+                    {userData.userRole === "ADMIN" &&
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/addClothes">
                                 Add Clothes
