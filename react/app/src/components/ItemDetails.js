@@ -3,7 +3,7 @@ import { ClothesContext } from "../context/ClothesContext";
 import { Link, useParams } from "react-router-dom";
 import cardsCSS from "../components/cards.module.css";
 
-import baseUrl from "./baseUrl";
+import springUrl from "./springUrl";
 
 //TODO: Make the delete button to be hide if its not admin
 
@@ -18,7 +18,7 @@ export const Itemdetails = () => {
     useEffect(() => {
 
         const getItemById = () => {
-            fetch(`${baseUrl}/clothes/details/${itemId}`)
+            fetch(`${springUrl}/clothes/details/${itemId}`)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

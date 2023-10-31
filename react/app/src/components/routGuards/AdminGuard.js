@@ -9,7 +9,7 @@ export const AdminGuard = () => {
     const { userData } = useContext(UserContext);
 
 
-    if (!userData.admin) {
+    if (userData.userRole !== "ADMIN") {
         return <Navigate to="/pageNotFound" replace />
     }
 

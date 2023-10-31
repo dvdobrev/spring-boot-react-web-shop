@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext, createContext } from "react";
 
 import axios from "axios";
-import baseUrl from "../components/baseUrl";
+import springUrl from "../components/springUrl";
 
 export const ClothesContext = createContext();
 
@@ -13,6 +13,10 @@ export const ClothesProvider = ({
     const [clothes, setClothes] = useState([]);
     const [error, setError] = useState(null);
 
+    const updateClothes = (newItem) => {
+        setClothes( prevClothes => [...prevClothes, newItem,]);
+    };
+
 
     useEffect(() => {
 
@@ -21,7 +25,7 @@ export const ClothesProvider = ({
 
 
     const getItems = () => {
-        fetch(baseUrl + "/clothes")
+        fetch(springUrl + "/")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -29,6 +33,7 @@ export const ClothesProvider = ({
                 return response.json();
             })
             .then((data) => {
+                console.log(data);
                 setClothes(data);
             })
             .catch((error) => {
@@ -45,7 +50,7 @@ export const ClothesProvider = ({
 
     const deleteClothes = async (id) => {
         try {
-            const response = await axios.delete(`${baseUrl}/clothes/${id}`, {
+            const response = await axios.delete(`${springUrl}/clothes/${id}`, {
             });
 
             if (response.status === 200) {
@@ -68,6 +73,7 @@ export const ClothesProvider = ({
             getItems,
             deleteHandler,
             deleteClothes,
+            updateClothes,
 
         }}>
             {children}

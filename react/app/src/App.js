@@ -7,6 +7,7 @@ import { Header } from './components/Header';
 import { Login } from './components/Login';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
+import { ClothesProvider } from './context/ClothesContext';
 import { Home } from './components/Home';
 import { Profile } from './components/Profile';
 import { Register } from './components/Register';
@@ -15,7 +16,6 @@ import { Offers } from './components/Offers';
 import { Shoppingcart } from './components/Shoppingcart';
 import { Logout } from './components/Logout';
 import { AddClothes } from './components/AddClothes';
-import { ClothesProvider } from './context/ClothesContext';
 import { Itemdetails } from './components/ItemDetails';
 import { EditItem } from './components/EditItem';
 import { AdminGuard } from './components/routGuards/AdminGuard';
@@ -35,18 +35,16 @@ const App = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/clothes/details/:itemId" element={<Itemdetails />} />
                         <Route path="/clothes/edit/:itemId" element={<EditItem />} />
+                        <Route element={<AdminGuard />}>
+                            <Route path="/addClothes" element={<AddClothes />} />
+                        </Route>
+
                     </Routes>
                 </ClothesProvider>
-
 
                 <Routes>
 
                     <Route path="/pageNotFound" element={<PageNotFound />} />
-
-                    <Route element={<AdminGuard />}>
-                        <Route path="/addClothes" element={<AddClothes />} />
-                    </Route>
-
 
                     <Route element={<LoginGuard />}>
                         <Route path="/login" element={<Login />} />

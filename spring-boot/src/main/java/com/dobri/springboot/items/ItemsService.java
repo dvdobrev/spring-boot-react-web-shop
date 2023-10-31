@@ -13,7 +13,6 @@ import java.util.Optional;
 @Service
 public class ItemsService {
     private final ItemsRepository itemsRepository;
-
     @Autowired
     public ItemsService(ItemsRepository itemsRepository) {
         this.itemsRepository = itemsRepository;

@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import { useContext, useEffect, useState } from "react";
-import baseUrl from "./baseUrl";
+import springUrl from "./springUrl";
 
 import axios from "axios";
 

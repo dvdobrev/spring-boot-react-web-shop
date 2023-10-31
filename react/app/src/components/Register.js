@@ -1,5 +1,5 @@
 import axios, { formToJSON } from 'axios';
-import baseUrl from "./baseUrl";
+import springUrl from "./springUrl";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
@@ -59,7 +59,7 @@ export const Register = () => {
 
         try {
             // Send a POST request to the Spring Boot backend
-            const response = await axios.post(baseUrl + url, formData);
+            const response = await axios.post(springUrl + url, formData);
 
             if (response.status === 201) {
                 await userDataHandler({ email: formData.email });

@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import axios from 'axios';
-import baseUrl from "./baseUrl";
+import springUrl from "./springUrl";
 import { useNavigate } from "react-router-dom";
+import { ClothesContext } from "../context/ClothesContext";
 
 
 export const AddClothes = () => {
+
+    const { updateClothes } = useContext(ClothesContext);
 
     const url = '/addClothes';
     const navigate = useNavigate();
@@ -22,29 +25,34 @@ export const AddClothes = () => {
 
     });
 
-    const handleChange = (e) => {
+    const onChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            // Send a POST request to your Spring Boot backend
-            const response = await axios.post(baseUrl + url, formData);
+
+            const response = await axios.post(springUrl + url, formData);
 
             // Clear the form after successful submission
-            setFormData({
-                gender: '',
-                color: '',
-                description: '',
-                img_link: '',
-                price: '',
-                quantity: '',
-                size: '',
-                type: '',
-            });
+            // setFormData({
+            //     gender: '',
+            //     color: '',
+            //     description: '',
+            //     img_link: '',
+            //     price: '',
+            //     quantity: '',
+            //     size: '',
+            //     type: '',
+            // });
+
+            if (response.status === 201) {
+                updateClothes(response.data);
+            }
+
             navigate(`/`);
 
         } catch (error) {
@@ -56,14 +64,14 @@ export const AddClothes = () => {
     return (
         <div>
             <h2>Add Clothes</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={onSubmit}>
                 <div>
                     <label>gender:</label>
                     <select
                         id="gender"
                         name="gender"
                         value={formData.gender}
-                        onChange={handleChange}
+                        onChange={onChange}
                         required
                     >
                         <option value="male">Male</option>
@@ -77,7 +85,7 @@ export const AddClothes = () => {
                         type="text"
                         name="color"
                         value={formData.color}
-                        onChange={handleChange}
+                        onChange={onChange}
                         required
                     />
                 </div>
@@ -88,7 +96,7 @@ export const AddClothes = () => {
                         type="textarea"
                         name="description"
                         value={formData.description}
-                        onChange={handleChange}
+                        onChange={onChange}
                         rows="4"
                         required
                     />
@@ -100,7 +108,7 @@ export const AddClothes = () => {
                         type="text"
                         name="img_link"
                         value={formData.img_link}
-                        onChange={handleChange}
+                        onChange={onChange}
                         required
                     />
                 </div>
@@ -111,7 +119,7 @@ export const AddClothes = () => {
                         type="text"
                         name="price"
                         value={formData.price}
-                        onChange={handleChange}
+                        onChange={onChange}
                         required
                     />
                 </div>
@@ -122,7 +130,7 @@ export const AddClothes = () => {
                         type="text"
                         name="quantity"
                         value={formData.quantity}
-                        onChange={handleChange}
+                        onChange={onChange}
                         required
                     />
                 </div>
@@ -133,7 +141,7 @@ export const AddClothes = () => {
                         type="text"
                         name="size"
                         value={formData.size}
-                        onChange={handleChange}
+                        onChange={onChange}
                         required
                     />
                 </div>
@@ -144,7 +152,7 @@ export const AddClothes = () => {
                         type="text"
                         name="type"
                         value={formData.type}
-                        onChange={handleChange}
+                        onChange={onChange}
                         required
                     />
                 </div>

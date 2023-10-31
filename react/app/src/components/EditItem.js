@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import baseUrl from "./baseUrl";
+import springUrl from "./springUrl";
 import axios from "axios";
 
 
@@ -28,7 +28,7 @@ export const EditItem = () => {
     });
 
     const getItemById = () => {
-        fetch(`${baseUrl}/clothes/edit/${itemId}`)
+        fetch(`${springUrl}/clothes/edit/${itemId}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -65,7 +65,7 @@ export const EditItem = () => {
 
         try {
             // Send a PUT request to your Spring Boot backend
-            const response = await axios.put(baseUrl + url, formData);
+            const response = await axios.put(springUrl + url, formData);
 
             if (response.status === 200) {
                 // Successfully updated the item, navigate to the item details page

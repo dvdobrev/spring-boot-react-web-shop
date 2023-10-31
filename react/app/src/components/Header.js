@@ -3,8 +3,11 @@ import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
+//TODO: Make Items to be load from spring and set on the home page
 
 //TODO: Make the Add Items and edit Items
+
+//TODO: Make input validation in the items, for example string instead of int
 
 //TODO: Make profile page with CRUD
 
@@ -35,7 +38,7 @@ export const Header = () => {
 
     const { userData } = useContext(UserContext);
     console.log('userData: ', userData);
-    console.log("Admin: " + userData.admin);
+    console.log("UserRole: " + userData.userRole);
 
 
 
