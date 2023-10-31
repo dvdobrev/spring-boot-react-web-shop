@@ -8,6 +8,7 @@ import axios from "axios";
 import cardsCSS from "../components/cards.module.css";
 import { ClothesContext } from "../context/ClothesContext";
 import { ClothesItem } from "./items/ClothesItem";
+import { UserContext } from "../context/UserContext";
 
 export const Home = () => {
 

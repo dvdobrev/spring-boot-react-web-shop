@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 
-//TODO: Make edit Items and delete items
 
 //TODO: Make the delete button to be hide if its not admin in Item details
 
