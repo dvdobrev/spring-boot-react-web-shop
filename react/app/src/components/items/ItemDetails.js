@@ -50,8 +50,8 @@ export const Itemdetails = () => {
             <button className="btn btn-primary">Add to Cart</button>
             <button onClick={() => deleteHandler(item.item_id)} className="btn btn-primary">Delete Item</button>
 
-            <Link to={`/clothes/details/${item.item_id}`} className="btn btn-primary">Details
-            </Link>
+            {/* <Link to={`/clothes/details/${item.item_id}`} className="btn btn-primary">Details
+            </Link> */}
 
             <Link to={`/clothes/edit/${item.item_id}`} className="btn btn-primary">Edit
             </Link>

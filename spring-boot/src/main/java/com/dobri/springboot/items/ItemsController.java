@@ -49,7 +49,7 @@ public class ItemsController {
         try {
 
             Optional<Items> existingItem = itemsService.findItemById(id);
-            System.out.println("Put Method: " + existingItem );
+            System.out.println("Put Method: " + existingItem);
 
 
             if (existingItem.isPresent()) {
@@ -66,7 +66,7 @@ public class ItemsController {
 
                 // Save the updated item (you need to implement this)
 //                itemsService.updateItem(item);
-                    itemsService.saveItem(item);
+                itemsService.saveItem(item);
 
             } else {
                 // Item not found, return a 404 response
@@ -82,5 +82,12 @@ public class ItemsController {
                     .body("Error updating item: " + e.getMessage());
         }
     }
+
+    @DeleteMapping("/clothes/{id}")
+    public void deleteItemById(@PathVariable int id) {
+
+        itemsService.deleteItemById(id);
+    }
+
 
 }
