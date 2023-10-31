@@ -3,9 +3,10 @@ import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
-//TODO: Make Items to be load from spring and set on the home page
 
-//TODO: Make the Add Items and edit Items
+//TODO: Make edit Items and delete items
+
+//TODO: Make the delete button to be hide if its not admin in Item details
 
 //TODO: Make input validation in the items, for example string instead of int
 

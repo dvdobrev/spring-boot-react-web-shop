@@ -1,6 +1,5 @@
 package com.dobri.springboot.items;
 
-import com.dobri.springboot.Clothes;
 import com.dobri.springboot.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +23,7 @@ public class ItemsController {
     ItemsService itemsService;
 
     @GetMapping("/")
-    public List<Items> getAllClothes() {
+    public List<Items> getAllItems() {
 
         return itemsService.getAllItems();
     }
@@ -41,4 +40,47 @@ public class ItemsController {
         Items savedItem = itemsService.saveItem(items);
         return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
     }
+
+    @PutMapping("/clothes/edit/{id}")
+    public ResponseEntity<String> updateItem(
+            @PathVariable int id,
+            @RequestBody Items updatedItem
+    ) {
+        try {
+
+            Optional<Items> existingItem = itemsService.findItemById(id);
+            System.out.println("Put Method: " + existingItem );
+
+
+            if (existingItem.isPresent()) {
+                Items item = existingItem.get();
+                // Update the existing item with the new data
+                item.setGender(updatedItem.getGender());
+                item.setColor(updatedItem.getColor());
+                item.setDescription(updatedItem.getDescription());
+                item.setImg_link(updatedItem.getImg_link());
+                item.setPrice(updatedItem.getPrice());
+                item.setQuantity(updatedItem.getQuantity());
+                item.setSize(updatedItem.getSize());
+                item.setType(updatedItem.getType());
+
+                // Save the updated item (you need to implement this)
+//                itemsService.updateItem(item);
+                    itemsService.saveItem(item);
+
+            } else {
+                // Item not found, return a 404 response
+
+                return ResponseEntity.notFound().build();
+            }
+
+            // Return a success response
+            return ResponseEntity.ok("Item updated successfully");
+        } catch (Exception e) {
+            // Handle any exceptions, e.g., database errors
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error updating item: " + e.getMessage());
+        }
+    }
+
 }

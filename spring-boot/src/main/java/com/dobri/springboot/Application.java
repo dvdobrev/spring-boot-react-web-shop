@@ -41,13 +41,6 @@ public class Application {
     }
 
 //    @CrossOrigin(origins = Constants.REACT_URL)
-//    @GetMapping("/clothes")
-//    public List<Items> getAllClothes() {
-//
-//        return itemsService.getAllItems();
-//    }
-
-//    @CrossOrigin(origins = Constants.REACT_URL)
 //    @RequestMapping(value = {"/clothes/details/{id}", "/clothes/edit/{id}"}, method = RequestMethod.GET)
 //    public Clothes findItemById(@PathVariable int id) {
 //        Optional<Clothes> entity = clothesService.findItemById(id);
@@ -55,38 +48,6 @@ public class Application {
 //        return entity.orElse(null);
 //    }
 
-
-//    @CrossOrigin(origins = Constants.REACT_URL)
-//    @PostMapping("/addClothes")
-//    public ResponseEntity<Clothes> addClothes(@RequestBody Clothes clothes) {
-//        Clothes savedClothes = clothesService.saveClothes(clothes);
-//        return new ResponseEntity<>(savedClothes, HttpStatus.CREATED);
-//    }
-
-//    @CrossOrigin(origins = reactURL)
-//    @PostMapping("/register")
-//    public ResponseEntity<User> addUser(@Validated @RequestBody User user) {
-//
-//        String sanitizedEmail = HtmlUtils.htmlEscape(user.getEmail());
-//        String sanitizedPassword = HtmlUtils.htmlEscape(user.getPassword());
-//        String hashedPassword = bCryptPasswordEncoder().encode(user.getPassword());
-////        String sanitizedCountry = HtmlUtils.htmlEscape(user.getCountry());
-////        String sanitizedCity = HtmlUtils.htmlEscape(user.getCity());
-////        String sanitizedAddress = HtmlUtils.htmlEscape(user.getAddress());
-////        String sanitizedAddressNumber = HtmlUtils.htmlEscape(user.getAddress_number());
-////        Integer sanitizedPostcode = Integer.valueOf(HtmlUtils.htmlEscape(String.valueOf(user.getPostcode())));
-//
-//        user.setEmail(sanitizedEmail);
-//        user.setPassword(hashedPassword);
-////        user.setCountry(sanitizedCountry);
-////        user.setCity(sanitizedCity);
-////        user.setAddress(sanitizedAddress);
-////        user.setAddress_number(sanitizedAddressNumber);
-////        user.setPostcode(sanitizedPostcode);
-//
-//        User savedUser = userService.saveUser(user);
-//        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-//    }
 
 //    @CrossOrigin(origins = Constants.REACT_URL)
 //    @PutMapping("/clothes/edit/{id}")
