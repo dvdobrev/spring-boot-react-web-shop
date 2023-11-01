@@ -11,6 +11,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface VerificationTokenRepository extends JpaRepository<VerificationToken, Long> {
     VerificationToken findByToken(String token);
-    @Query("SELECT vt FROM VerificationToken vt WHERE vt.user.customer_id = :userId")
-    VerificationToken findByUserId(@Param("userId") Long userId);
+    @Query("SELECT vt FROM VerificationToken vt WHERE vt.user.customerId = :userId")
+    VerificationToken findByUserCustomerId(@Param("userId") Long userId);
 }

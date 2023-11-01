@@ -35,8 +35,8 @@ public class UserService implements IUserService{
         if(user.isPresent() && (user.get().getIsEnabled())) {
             throw new UserAlreadyExistsException("User with that email already exists");
         } else if (user.isPresent() && (!user.get().getIsEnabled())){
-            Long user_id = user.get().getCustomer_id();
-            VerificationToken token = tokenRepository.findByUserId(user_id);
+            Long user_id = user.get().getCustomerId();
+            VerificationToken token = tokenRepository.findByUserCustomerId(user_id);
             User currentUser = token.getUser();
 
             tokenRepository.delete(token);

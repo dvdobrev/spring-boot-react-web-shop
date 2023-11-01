@@ -50,7 +50,7 @@ public class LoginController {
             userDTO.setLastName(user.get().getLastName());
             userDTO.setUserRole(user.get().getUserRole());
             userDTO.setIsEnabled(user.get().getIsEnabled());
-            userDTO.setCustomer_id(user.get().getCustomer_id());
+            userDTO.setCustomerId(user.get().getCustomerId());
 
             return userDTO;
 
