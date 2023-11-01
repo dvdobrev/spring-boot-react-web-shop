@@ -1,10 +1,10 @@
 import axios, { formToJSON } from 'axios';
-import springUrl from "./springUrl";
+import springUrl from "../springUrl";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
 import DOMPurify from 'dompurify';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 
 export const Login = () => {

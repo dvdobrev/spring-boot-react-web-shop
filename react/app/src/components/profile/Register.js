@@ -1,10 +1,10 @@
 import axios, { formToJSON } from 'axios';
-import springUrl from "./springUrl";
+import springUrl from "../springUrl";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 
 import DOMPurify from 'dompurify';
-import { UserContext } from '../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 
 
 export const Register = () => {
@@ -58,6 +58,7 @@ export const Register = () => {
         }
 
         try {
+            
             // Send a POST request to the Spring Boot backend
             const response = await axios.post(springUrl + url, formData);
 
@@ -76,7 +77,7 @@ export const Register = () => {
                 houseNumber: '',
                 post_code: '',
             });
-            navigate(`/`);
+            navigate(`/login`);
 
         } catch (error) {
             console.error('Registration error:', error);
