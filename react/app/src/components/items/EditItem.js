@@ -15,7 +15,7 @@ export const EditItem = () => {
 
     const navigate = useNavigate();
 
-    let url = `/clothes/edit/${itemId}`;
+    const url = `/clothes/edit/${itemId}`;
 
     const [formData, setFormData] = useState({
         gender: '',

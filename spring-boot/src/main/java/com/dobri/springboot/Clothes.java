@@ -28,7 +28,8 @@ public class Clothes {
     private String description;
 
 
-    public Clothes(){}
+    public Clothes() {
+    }
 
     public Clothes(Long item_id,
                    String type,

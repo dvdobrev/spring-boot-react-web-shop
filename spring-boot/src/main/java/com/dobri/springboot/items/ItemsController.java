@@ -49,8 +49,6 @@ public class ItemsController {
         try {
 
             Optional<Items> existingItem = itemsService.findItemById(id);
-            System.out.println("Put Method: " + existingItem);
-
 
             if (existingItem.isPresent()) {
                 Items item = existingItem.get();

@@ -33,7 +33,6 @@ export const ClothesProvider = ({
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 setClothes(data);
             })
             .catch((error) => {

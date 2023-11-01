@@ -23,7 +23,7 @@ public class ItemsService {
     }
 
     public Items saveItem(Items items) {
-        // Add any business logic or validation here if needed
+
         return itemsRepository.save(items);
     }
 
