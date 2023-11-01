@@ -4,17 +4,16 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 import { Header } from './components/Header';
-import { Login } from './components/Login';
+import { Login } from './components/profile/Login';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import { ClothesProvider } from './context/ClothesContext';
 import { Home } from './components/Home';
-import { Profile } from './components/Profile';
-import { Register } from './components/Register';
+import { Register } from './components/profile/Register';
 import { AboutUs } from './components/AboutUs';
 import { Offers } from './components/Offers';
 import { Shoppingcart } from './components/Shoppingcart';
-import { Logout } from './components/Logout';
+import { Logout } from './components/profile/Logout';
 import { AddClothes } from './components/items/AddClothes';
 import { Itemdetails } from './components/items/ItemDetails';
 import { EditItem } from './components/items/EditItem';
@@ -22,6 +21,9 @@ import { AdminGuard } from './components/routGuards/AdminGuard';
 import { LoginGuard } from './components/routGuards/LoginGuard';
 import { RouteGuard } from './components/routGuards/RouteGuard';
 import { PageNotFound } from './components/PageNotFound';
+import { Profile } from './components/profile/Profile';
+import { EditProfile } from './components/profile/EditProfile';
+import { AddAddress } from './components/address/AddAddress';
 
 const App = () => {
     return (
@@ -49,12 +51,16 @@ const App = () => {
                     <Route element={<LoginGuard />}>
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
+
                     </Route>
 
                     <Route element={<RouteGuard />}>
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/shopping-cart" element={<Shoppingcart />} />
                         <Route path="/logout" element={<Logout />} />
+                        <Route path="/profile/edit" element={<EditProfile />} />
+                        <Route path="/addAddress" element={<AddAddress />} />
+
                     </Route>
 
                     <Route path="/about" element={<AboutUs />} />
