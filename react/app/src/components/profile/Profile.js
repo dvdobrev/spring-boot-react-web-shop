@@ -10,7 +10,6 @@ export const Profile = () => {
 
     const { userData } = useContext(UserContext);
     const { allAddresses, getAddresses } = useContext(AddressContext);
-    console.log('allAddresses: ', allAddresses);
 
     useEffect(() => {
         getAddresses();
@@ -19,11 +18,6 @@ export const Profile = () => {
     return (
         <>
             <div className={`card ${cardsCSS["cards"]}`}>
-                {/* <img
-            className={`card-img-top ${cardsCSS["card-img"]}`}
-            src={item.img_link}
-            alt="Card Image"
-        /> */}
                 <div className="card-body">
                     {/* <p className="card-text">Gender: </p> */}
                     <p className="card-title">First Name: {userData.firstName}</p>

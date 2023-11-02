@@ -24,6 +24,8 @@ import { UserContext } from '../context/UserContext';
 
 //TODO: Make login with google account
 
+//TODO: make delete customer if its not validated
+
 //TODO: Make the spring security configuration
 
 //TODO: Make Footer

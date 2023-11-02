@@ -1,7 +1,15 @@
+import { useContext } from "react";
 import cardsCSS from "../../components/cards.module.css";
+import { AddressContext } from "../../context/AddressContext";
+import { Link } from "react-router-dom";
 
 
 export const AddressItem = ({ address }) => {
+
+    const { deleteHandler } = useContext(AddressContext);
+
+    
+    
     return (
         <div className={`card ${cardsCSS["cards"]}`}>
             <div className="card-body">
@@ -11,10 +19,10 @@ export const AddressItem = ({ address }) => {
                 <p className="card-text">Street number: {address.streetNumber}</p>
                 <p className="card-text">Post code: {address.postCode}</p>
 
-                {/* <button onClick={() => deleteHandler(item.item_id)} className="btn btn-primary">Delete Address</button>
+                <button onClick={() => deleteHandler(address.addressId)} className="btn btn-primary">Delete Address</button>
 
-                    <Link to={`/clothes/edit/${item.item_id}`} className="btn btn-primary">Edit Address
-                    </Link> */}
+                    <Link to={`/profile/address/edit/${address.addressId}`} className="btn btn-primary">Edit Address
+                    </Link>
 
             </div>
         </div>
