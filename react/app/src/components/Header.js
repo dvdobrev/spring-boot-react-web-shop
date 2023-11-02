@@ -4,12 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 
-
-//TODO: Make profile page with CRUD and
-
-//TODO: Add Gender to the database
-
-//TODO: make form to add address
+//TODO: make form to edit address
 
 //TODO: Make shopping cart page
 

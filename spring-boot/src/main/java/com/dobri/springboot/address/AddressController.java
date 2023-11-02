@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * @author Dobrin Dobrev
@@ -27,6 +27,24 @@ public class AddressController {
     @Autowired
     UserService userService;
 
+    @GetMapping("/profile")
+    public Stream<Object> getAllUserAddresses(@RequestHeader("X-Customer-Id") String customerId) {
+
+        List<Address> addresses = addressService.findAddressesByCustomerId(Long.valueOf(customerId));
+        Stream<Object> addressesDTO = addresses.stream()
+                .map(address -> new AddressDTO(address.getAddressId(),
+                        address.getCountry(),
+                        address.getCity(),
+                        address.getStreet(),
+                        address.getStreetNumber(),
+                        address.getPostCode()));
+        
+        System.out.println("addressesDTO: " + addressesDTO);
+
+        return addressesDTO;
+    }
+
+
     @PostMapping("/addAddress")
     public ResponseEntity<Address> addAddress(@RequestBody Address address) {
 
@@ -35,7 +53,7 @@ public class AddressController {
 
         // Retrieve the User entity from the database
         User user = userService.findByEmail(address.getUser().getEmail());
-        
+
         System.out.println("-------------------------------");
         System.out.println("User: " + user);
 

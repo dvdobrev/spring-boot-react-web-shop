@@ -57,7 +57,7 @@ export const AddAddress = () => {
             //     updateClothes(response.data);
             // }
 
-            // navigate(`/profile`);
+            navigate(`/profile`);
 
         } catch (error) {
             console.error('Error adding clothes:', error);

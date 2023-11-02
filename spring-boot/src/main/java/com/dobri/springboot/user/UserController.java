@@ -26,12 +26,6 @@ public class UserController {
     @Autowired
     private final UserRepository userRepository;
 
-//    @GetMapping("/profile/edit")
-//    public List<User> getAllItems() {
-//
-//        return userService.getUsers();
-//    }
-
     @PutMapping("/profile/edit")
     public ResponseEntity<String> editUser(
             @RequestBody User newUserData

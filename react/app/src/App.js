@@ -24,6 +24,7 @@ import { PageNotFound } from './components/PageNotFound';
 import { Profile } from './components/profile/Profile';
 import { EditProfile } from './components/profile/EditProfile';
 import { AddAddress } from './components/address/AddAddress';
+import { AddressProvider } from './context/AddressContext';
 
 const App = () => {
     return (
@@ -51,27 +52,30 @@ const App = () => {
                     <Route element={<LoginGuard />}>
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-
                     </Route>
 
-                    <Route element={<RouteGuard />}>
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/shopping-cart" element={<Shoppingcart />} />
-                        <Route path="/logout" element={<Logout />} />
-                        <Route path="/profile/edit" element={<EditProfile />} />
-                        <Route path="/addAddress" element={<AddAddress />} />
+                </Routes>
 
-                    </Route>
+                <AddressProvider>
+                    <Routes>
+                        <Route element={<RouteGuard />}>
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="/shopping-cart" element={<Shoppingcart />} />
+                            <Route path="/logout" element={<Logout />} />
+                            <Route path="/profile/edit" element={<EditProfile />} />
+                            <Route path="/addAddress" element={<AddAddress />} />
+                        </Route>
+                    </Routes>
+                </AddressProvider>
 
+                <Routes>
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/offers" element={<Offers />} />
-
-
                 </Routes>
 
             </div >
 
-        </UserProvider>
+        </UserProvider >
     );
 };
 

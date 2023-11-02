@@ -36,7 +36,7 @@ public class Address {
     private String city;
     private String street;
     private String streetNumber;
-    private Integer postcode;
+    private Integer postCode;
 
     @ManyToOne
     @JoinColumn(name = "customerId")

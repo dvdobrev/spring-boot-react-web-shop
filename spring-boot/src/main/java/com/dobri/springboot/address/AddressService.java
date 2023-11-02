@@ -33,7 +33,7 @@ public class AddressService {
         return addressRepository.findById(Long.valueOf(id));
     }
 
-    public List<Address> findAddressesByUserId(Long userId) {
-        return addressRepository.findByUserCustomerId(userId);
+    public List<Address> findAddressesByCustomerId(Long customerId) {
+        return addressRepository.findByUserCustomerId(customerId);
     }
 }
