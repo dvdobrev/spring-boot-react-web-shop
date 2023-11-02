@@ -25,8 +25,8 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
-    public void deleteAddressById(int id) {
-        addressRepository.deleteById((long) id);
+    public void deleteAddressById(long id) {
+        addressRepository.deleteById(id);
     }
 
     public Optional<Address> findAddressById(int id) {

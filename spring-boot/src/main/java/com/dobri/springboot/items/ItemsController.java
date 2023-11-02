@@ -86,6 +86,4 @@ public class ItemsController {
 
         itemsService.deleteItemById(id);
     }
-
-
 }

@@ -48,19 +48,20 @@ public class AddressController {
     @PostMapping("/addAddress")
     public ResponseEntity<Address> addAddress(@RequestBody Address address) {
 
-        System.out.println("------------------------------Address post Mapping");
-        System.out.println("Email: " + address.getUser().getEmail());
-
-        // Retrieve the User entity from the database
         User user = userService.findByEmail(address.getUser().getEmail());
-
-        System.out.println("-------------------------------");
-        System.out.println("User: " + user);
 
         // Set the User in the Address entity
         address.setUser(user);
 
         Address newAddress = addressService.saveAddress(address);
         return new ResponseEntity<>(newAddress, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/profile/address/delete/{addressId}")
+    public void deleteItemById(@PathVariable Long addressId) {
+        System.out.println("----------------From Delete Address");
+        System.out.println("Id: " + addressId);
+
+        addressService.deleteAddressById(addressId);
     }
 }
