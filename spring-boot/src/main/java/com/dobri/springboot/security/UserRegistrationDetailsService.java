@@ -1,5 +1,6 @@
 package com.dobri.springboot.security;
 
+import com.dobri.springboot.user.User;
 import com.dobri.springboot.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,8 +19,10 @@ public class UserRegistrationDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .map(UserRegistrationDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return new UserRegistrationDetails(user);
     }
 }

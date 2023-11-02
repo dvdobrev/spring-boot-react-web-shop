@@ -5,12 +5,12 @@ import com.dobri.springboot.registration.RegistrationRequest;
 import com.dobri.springboot.registration.token.VerificationToken;
 import com.dobri.springboot.registration.token.VerificationTokenRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -30,12 +30,12 @@ public class UserService implements IUserService{
 
     @Override
     public User registerUser(RegistrationRequest request) {
-        Optional<User> user = this.findByEmail(request.email());
+        User user = this.findByEmail(request.email());
 
-        if(user.isPresent() && (user.get().getIsEnabled())) {
+        if(user != null && (user.getIsEnabled())) {
             throw new UserAlreadyExistsException("User with that email already exists");
-        } else if (user.isPresent() && (!user.get().getIsEnabled())){
-            Long user_id = user.get().getCustomerId();
+        } else if (user != null && (!user.getIsEnabled())){
+            Long user_id = user.getCustomerId();
             VerificationToken token = tokenRepository.findByUserCustomerId(user_id);
             User currentUser = token.getUser();
 
@@ -53,8 +53,14 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
+    public User findByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findUserById(Long customerId) {
+        return userRepository.findById(customerId)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Override

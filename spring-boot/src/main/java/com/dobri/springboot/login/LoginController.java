@@ -39,18 +39,18 @@ public class LoginController {
     @ResponseBody
     public UserDTO loginUser(@RequestBody LoginRequest loginRequest) {
 
-        Optional<User> user = userService.findByEmail(loginRequest.getEmail());
+        User user = userService.findByEmail(loginRequest.getEmail());
 
 
-        if (user.isPresent() && passwordEncoder.matches(loginRequest.getPassword(), user.get().getPassword())) {
+        if (user != null && passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
 
             UserDTO userDTO = new UserDTO();
-            userDTO.setEmail(user.get().getEmail());
-            userDTO.setFirstName(user.get().getFirstName());
-            userDTO.setLastName(user.get().getLastName());
-            userDTO.setUserRole(user.get().getUserRole());
-            userDTO.setIsEnabled(user.get().getIsEnabled());
-            userDTO.setCustomerId(user.get().getCustomerId());
+            userDTO.setEmail(user.getEmail());
+            userDTO.setFirstName(user.getFirstName());
+            userDTO.setLastName(user.getLastName());
+            userDTO.setUserRole(user.getUserRole());
+            userDTO.setIsEnabled(user.getIsEnabled());
+            userDTO.setCustomerId(user.getCustomerId());
 
             return userDTO;
 

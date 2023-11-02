@@ -47,11 +47,11 @@ public class UserController {
 
         try {
 
-            Optional<User> user = userService.findByEmail(newUserData.getEmail());
+            User user = userService.findByEmail(newUserData.getEmail());
             
             System.out.println("User: " + user);
 
-            User updatedUser = user.get();
+            User updatedUser = user;
 
             // Update the existing item with the new data
 //                updatedUser.setGender(userData.getGender());

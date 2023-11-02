@@ -4,13 +4,12 @@ import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 
-//TODO: Make input validation in the items, for example string instead of int
 
-//TODO: Make profile page with CRUD
+//TODO: Make profile page with CRUD and
+
+//TODO: Add Gender to the database
 
 //TODO: make form to add address
-
-//TODO: The buttons for the card carousel
 
 //TODO: Make shopping cart page
 
@@ -20,13 +19,19 @@ import { UserContext } from '../context/UserContext';
 
 //TODO: Make pdf invoice
 
-//TODO: Make the css for cards 
+//TODO: Make login with google account
 
 //TODO: Make the search bar in the nav
 
-//TODO: Make Footer
+//TODO: Make the css for cards 
+
+//TODO: The buttons for the card carousel
+
+//TODO: Make login with google account
 
 //TODO: Make the spring security configuration
+
+//TODO: Make Footer
 
 //TODO: Delete all console.log
 
@@ -35,9 +40,7 @@ export const Header = () => {
 
     const { userData } = useContext(UserContext);
     console.log('userData: ', userData);
-    console.log("UserRole: " + userData.userRole);
-
-
+    
 
     return (
         <nav id={headerCSS["navbar"]} className="navbar navbar-expand-lg navbar-light container-fluid">
@@ -57,7 +60,7 @@ export const Header = () => {
             </button>
             <div className="collapse navbar-collapse" id={headerCSS["navbar-nav"]}>
 
-                {userData?.email && <span id={headerCSS["welcomeSpan"]} >Hello {userData.firstName}  {userData.lastName}!</span>}
+                {userData?.email && <span id={headerCSS["welcomeSpan"]} >Hello {userData.email}</span>}
 
                 <ul className="navbar-nav ml-auto">
 

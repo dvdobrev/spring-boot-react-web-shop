@@ -12,7 +12,7 @@ import org.hibernate.annotations.NaturalId;
 @Setter
 public class UserDTO {
 
-    private Long customer_id;
+    private Long customerId;
     private String firstName;
     private String lastName;
     @NaturalId(mutable = true)

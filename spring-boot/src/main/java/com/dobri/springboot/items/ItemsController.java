@@ -36,9 +36,9 @@ public class ItemsController {
     }
 
     @PostMapping("/addClothes")
-    public ResponseEntity<Items> addItem(@RequestBody Items items) {
-        Items savedItem = itemsService.saveItem(items);
-        return new ResponseEntity<>(savedItem, HttpStatus.CREATED);
+    public ResponseEntity<Items> addItem(@RequestBody Items item) {
+        Items newItem = itemsService.saveItem(item);
+        return new ResponseEntity<>(newItem, HttpStatus.CREATED);
     }
 
     @PutMapping("/clothes/edit/{id}")

@@ -1,6 +1,7 @@
 package com.dobri.springboot.user;
 
 import com.dobri.springboot.address.Address;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class User {
     private String userRole;
     private Boolean isEnabled = false;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore  // This annotation prevents the circular reference
     private List<Address> addresses;
 }
