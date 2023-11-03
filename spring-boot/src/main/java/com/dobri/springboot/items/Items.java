@@ -27,8 +27,8 @@ public class Items {
 //            generator = "clothes_id_sequence"
 //    )
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //TODO: this is from ChatGPT
-    private Long item_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long itemId;
 
     private String type;
     private Integer quantity;
