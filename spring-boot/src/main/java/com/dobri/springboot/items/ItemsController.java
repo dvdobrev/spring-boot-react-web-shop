@@ -51,20 +51,20 @@ public class ItemsController {
             Optional<Items> existingItem = itemsService.findItemById(id);
 
             if (existingItem.isPresent()) {
-                Items item = existingItem.get();
+                Items newItem = existingItem.get();
                 // Update the existing item with the new data
-                item.setGender(updatedItem.getGender());
-                item.setColor(updatedItem.getColor());
-                item.setDescription(updatedItem.getDescription());
-                item.setImg_link(updatedItem.getImg_link());
-                item.setPrice(updatedItem.getPrice());
-                item.setQuantity(updatedItem.getQuantity());
-                item.setSize(updatedItem.getSize());
-                item.setType(updatedItem.getType());
+                newItem.setGender(updatedItem.getGender());
+                newItem.setColor(updatedItem.getColor());
+                newItem.setDescription(updatedItem.getDescription());
+                newItem.setImg_link(updatedItem.getImg_link());
+                newItem.setPrice(updatedItem.getPrice());
+                newItem.setQuantity(updatedItem.getQuantity());
+                newItem.setSize(updatedItem.getSize());
+                newItem.setType(updatedItem.getType());
 
                 // Save the updated item (you need to implement this)
 //                itemsService.updateItem(item);
-                itemsService.saveItem(item);
+                itemsService.saveItem(newItem);
 
             } else {
                 // Item not found, return a 404 response
