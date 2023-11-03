@@ -21,7 +21,7 @@ public class AddressService {
     }
 
     public Address saveAddress(Address address) {
-
+        System.out.println("===========================In the save address");
         return addressRepository.save(address);
     }
 
@@ -29,8 +29,8 @@ public class AddressService {
         addressRepository.deleteById(id);
     }
 
-    public Optional<Address> findAddressById(int id) {
-        return addressRepository.findById(Long.valueOf(id));
+    public Optional<Address> findAddressById(long id) {
+        return addressRepository.findById(id);
     }
 
     public List<Address> findAddressesByCustomerId(Long customerId) {

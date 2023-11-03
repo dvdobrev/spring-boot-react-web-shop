@@ -25,6 +25,7 @@ import { Profile } from './components/profile/Profile';
 import { EditProfile } from './components/profile/EditProfile';
 import { AddAddress } from './components/address/AddAddress';
 import { AddressProvider } from './context/AddressContext';
+import { EditAddress } from './components/address/EditAddress';
 
 const App = () => {
     return (
@@ -63,6 +64,7 @@ const App = () => {
                             <Route path="/shopping-cart" element={<Shoppingcart />} />
                             <Route path="/logout" element={<Logout />} />
                             <Route path="/profile/edit" element={<EditProfile />} />
+                            <Route path="/address/edit/:addressId" element={<EditAddress />} />
                             <Route path="/addAddress" element={<AddAddress />} />
                         </Route>
                     </Routes>

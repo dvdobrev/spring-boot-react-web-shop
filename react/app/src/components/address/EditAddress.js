@@ -1,21 +1,20 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import springUrl from "../springUrl";
 import { UserContext } from "../../context/UserContext";
+import { useNavigate, useParams } from "react-router-dom";
 
+export const EditAddress = () => {
 
-export const AddAddress = () => {
-
-    const url = '/addAddress';
     const navigate = useNavigate();
-
+    
+    const { addressId } = useParams();
     const { userData } = useContext(UserContext);
 
-    const user = {
-        customerId: userData.customerId,
-        email: userData.email,
-    };
+    const [address, setAddress] = useState({});
+    const [error, setError] = useState('');
+
+    const url = `/address/edit/${addressId}`;
 
     const [formData, setFormData] = useState({
         country: '',
@@ -36,37 +35,58 @@ export const AddAddress = () => {
         e.preventDefault();
 
         try {
+            // Send a PUT request to your Spring Boot backend
+            const response = await axios.put(springUrl + url, formData);
 
-            const response = await axios.post(springUrl + url, formData);
-
-            // Clear the form after successful submission
-            setFormData({
-                country: '',
-                city: '',
-                street: '',
-                streetNumber: '',
-                postCode: '',
-                user: {},
-            });
-
-            // if (response.status === 201) {
-            //     updateClothes(response.data);
-            // }
-
-            navigate(`/profile`);
+            if (response.status === 200) {
+                // Successfully updated the item, navigate to the item details page
+                navigate(`/profile`);
+            } else {
+                console.error('Error updating address:', response.data);
+            }
 
         } catch (error) {
-            console.error('Error adding clothes:', error);
+            console.error('Error adding address:', error);
         }
     };
 
+    const getAddressById = () => {
+        fetch(`${springUrl}/address/edit/${addressId}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                setAddress(data);
+
+                setFormData({
+                    country: data.country || '',
+                    city: data.city || '',
+                    street: data.street || '',
+                    streetNumber: data.streetNumber || '',
+                    postCode: data.postCode || '',
+                    user: userData || {},
+                });
+            })
+            .catch((error) => {
+                setError(error);
+            });
+    }
+
     useEffect(() => {
-        setFormData({ ...formData, user: user });
+        setFormData({ ...formData, user: userData });
     }, []);
+
+    useEffect(() => {
+
+        getAddressById();
+    }, [addressId]);
 
     return (
         <div>
-            <h2>Add Address</h2>
+            <h2>Edit Address</h2>
             <form onSubmit={onSubmit}>
 
                 <div>
@@ -129,7 +149,7 @@ export const AddAddress = () => {
                     />
                 </div>
 
-                <button type="submit">Add Address</button>
+                <button type="submit">Edit Address</button>
             </form>
         </div>
     );

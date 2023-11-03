@@ -8,7 +8,7 @@ export const AddressItem = ({ address }) => {
 
     const { deleteHandler } = useContext(AddressContext);
 
-    
+
     
     return (
         <div className={`card ${cardsCSS["cards"]}`}>
@@ -21,7 +21,7 @@ export const AddressItem = ({ address }) => {
 
                 <button onClick={() => deleteHandler(address.addressId)} className="btn btn-primary">Delete Address</button>
 
-                    <Link to={`/profile/address/edit/${address.addressId}`} className="btn btn-primary">Edit Address
+                    <Link to={`/address/edit/${address.addressId}`} className="btn btn-primary">Edit Address
                     </Link>
 
             </div>

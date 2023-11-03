@@ -14,7 +14,6 @@ export const EditItem = () => {
     const [priceError, setPriceError] = useState("");
 
     const navigate = useNavigate();
-
     const url = `/clothes/edit/${itemId}`;
 
     const [formData, setFormData] = useState({
