@@ -31,19 +31,20 @@ public class UserService implements IUserService{
     @Override
     public User registerUser(RegistrationRequest request) {
         User user = this.findByEmail(request.email());
+        Long userId = null;
 
         if(user != null && (user.getIsEnabled())) {
             throw new UserAlreadyExistsException("User with that email already exists");
         } else if (user != null && (!user.getIsEnabled())){
-            Long user_id = user.getCustomerId();
-            VerificationToken token = tokenRepository.findByUserCustomerId(user_id);
+            userId = user.getCustomerId();
+            VerificationToken token = tokenRepository.findByUserCustomerId(userId);
             User currentUser = token.getUser();
 
             tokenRepository.delete(token);
             userRepository.delete(currentUser);
         }
 
-        User newUser = new User();
+        User newUser = new User(userId);
         newUser.setFirstName(request.firstName());
         newUser.setLastName(request.lastName());
         newUser.setEmail(request.email());
@@ -60,7 +61,7 @@ public class UserService implements IUserService{
     @Override
     public User findUserById(Long customerId) {
         return userRepository.findById(customerId)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND_MSG));
     }
 
     @Override

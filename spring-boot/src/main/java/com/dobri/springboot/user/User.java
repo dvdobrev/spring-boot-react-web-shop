@@ -1,12 +1,10 @@
 package com.dobri.springboot.user;
 
 import com.dobri.springboot.address.Address;
+import com.dobri.springboot.shoppingCart.ShoppingCart;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.NaturalId;
 
 import java.util.List;
@@ -30,7 +28,14 @@ public class User {
     private String userRole;
     private Boolean isEnabled = false;
 
+    public User(Long customerId) {
+    }
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore  // This annotation prevents the circular reference
     private List<Address> addresses;
+
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private ShoppingCart shoppingCart;
+
 }

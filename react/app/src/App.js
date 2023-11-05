@@ -12,7 +12,7 @@ import { Home } from './components/Home';
 import { Register } from './components/profile/Register';
 import { AboutUs } from './components/AboutUs';
 import { Offers } from './components/Offers';
-import { Shoppingcart } from './components/Shoppingcart';
+import { Shoppingcart } from './components/shoppingCart/Shoppingcart';
 import { Logout } from './components/profile/Logout';
 import { AddClothes } from './components/items/AddClothes';
 import { Itemdetails } from './components/items/ItemDetails';
@@ -61,7 +61,7 @@ const App = () => {
                     <Routes>
                         <Route element={<RouteGuard />}>
                             <Route path="/profile" element={<Profile />} />
-                            <Route path="/shopping-cart" element={<Shoppingcart />} />
+                            <Route path="/shoppingCart" element={<Shoppingcart />} />
                             <Route path="/logout" element={<Logout />} />
                             <Route path="/profile/edit" element={<EditProfile />} />
                             <Route path="/address/edit/:addressId" element={<EditAddress />} />

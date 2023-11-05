@@ -20,13 +20,11 @@ public class Application {
 
 //    private final String reactURL = "http://localhost:3000";
 
-    private final ClothesService clothesService;
     private final UserService userService;
     private final ItemsService itemsService;
 
 
-    public Application(ClothesService clothService, UserService userService, ItemsService itemsService) {
-        this.clothesService = clothService;
+    public Application(UserService userService, ItemsService itemsService) {
         this.userService = userService;
         this.itemsService = itemsService;
     }

@@ -29,10 +29,10 @@ public class ItemsController {
     }
 
     @RequestMapping(value = {"/clothes/details/{id}", "/clothes/edit/{id}"}, method = RequestMethod.GET)
-    public Items findItemById(@PathVariable int id) {
-        Optional<Items> entity = itemsService.findItemById(id);
+    public Items findItemById(@PathVariable Long id) {
+        Items entity = itemsService.findItemById(id);
 
-        return entity.orElse(null);
+        return entity;
     }
 
     @PostMapping("/addClothes")
@@ -43,30 +43,29 @@ public class ItemsController {
 
     @PutMapping("/clothes/edit/{id}")
     public ResponseEntity<String> updateItem(
-            @PathVariable int id,
+            @PathVariable Long id,
             @RequestBody Items updatedItem
     ) {
         try {
 
-            Optional<Items> existingItem = itemsService.findItemById(id);
+            Items existingItem = itemsService.findItemById(id);
 
-            if (existingItem.isPresent()) {
-                Items newItem = existingItem.get();
+            try {
                 // Update the existing item with the new data
-                newItem.setGender(updatedItem.getGender());
-                newItem.setColor(updatedItem.getColor());
-                newItem.setDescription(updatedItem.getDescription());
-                newItem.setImg_link(updatedItem.getImg_link());
-                newItem.setPrice(updatedItem.getPrice());
-                newItem.setQuantity(updatedItem.getQuantity());
-                newItem.setSize(updatedItem.getSize());
-                newItem.setType(updatedItem.getType());
+                existingItem.setGender(updatedItem.getGender());
+                existingItem.setColor(updatedItem.getColor());
+                existingItem.setDescription(updatedItem.getDescription());
+                existingItem.setImg_link(updatedItem.getImg_link());
+                existingItem.setPrice(updatedItem.getPrice());
+                existingItem.setQuantity(updatedItem.getQuantity());
+                existingItem.setSize(updatedItem.getSize());
+                existingItem.setType(updatedItem.getType());
 
                 // Save the updated item (you need to implement this)
 //                itemsService.updateItem(item);
-                itemsService.saveItem(newItem);
+                itemsService.saveItem(existingItem);
 
-            } else {
+            } catch (Exception e) {
                 // Item not found, return a 404 response
 
                 return ResponseEntity.notFound().build();
@@ -82,7 +81,7 @@ public class ItemsController {
     }
 
     @DeleteMapping("/clothes/{id}")
-    public void deleteItemById(@PathVariable int id) {
+    public void deleteItemById(@PathVariable Long id) {
 
         itemsService.deleteItemById(id);
     }

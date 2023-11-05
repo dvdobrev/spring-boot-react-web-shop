@@ -1,5 +1,6 @@
 package com.dobri.springboot.items;
 
+import com.dobri.springboot.shoppingCart.ShoppingCart;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,14 +19,6 @@ import lombok.Setter;
 @Table(name = "items")
 public class Items {
 
-    //    @SequenceGenerator(
-//            name="clothes_id_sequence",
-//            sequenceName = "clothes_id_sequence"
-//    )
-//    @GeneratedValue(
-//            strategy = GenerationType.SEQUENCE,
-//            generator = "clothes_id_sequence"
-//    )
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long itemId;
@@ -38,5 +31,4 @@ public class Items {
     private float price;
     private String img_link;
     private String description;
-
 }
