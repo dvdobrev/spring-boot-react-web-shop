@@ -56,7 +56,7 @@ export const Home = () => {
                 dotListClass="custom-dot-list-style"
 
             >
-                {clothes.map(cloth => <ClothesItem key={cloth.item_id} cloth={cloth} />
+                {clothes.map(cloth => <ClothesItem key={cloth.itemId} cloth={cloth} />
 
                 )}
 

@@ -37,18 +37,6 @@ export const AddClothes = () => {
 
             const response = await axios.post(springUrl + url, formData);
 
-            // Clear the form after successful submission
-            // setFormData({
-            //     gender: '',
-            //     color: '',
-            //     description: '',
-            //     img_link: '',
-            //     price: '',
-            //     quantity: '',
-            //     size: '',
-            //     type: '',
-            // });
-
             if (response.status === 201) {
                 updateClothes(response.data);
             }

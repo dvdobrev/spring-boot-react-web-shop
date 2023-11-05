@@ -14,7 +14,7 @@ export const ClothesProvider = ({
     const [error, setError] = useState(null);
 
     const updateClothes = (newItem) => {
-        setClothes( prevClothes => [...prevClothes, newItem,]);
+        setClothes(prevClothes => [...prevClothes, newItem,]);
     };
 
 
@@ -38,14 +38,26 @@ export const ClothesProvider = ({
             .catch((error) => {
                 setError(error);
             });
-    }
+    };
+
+    const getItemById = async (itemId) => {
+        try {
+            const response = await axios.get(`${springUrl}/clothes/details/${itemId}`);
+            if (response.status !== 200) {
+                throw new Error('Network response was not ok');
+            }
+            return response.data;
+        } catch (error) {
+            setError(error);
+        }
+    };
+
 
     const deleteHandler = async (id) => {
         if (window.confirm('Are you sure you want to delete this item?')) {
             deleteClothes(id);
         };
     };
-
 
     const deleteClothes = async (id) => {
         try {
@@ -65,15 +77,32 @@ export const ClothesProvider = ({
         }
     }
 
+    const addToShoppingCart = async (springUrl, url, userItemData) => {
+        try {
+
+            const response = await axios.post(springUrl + url, userItemData);
+
+            if (response.status !== 200) {
+                throw new Error('Network response was not ok');
+            } 
+
+            // navigate(`/`);
+
+        } catch (error) {
+            console.error('Error adding clothes:', error);
+        }
+    };
+
 
     return (
         <ClothesContext.Provider value={{
             clothes,
             getItems,
+            getItemById,
             deleteHandler,
             deleteClothes,
             updateClothes,
-
+            addToShoppingCart,
         }}>
             {children}
         </ClothesContext.Provider>

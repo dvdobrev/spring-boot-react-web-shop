@@ -4,11 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 
-//TODO: make form to edit address
 
-//TODO: Make shopping cart page
-
-//TODO: Make add product to shopping cart
 
 //TODO: Make buy product
 
@@ -17,6 +13,8 @@ import { UserContext } from '../context/UserContext';
 //TODO: Make login with google account
 
 //TODO: Make the search bar in the nav
+
+//TODO: Make the price validation (seen the commented code in EditItem)
 
 //TODO: Make the css for cards 
 
@@ -110,7 +108,7 @@ export const Header = () => {
                             </li>
 
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/shopping-cart">
+                                <NavLink className="nav-link" to="/shoppingCart">
                                     Shoppingcart
                                 </NavLink>
                             </li>

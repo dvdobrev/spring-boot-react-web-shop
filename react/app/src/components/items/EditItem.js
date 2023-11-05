@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import springUrl from "../springUrl";
+import { ClothesContext } from "../../context/ClothesContext";
 
 
 export const EditItem = () => {
@@ -38,7 +39,6 @@ export const EditItem = () => {
             })
             .then((data) => {
                 setItem(data);
-
                 setFormData({
                     gender: data.gender || '',
                     color: data.color || '',
@@ -70,17 +70,18 @@ export const EditItem = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (validPrice === 'false') {
-            return;
-        }
+        // if (validPrice === 'false') {
+        //     return;
+        // }
 
         try {
+
             // Send a PUT request to your Spring Boot backend
             const response = await axios.put(springUrl + url, formData);
 
             if (response.status === 200) {
-                // Successfully updated the item, navigate to the item details page
-                navigate(`/clothes/details/${itemId}`);
+                // navigate(`/clothes/details/${itemId}`);
+                window.location.href = `/clothes/details/${itemId}`;
             } else {
                 console.error('Error updating item:', response.data);
             }
