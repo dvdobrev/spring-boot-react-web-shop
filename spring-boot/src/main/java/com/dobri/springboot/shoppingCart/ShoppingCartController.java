@@ -38,25 +38,18 @@ public class ShoppingCartController {
 
     @PostMapping("/addToShoppingCart")
     public ResponseEntity<String> addToShoppingCart(@RequestBody ShoppingCart shoppingCart) {
-        System.out.println("---------------in POST SHOPPINGCart");
         Long itemId = shoppingCart.getItem().getItemId();
         Long currentCustomerId = shoppingCart.getUser().getCustomerId();
 
         System.out.println("Current Customer ID: " + currentCustomerId);
 
-//        ShoppingCart existingItem = shoppingCartService.findItemById(itemId);
-//
-//        boolean itemExistsForCustomer = shoppingCartRepository.existsByItemItemIdAndUserCustomerId(itemId, currentCustomerId);
-
         ShoppingCart existingShoppingCart = shoppingCartService.findShoppingCartByItemIdAndCustomerId(itemId, currentCustomerId);
-
 
         try {
             if (existingShoppingCart == null) {
                 shoppingCart.setQuantity(1);
                 shoppingCartService.saveShoppingCart(shoppingCart);
             } else {
-                System.out.println("+++++++++++++++++++++++++++++++++++++++++++++");
 
                 Integer currentQuantity = existingShoppingCart.getQuantity();
                 existingShoppingCart.setQuantity(currentQuantity + 1);
@@ -68,7 +61,5 @@ public class ShoppingCartController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error updating item: " + e.getMessage());
         }
-
-//        return null;
     }
 }
