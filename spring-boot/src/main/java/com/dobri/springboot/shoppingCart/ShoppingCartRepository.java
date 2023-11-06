@@ -28,10 +28,8 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
     @Query("SELECT s FROM ShoppingCart s WHERE s.item.itemId = :itemId AND s.user.customerId = :customerId")
     ShoppingCart findShoppingCartByItemIdAndCustomerId(@Param("itemId") Long itemId, @Param("customerId") Long customerId);
 
-
     boolean existsByItemItemIdAndUserCustomerId(Long itemId, Long customerId);
 
+//    List<ShoppingCart> deleteAllShoppingCart (List<ShoppingCart> shoppingCart);
 
-//    @Query("SELECT sc FROM ShoppingCart sc JOIN sc.items i WHERE i.item.itemId = :itemId AND sc.customerId = :currentCustomerId")
-//    ShoppingCart findShoppingCartItemIdCustomerId(@Param("itemId") Long itemId, @Param("currentCustomerId") Long currentCustomerId);
 }

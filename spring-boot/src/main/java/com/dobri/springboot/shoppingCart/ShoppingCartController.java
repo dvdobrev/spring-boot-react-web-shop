@@ -62,4 +62,20 @@ public class ShoppingCartController {
                     .body("Error updating item: " + e.getMessage());
         }
     }
+
+    @PostMapping("/shoppingCart/delete")
+    public ResponseEntity<String> deleteShoppingCart(@RequestBody List<ShoppingCart> shoppingCartList) {
+        System.out.println("----------------------------------------Delete ShoppingCart");
+
+        try {
+            for (ShoppingCart shoppingCart : shoppingCartList) {
+                Long shoppingCartId = shoppingCart.getShoppingCartId();
+                shoppingCartService.deleteShoppingCartById(shoppingCartId);
+            }
+            return ResponseEntity.ok("ShoppingCart items deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error deleting ShoppingCart items: " + e.getMessage());
+        }
+    }
 }

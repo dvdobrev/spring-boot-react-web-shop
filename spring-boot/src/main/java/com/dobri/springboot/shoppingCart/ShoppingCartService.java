@@ -41,6 +41,10 @@ public class ShoppingCartService {
         return shoppingCartRepository.save(shoppingCart);
     }
 
+    public void deleteShoppingCartById(Long shoppingCartId) {
+        shoppingCartRepository.deleteById(shoppingCartId);
+    }
+
 //    public ShoppingCart findShoppingCartByCustomerAndItemId(Long itemId, Long currentCustomerId) {
 //        return shoppingCartRepository.findShoppingCartByItemIdAndCustomerId(itemId, currentCustomerId);
 //    }
