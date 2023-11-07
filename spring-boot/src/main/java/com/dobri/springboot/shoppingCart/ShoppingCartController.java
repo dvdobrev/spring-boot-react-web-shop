@@ -29,8 +29,6 @@ public class ShoppingCartController {
 
         System.out.println("==================IN GET SHOPPINGCART");
         List<ShoppingCart> items = shoppingCartService.findItemsByCustomerId(Long.valueOf(customerId));
-        System.out.println("ITEMS: " + items);
-        System.out.println("ITEMS: " + items.size());
 
         return items;
     }

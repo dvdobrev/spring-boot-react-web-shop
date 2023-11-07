@@ -30,9 +30,11 @@ public class AddressController {
     UserService userService;
 
     @GetMapping("/profile")
-    public Stream<Object> getAllUserAddresses(@RequestHeader("X-Customer-Id") String customerId) {
+    public Stream<Object> getAllUserAddresses(@RequestHeader("X-Customer-Id") Long customerId) {
+        
+        System.out.println("addressservice:  " + addressService);
 
-        List<Address> addresses = addressService.findAddressesByCustomerId(Long.valueOf(customerId));
+        List<Address> addresses = addressService.findAddressesByCustomerId(customerId);
         Stream<Object> addressesDTO = addresses.stream()
                 .map(address -> new AddressDTO(address.getAddressId(),
                         address.getCountry(),

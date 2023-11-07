@@ -1,10 +1,12 @@
 package com.dobri.springboot;
 
+import com.dobri.springboot.invoice.CreateInvoice;
 import com.dobri.springboot.items.Items;
 import com.dobri.springboot.items.ItemsService;
 import com.dobri.springboot.user.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -37,6 +39,7 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
 
 //    @CrossOrigin(origins = Constants.REACT_URL)
 //    @RequestMapping(value = {"/clothes/details/{id}", "/clothes/edit/{id}"}, method = RequestMethod.GET)

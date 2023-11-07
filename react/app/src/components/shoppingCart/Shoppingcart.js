@@ -10,26 +10,27 @@ export const Shoppingcart = () => {
     const { userData } = useContext(UserContext);
 
     const [items, setItems] = useState([]);
+    const [invoice, setInvoice] = useState(false);
 
     const navigate = useNavigate();
-
 
     const headers = {
         "X-Customer-Id": userData.customerId,
     };
 
-    const url = "/shoppingCart";
+    const shoppingUrl = "/shoppingCart";
+    const deleteUrl = "/delete";
+    const invoiceUrl = "/invoice";
 
     const getShoppingCartItems = async () => {
         try {
-            const response = await axios.get(springUrl + url, { headers });
+            const response = await axios.get(springUrl + shoppingUrl, { headers });
 
             if (response.status !== 200) {
                 throw new Error('Network response was not ok');
             }
             const data = response.data;
             setItems(data);
-            console.log('Items: ', data);
 
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -62,34 +63,38 @@ export const Shoppingcart = () => {
     const buyHandler = async (e) => {
         e.preventDefault();
 
-
         const confirmed = window.confirm("Are you sure you want to buy the items?");
     
         if (confirmed) {
 
-        const response = await axios.post(springUrl + url + "/delete", items);
+            const response = await axios.post(springUrl + shoppingUrl + deleteUrl, items);
 
-            if (response.status === 200) {
-
-                setItems([])
-
+            if(response.status === 200) {
+                // setItems([])
+                setInvoice(true)
                 navigate(`/shoppingCart`);
             }
-
-        //     console.log("You bought it");
-
-
-
-        //     //Show invoice
-
         }
     };
 
+    const invoiceHandler = async (e) => { 
+        e.preventDefault();
 
+        console.log("From Invoice Handler");
+
+        const response = await axios.post(springUrl + invoiceUrl, items);
+
+        console.log("Finished Invoice Handler");
+
+    };
 
     return (
         <div>
             <button onClick={buyHandler} className="btn btn-primary">Buy Item(s)</button>
+
+            {invoice && 
+            <button onClick={invoiceHandler} className="btn btn-primary">Show Invoice</button>
+        }
 
             <h2>Your Shopping Cart</h2>
             {items.length > 0 ? (
