@@ -46,7 +46,8 @@ public class CreateInvoice {
         String orderDate = currentDateTime.format(formatter);
 
         String formattedOrderDate = orderDate.replace(":", "_");
-        String path = "Web Shop Rechnung von " + formattedOrderDate + ".pdf";
+//        String path = "src/main/java/com/dobri/springboot/invoice/pdf/Web Shop Rechnung von " + formattedOrderDate + ".pdf";
+        String path = "src/main/java/com/dobri/springboot/invoice/pdf/Rechnung" + ".pdf";
 
         PdfWriter pdfWriter = new PdfWriter(path);
         PdfDocument pdfDocument = new PdfDocument(pdfWriter);

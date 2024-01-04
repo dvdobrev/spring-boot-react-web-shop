@@ -64,12 +64,12 @@ export const Shoppingcart = () => {
         e.preventDefault();
 
         const confirmed = window.confirm("Are you sure you want to buy the items?");
-    
+
         if (confirmed) {
 
             const response = await axios.post(springUrl + shoppingUrl + deleteUrl, items);
 
-            if(response.status === 200) {
+            if (response.status === 200) {
                 // setItems([])
                 setInvoice(true)
                 navigate(`/shoppingCart`);
@@ -77,24 +77,47 @@ export const Shoppingcart = () => {
         }
     };
 
-    const invoiceHandler = async (e) => { 
+    const downloadPDF = async (e) => {
         e.preventDefault();
 
-        console.log("From Invoice Handler");
+        const createInvoice = await axios.post(springUrl + invoiceUrl, items);
 
-        const response = await axios.post(springUrl + invoiceUrl, items);
+        try {
+            // Abrufen des Dateinamens
+            const response = await axios.get('http://localhost:8080/download/file');
+            console.log('response: ', response);
+            const fileName = response.data;
+            console.log('fileName: ', fileName);
 
-        console.log("Finished Invoice Handler");
+            if (fileName) {
+                // Herunterladen des PDFs mit dem erhaltenen Dateinamen
+                const pdfResponse = await axios.get(`http://localhost:8080/download/${fileName}`, {
+                    responseType: 'arraybuffer',
+                });
 
+
+                console.log('pdfResponse: ', pdfResponse);
+
+                const blob = new Blob([pdfResponse.data], { type: 'application/pdf' });
+                const url = window.URL.createObjectURL(blob);
+
+                // Öffnet das PDF in einem neuen Tab
+                window.open(url, '_blank');
+            } else {
+                console.error('Keine PDF-Datei vorhanden.');
+            }
+        } catch (error) {
+            console.error('Fehler beim Herunterladen des PDFs:', error);
+        }
     };
 
     return (
         <div>
             <button onClick={buyHandler} className="btn btn-primary">Buy Item(s)</button>
 
-            {invoice && 
-            <button onClick={invoiceHandler} className="btn btn-primary">Show Invoice</button>
-        }
+            {invoice &&
+                <button onClick={downloadPDF} className="btn btn-primary">Download Invoice</button>
+            }
 
             <h2>Your Shopping Cart</h2>
             {items.length > 0 ? (
