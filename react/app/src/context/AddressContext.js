@@ -13,20 +13,22 @@ export const AddressProvider = ({
 
     const { userData } = useContext(UserContext);
 
+
     const navigate = useNavigate();
 
     const [allAddresses, setAllAddresses] = useState([]);
-
-    //I Send the customer ID as header because is more secure than as URL Parameter
-    const headers = {
-        "X-Customer-Id": userData.customerId,
-    };
 
     const clearAddresses = () => {
         setAllAddresses([]);
     }
 
     const getAddresses = () => {
+
+            //I Send the customer ID as header because is more secure than as URL Parameter
+        const headers = {
+            "X-Customer-Id": userData.customerId,
+        };
+
         axios.get(springUrl + '/profile', { headers })
             .then((response) => {
                 if (response.status !== 200) {
@@ -37,8 +39,10 @@ export const AddressProvider = ({
             .then((data) => {
                 setAllAddresses(data);
             })
-        // .catch((error) => {
-        //     // Handle the error, e.g., setError(error);
+        .catch((error) => {
+            console.log("Error: Dobriiiiii---------" + error);
+        });
+            // Handle the error, e.g., setError(error);
     };
 
     const deleteHandler = async (id) => {

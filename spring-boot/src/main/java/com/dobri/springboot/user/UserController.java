@@ -41,9 +41,7 @@ public class UserController {
 
         try {
 
-            User user = userService.findByEmail(newUserData.getEmail());
-            
-            System.out.println("User: " + user);
+            User user = userService.findByEmail(email);
 
             User updatedUser = user;
 

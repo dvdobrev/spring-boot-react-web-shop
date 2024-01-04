@@ -3,28 +3,21 @@ import headerCSS from '../components/header.module.css';
 import { NavLink } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
-
-
-
-//TODO: Make buy product
-
-//TODO: Make pdf invoice
-
-//TODO: Make login with google account
+//TODO: Make the showing der PDF / Make also watermark that this is not real Invoice
 
 //TODO: Make the search bar in the nav
 
 //TODO: Make the price validation (seen the commented code in EditItem)
-
-//TODO: Make the css for cards 
-
-//TODO: The buttons for the card carousel
 
 //TODO: Make login with google account
 
 //TODO: make delete customer if its not validated
 
 //TODO: Make the spring security configuration
+
+//TODO: The buttons for the card carousel
+
+//TODO: Make the css for cards 
 
 //TODO: Make Footer
 

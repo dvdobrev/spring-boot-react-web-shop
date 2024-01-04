@@ -9,7 +9,9 @@ import { AddressItem } from "../address/AddressItem";
 export const Profile = () => {
 
     const { userData } = useContext(UserContext);
+
     const { allAddresses, getAddresses } = useContext(AddressContext);
+
 
     useEffect(() => {
         getAddresses();

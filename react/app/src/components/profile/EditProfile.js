@@ -9,12 +9,13 @@ import { useNavigate } from "react-router-dom";
 export const EditProfile = () => {
 
     const { userData, userDataHandler } = useContext(UserContext);
+    console.log('userData: ', userData);
 
     const url = `/profile/edit`;
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
-        customer_id: userData.customer_id,
+        customerId: userData.customerId,
         isEnabled: userData.isEnabled,
         userRoles: userData.userRole,
         // gender: '',
@@ -24,10 +25,13 @@ export const EditProfile = () => {
     });
 
 
+
     const onBlur = (e) => {
         const { name, value } = e.target;
     
         setFormData({ ...formData, [name]: value });
+
+        console.log(formData);
 
     };
 
@@ -37,6 +41,7 @@ export const EditProfile = () => {
         try {
             // Send a PUT request to your Spring Boot backend
             const response = await axios.put(springUrl + url, formData);
+            console.log('response: ', response);
 
             if (response.status === 200) {
                 // Successfully updated the item, navigate to the item details page
