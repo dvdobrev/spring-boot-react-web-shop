@@ -17,7 +17,7 @@ export const EditProfile = () => {
     const [formData, setFormData] = useState({
         customerId: userData.customerId,
         isEnabled: userData.isEnabled,
-        userRoles: userData.userRole,
+        userRole: userData.userRole,
         // gender: '',
         firstName: userData.firstName,
         lastName: userData.lastName,
@@ -41,7 +41,6 @@ export const EditProfile = () => {
         try {
             // Send a PUT request to your Spring Boot backend
             const response = await axios.put(springUrl + url, formData);
-            console.log('response: ', response);
 
             if (response.status === 200) {
                 // Successfully updated the item, navigate to the item details page
