@@ -85,18 +85,13 @@ export const Shoppingcart = () => {
         try {
             // Abrufen des Dateinamens
             const response = await axios.get('http://localhost:8080/download/file');
-            console.log('response: ', response);
             const fileName = response.data;
-            console.log('fileName: ', fileName);
 
             if (fileName) {
                 // Herunterladen des PDFs mit dem erhaltenen Dateinamen
                 const pdfResponse = await axios.get(`http://localhost:8080/download/${fileName}`, {
                     responseType: 'arraybuffer',
                 });
-
-
-                console.log('pdfResponse: ', pdfResponse);
 
                 const blob = new Blob([pdfResponse.data], { type: 'application/pdf' });
                 const url = window.URL.createObjectURL(blob);
