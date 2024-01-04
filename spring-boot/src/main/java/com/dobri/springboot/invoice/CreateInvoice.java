@@ -84,7 +84,7 @@ public class CreateInvoice {
         Table tableHead1 = new Table(twocolumnWidth).setHeight(70f);
 
 //        tableHead1.addCell(new Cell().add(logoImage).setBorder(Border.NO_BORDER));
-        tableHead1.addCell(new Cell().add("Rechnung").setBorder(Border.NO_BORDER).setFontSize(30f).setBold()).setTextAlignment(TextAlignment.RIGHT);
+        tableHead1.addCell(new Cell().add("Muster Rechnung").setBorder(Border.NO_BORDER).setFontSize(30f).setBold()).setTextAlignment(TextAlignment.RIGHT);
 
         document.add(tableHead1);
 
@@ -318,7 +318,7 @@ public class CreateInvoice {
 
         Table tableFoot1 = new Table(fullwidth);
 //        String textFoot11 = "Der Rechnungsbetrag wurde per " + paymentMethod + " beglichen";
-        String textFoot12 = "Mit freundlichen Grüßen\nIhr SHOP-Team";
+        String textFoot12 = "Mit freundlichen Grüßen\nIhr SHOP-Team\nACHTUNG DIES IST KEINE ECHTE RECHNUNG!!!!";
         tableFoot1.addCell(new Cell()
 //                        .add(textFoot11)
                         .add(textFoot12)
