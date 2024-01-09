@@ -1,11 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import headerCSS from '../components/header.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import { ClothesContext } from '../context/ClothesContext';
 
-//TODO: Make the showing der PDF / Make also watermark that this is not real Invoice
-
-//TODO: Make the search bar in the nav
+//TODO: Make the search bar in the nav / Make if the button is clicked, to be displayed only the filtered items
 
 //TODO: Make the price validation (seen the commented code in EditItem)
 
@@ -28,7 +27,19 @@ export const Header = () => {
 
     const { userData } = useContext(UserContext);
     console.log('userData: ', userData);
-    
+
+    const { clothesFilter } = useContext(ClothesContext);
+
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const navigate = useNavigate();
+
+
+    const searchHandler = (e) => {
+        e.preventDefault();
+        clothesFilter(searchQuery);
+        navigate(`/filter`);
+    };
 
     return (
         <nav id={headerCSS["navbar"]} className="navbar navbar-expand-lg navbar-light container-fluid">
@@ -115,17 +126,21 @@ export const Header = () => {
                     }
 
                 </ul>
-                <form className={`form-inline my-2 my-lg-0 ${headerCSS["header-form"]}`}>
-                    <input
-                        className="form-control mr-2" // Add the mr-2 class here
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search"
-                    />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-                        Search
-                    </button>
-                </form>
+                <input
+                    className="mr-2 col-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value.toLowerCase())}
+                />
+                <button
+                    className="btn btn-outline-success my-2 my-sm-0"
+                    type="button"
+                    onClick={searchHandler}
+                >
+                    Search
+                </button>
             </div>
         </nav>
     );

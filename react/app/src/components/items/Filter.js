@@ -3,13 +3,16 @@ import 'react-multi-carousel/lib/styles.css';
 import { useContext } from "react";
 
 
-import cardsCSS from "../components/cards.module.css";
-import { ClothesContext } from "../context/ClothesContext";
-import { ClothesItem } from "./items/ClothesItem";
+import cardsCSS from "../../components/cards.module.css";
+import { ClothesContext } from "../../context/ClothesContext";
+import { ClothesItem } from "./ClothesItem";
+import { useNavigate } from "react-router-dom";
 
-export const Home = () => {
+export const Filter = () => {
 
-    const { clothes } = useContext(ClothesContext);
+    const { filteredItems } = useContext(ClothesContext);
+    const navigate = useNavigate();
+
 
     const responsive = {
         superLargeDesktop: {
@@ -33,11 +36,16 @@ export const Home = () => {
         }
     };
 
+    const backToHomeHandler = () => {
+        navigate(`/`);
+    };
+
 
     return (
 
         <div>
-            <h1>Home</h1>
+            <h1>Filter Page</h1>
+            {filteredItems.length > 0 ? (
                 <Carousel
                     responsive={responsive}
                     showDots={true}
@@ -52,10 +60,18 @@ export const Home = () => {
                     removeArrowOnDeviceType={["tablet", "mobile"]}
                     dotListClass="custom-dot-list-style"
                 >
-                    {clothes.map((cloth) => (
+                    {filteredItems.map((cloth) => (
                         <ClothesItem key={cloth.itemId} cloth={cloth} />
                     ))}
                 </Carousel>
+
+            ) : (
+                <h3>No items found for your search!!!</h3>
+            )}
+
+            <button onClick={backToHomeHandler}>
+                Alle Artikel anzeigen
+            </button>
         </div>
 
     );

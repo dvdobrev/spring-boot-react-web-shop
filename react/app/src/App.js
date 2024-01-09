@@ -26,17 +26,19 @@ import { EditProfile } from './components/profile/EditProfile';
 import { AddAddress } from './components/address/AddAddress';
 import { AddressProvider } from './context/AddressContext';
 import { EditAddress } from './components/address/EditAddress';
+import { Filter } from './components/items/Filter';
 
 const App = () => {
     return (
 
         <UserProvider>
             <div className="App">
-                <Header />
 
                 <ClothesProvider>
+                    <Header />
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/filter" element={<Filter />} />
                         <Route path="/clothes/details/:itemId" element={<Itemdetails />} />
                         <Route path="/clothes/edit/:itemId" element={<EditItem />} />
                         <Route element={<AdminGuard />}>

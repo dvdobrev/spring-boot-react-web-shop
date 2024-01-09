@@ -12,16 +12,23 @@ export const ClothesProvider = ({
 
     const [clothes, setClothes] = useState([]);
     const [error, setError] = useState(null);
+    const [filteredItems, setFilteredItems] = useState('');
+
 
     const updateClothes = (newItem) => {
         setClothes(prevClothes => [...prevClothes, newItem,]);
     };
 
+    const clothesFilter = (query) => {
+        const filtered = clothes.filter((item) => item.type.toLowerCase().includes(query));  
+        setFilteredItems(filtered);
+    }
 
     useEffect(() => {
 
         getItems();
     }, []);
+
 
 
     const getItems = () => {
@@ -39,6 +46,7 @@ export const ClothesProvider = ({
                 setError(error);
             });
     };
+
 
     const getItemById = async (itemId) => {
         try {
@@ -84,7 +92,7 @@ export const ClothesProvider = ({
 
             if (response.status !== 200) {
                 throw new Error('Network response was not ok');
-            } 
+            }
 
             // navigate(`/`);
 
@@ -103,6 +111,9 @@ export const ClothesProvider = ({
             deleteClothes,
             updateClothes,
             addToShoppingCart,
+            clothesFilter,
+            filteredItems,
+            setFilteredItems,
         }}>
             {children}
         </ClothesContext.Provider>
