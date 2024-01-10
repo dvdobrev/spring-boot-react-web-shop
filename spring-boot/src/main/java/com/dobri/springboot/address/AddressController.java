@@ -31,8 +31,6 @@ public class AddressController {
 
     @GetMapping("/profile")
     public Stream<Object> getAllUserAddresses(@RequestHeader("X-Customer-Id") Long customerId) {
-        
-        System.out.println("addressservice:  " + addressService);
 
         List<Address> addresses = addressService.findAddressesByCustomerId(customerId);
         Stream<Object> addressesDTO = addresses.stream()

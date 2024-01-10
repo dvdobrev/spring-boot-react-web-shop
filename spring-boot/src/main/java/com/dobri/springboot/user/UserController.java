@@ -38,7 +38,6 @@ public class UserController {
         System.out.println("Firstname: " + newUserData.getFirstName());
         System.out.println("User Email: " + email);
 
-
         try {
 
             User user = userService.findByEmail(email);
@@ -60,5 +59,10 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Error updating User: " + e.getMessage());
         }
+    }
+
+    @DeleteMapping("/profile/delete/{id}")
+    public void deleteUserById(@PathVariable Long id) {
+        userService.deleteUserById(id);
     }
 }
