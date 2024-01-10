@@ -53,6 +53,18 @@ public class UserService implements IUserService{
         return userRepository.save(newUser);
     }
 
+    public void deleteUserById(long id) {
+        userRepository.deleteById(id);
+    }
+
+    public VerificationToken findTokenByUser_CustomerId(long userId) {
+        return tokenRepository.findTokenByUser_CustomerId(userId);
+    }
+
+    public void deleteTokenById(long tokenId) {
+        tokenRepository.deleteById(tokenId);
+    }
+
     @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);

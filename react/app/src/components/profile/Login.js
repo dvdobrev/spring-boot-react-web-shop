@@ -48,26 +48,29 @@ export const Login = () => {
             // Send a POST request to the Spring Boot backend
             const response = await axios.post(springUrl + url, formData);
 
-            // Check if the response data is not empty
-            if (response.data) {
+            const userObject = response.data[0];
 
-                // const userEmail = response.data.email;
-                const user = response.data;
+            if (typeof responseData === 'object') {
+                console.log(userObject);
+                const user = userObject;
                 userDataHandler(user);
 
+                // Clear the form after successful submission
+                setFormData({
+                    email: '',
+                    password: '',
+                });
+                navigate(`/`);
+
             } else {
-                console.log("Response data is empty.");
+                console.log("Response Data: " + response.data);
+                setErrorMessage(response);
+                // navigate(`/login`);
+                return false;
             }
 
-            // Clear the form after successful submission
-            setFormData({
-                email: '',
-                password: '',
-            });
-            navigate(`/`);
-
         } catch (error) {
-            console.error('Registration error:', error);
+            setErrorMessage({"inputMessage": 'The email is not valid'})
         }
     };
 

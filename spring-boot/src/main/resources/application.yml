@@ -2,6 +2,11 @@ server:
 port: 8080
 
 spring:
+
+    logging:
+        level:
+            org.hibernate.SQL: WARN
+
     datasource:
         url: jdbc:postgresql://localhost:5432/shopDB
         username: user
@@ -14,7 +19,7 @@ spring:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQLDialect
                 format_sql: true
-        show_sql: true
+        show_sql: false
     main:
         web-application-type: servlet
 
@@ -30,3 +35,12 @@ spring:
                     auth: true
                     starttls:
                         enable: true
+
+    security:
+        oauth2:
+            client:
+                registration:
+                    google:
+                        client-id: 1083571113554-7j9jqer64chh247iac6n8pph3c4ju5dp.apps.googleusercontent.com
+                        client-secret: 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
+                        redirect-uri: http://localhost:8080/login/oauth2/code/google

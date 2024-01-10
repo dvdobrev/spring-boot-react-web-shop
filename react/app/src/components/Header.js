@@ -4,13 +4,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { ClothesContext } from '../context/ClothesContext';
 
-//TODO: Make the search bar in the nav / Make if the button is clicked, to be displayed only the filtered items
-
-//TODO: Make the price validation (seen the commented code in EditItem)
 
 //TODO: Make login with google account
-
-//TODO: make delete customer if its not validated
 
 //TODO: Make the spring security configuration
 
@@ -21,6 +16,14 @@ import { ClothesContext } from '../context/ClothesContext';
 //TODO: Make Footer
 
 //TODO: Delete all console.log
+
+//TODO: Make the price validation when the project is done (seen the commented code in EditItem)
+
+//TODO: Delete all <h1> Tags auf de seite like (Home, Filter Page ....)
+
+// Keep it for the project description. You can describe what you did in yor project
+//TODO: ERLEDIGT Get the token, in the intellij and check if it expiered, if it is, delete the user and the token
+//TODO: ERLEDIGT make delete customer if its not validated
 
 
 export const Header = () => {

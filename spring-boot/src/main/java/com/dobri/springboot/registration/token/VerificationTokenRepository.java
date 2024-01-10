@@ -13,4 +13,6 @@ public interface VerificationTokenRepository extends JpaRepository<VerificationT
     VerificationToken findByToken(String token);
     @Query("SELECT vt FROM VerificationToken vt WHERE vt.user.customerId = :userId")
     VerificationToken findByUserCustomerId(@Param("userId") Long userId);
+
+    VerificationToken findTokenByUser_CustomerId(long userId);
 }
