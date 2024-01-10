@@ -47,7 +47,7 @@ export const Home = () => {
                     autoPlaySpeed={3000}
                     keyBoardControl={true}
                     customTransition="all 2.5"
-                    transitionDuration={2000}
+                    // transitionDuration={2000}
                     containerClass="carousel-container"
                     removeArrowOnDeviceType={["tablet", "mobile"]}
                     dotListClass="custom-dot-list-style"
