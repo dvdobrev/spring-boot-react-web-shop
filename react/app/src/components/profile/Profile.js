@@ -1,21 +1,51 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import cardsCSS from "../../components/cards.module.css";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AddressContext } from "../../context/AddressContext";
 import { AddressItem } from "../address/AddressItem";
+import axios, { formToJSON } from 'axios';
+import springUrl from "../springUrl";
+
 
 
 export const Profile = () => {
 
-    const { userData } = useContext(UserContext);
+    const { userData, logoutHandler } = useContext(UserContext);
 
     const { allAddresses, getAddresses } = useContext(AddressContext);
+
+    const url = '/profile/delete';
+    const navigate = useNavigate();
 
 
     useEffect(() => {
         getAddresses();
     }, []);
+
+    const deleteHandler = async (e) => {
+        e.preventDefault();
+
+        const confirmed = window.confirm("Are you sure you want to delete your profile? This action cannot be undone.");
+
+        // Überprüfe, ob der Benutzer die Aktion bestätigt hat
+        if (confirmed) {
+            try {
+                // Sende die DELETE-Anfrage an den Server
+                const response = await axios.delete(springUrl + url + `/${userData.customerId}`);
+
+                if (response.status === 200) {
+                    logoutHandler();
+                    navigate(`/`);
+                } else {
+                    console.error('Error deleting user:', response.data);
+                }
+
+            } catch (error) {
+                console.log("Error: ", error);
+            }
+        }
+    }
 
     return (
         <>
@@ -31,6 +61,13 @@ export const Profile = () => {
                     </Link>
                     <Link to={`/addAddress`} className="btn btn-primary">Add Address
                     </Link>
+
+                    <button
+                        className="btn btn-primary"
+                        onClick={deleteHandler}
+                    >
+                        Delete Profile
+                    </button>
 
                 </div>
             </div>

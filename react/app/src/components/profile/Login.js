@@ -50,8 +50,7 @@ export const Login = () => {
 
             const userObject = response.data[0];
 
-            if (typeof responseData === 'object') {
-                console.log(userObject);
+            if (typeof userObject === 'object') {
                 const user = userObject;
                 userDataHandler(user);
 
@@ -63,9 +62,7 @@ export const Login = () => {
                 navigate(`/`);
 
             } else {
-                console.log("Response Data: " + response.data);
                 setErrorMessage(response);
-                // navigate(`/login`);
                 return false;
             }
 
