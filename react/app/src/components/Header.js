@@ -5,13 +5,11 @@ import { UserContext } from '../context/UserContext';
 import { ClothesContext } from '../context/ClothesContext';
 
 
-//TODO: Make login with google account
-
-//TODO: Make the spring security configuration
-
-//TODO: The buttons for the card carousel
-
-//TODO: Make the css for cards 
+//TODO: Add delete item from card functionality
+//TODO: Add Total Price in the shoppingcart
+//TODO: Add Check pdf downloading
+//TODO: Make the css for cards // Make cards effect on hover
+//TODO: Make the css for Login and register 
 
 //TODO: Make Footer
 
@@ -21,9 +19,12 @@ import { ClothesContext } from '../context/ClothesContext';
 
 //TODO: Delete all <h1> Tags auf de seite like (Home, Filter Page ....)
 
+// TODO: Make the carousel autoplay - uncomment "autoPlay" in the Home.js
+
 // Keep it for the project description. You can describe what you did in yor project
 //TODO: ERLEDIGT Get the token, in the intellij and check if it expiered, if it is, delete the user and the token
 //TODO: ERLEDIGT make delete customer if its not validated
+//TODO: ERLEDIGT delete user option from the profile menu
 
 
 export const Header = () => {
@@ -79,11 +80,11 @@ export const Header = () => {
                             </NavLink>
                         </li>}
 
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <NavLink className="nav-link" to="/offers">
                             Offers
                         </NavLink>
-                    </li>
+                    </li> */}
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/about">

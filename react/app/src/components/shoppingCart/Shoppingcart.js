@@ -3,6 +3,7 @@ import springUrl from "../springUrl";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import cardsCSS from "../../components/cards.module.css";
+import shopingcartCSS from "../../components/shoppingCart/shopincart.module.css";
 import { useNavigate } from "react-router-dom";
 
 export const Shoppingcart = () => {
@@ -39,18 +40,19 @@ export const Shoppingcart = () => {
 
     const renderItems = () => {
         return items.map((item, index) => (
-            <div key={item.item.itemId} className={`card ${cardsCSS["cards"]}`}>
+            <div key={item.item.itemId} className={`${shopingcartCSS["normal-cards"]}`}>
                 <img
                     className={`card-img-top ${cardsCSS["card-img"]}`}
                     src={item.item.img_link}
                     alt="Card"
                 />
-                <div className="card-body">
-                    <h5 className="card-title">Name: {item.item.type}</h5>
-                    <p className="card-text">Price: {item.item.price}</p>
-                    <p className="card-text">Quantity: {item.quantity}</p>
-                    <p className="card-text">Item ID: {item.item.itemId}</p>
-                    <p className="card-text">Total Price: {item.quantity * item.item.price} €</p>
+                <div className={`${cardsCSS["card-body"]}`}>
+                    <span className={`${cardsCSS["card-text"]}`}>Type: {item.item.type}</span>
+                    {/* <span className={`${cardsCSS["card-text"]}`}>Description: {item.item.description}</span> */}
+                    <span className={`${cardsCSS["card-text"]}`}>Size: {item.item.size} </span>
+                    <span className={`${cardsCSS["card-text"]}`}>Quantity: {item.quantity}</span>
+                    <span className={`${cardsCSS["card-text"]}`}>Price: {item.item.price} €</span>
+                    <span className={`${cardsCSS["card-text"]}`}>Total Price: {item.quantity * item.item.price} €</span>
                 </div>
             </div>
         ));
@@ -108,18 +110,20 @@ export const Shoppingcart = () => {
 
     return (
         <div>
+            <h2>Your Shopping Cart</h2>
+            <div className={`${shopingcartCSS["shoppingcart"]}`}>
+
+                {items.length > 0 ? (
+                    renderItems()
+                ) : (
+                    <p>Your shopping cart is empty.</p>
+                )}
+            </div>
             <button onClick={buyHandler} className="btn btn-primary">Buy Item(s)</button>
 
             {invoice &&
                 <button onClick={downloadPDF} className="btn btn-primary">Download Invoice</button>
             }
-
-            <h2>Your Shopping Cart</h2>
-            {items.length > 0 ? (
-                renderItems()
-            ) : (
-                <p>Your shopping cart is empty.</p>
-            )}
         </div>
     );
 };
