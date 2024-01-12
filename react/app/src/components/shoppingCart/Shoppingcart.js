@@ -11,6 +11,7 @@ export const Shoppingcart = () => {
 
     const [items, setItems] = useState([]);
     const [invoice, setInvoice] = useState(false);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const navigate = useNavigate();
 
@@ -34,7 +35,17 @@ export const Shoppingcart = () => {
                 throw new Error('Network response was not ok');
             }
             const data = response.data;
+            console.log('data: ', data);
+
             setItems(data);
+
+            let price = 0
+            data.forEach(item => {
+                price += item.item.price * item.quantity;   
+            });
+            setTotalPrice(price);
+            
+
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -107,6 +118,7 @@ export const Shoppingcart = () => {
             if (response.status === 200) {
                 setInvoice(true);
                 setItems([]);
+                setTotalPrice(0);
                 navigate(`/shoppingCart`);
             }
         }
@@ -141,7 +153,7 @@ export const Shoppingcart = () => {
     return (
         <div>
             <h1 className={`${shopingcartCSS["text"]}`}>Your Shopping Cart</h1>
-            <section className={`${shopingcartCSS["total-price-section"]}`}>Total Price: 15 €</section>
+            {totalPrice !==0 && <section className={`${shopingcartCSS["total-price-section"]}`}>Total Price: {totalPrice} €</section>}
             <div className={`${shopingcartCSS["shoppingcart"]}`}>
                 {renderItems()}
                 {invoice && (
