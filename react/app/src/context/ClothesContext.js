@@ -13,6 +13,7 @@ export const ClothesProvider = ({
     const [clothes, setClothes] = useState([]);
     const [error, setError] = useState(null);
     const [filteredItems, setFilteredItems] = useState('');
+    const [addedToCart, setAddedToCart] = useState(false);
 
 
     const updateClothes = (newItem) => {
@@ -20,7 +21,7 @@ export const ClothesProvider = ({
     };
 
     const clothesFilter = (query) => {
-        const filtered = clothes.filter((item) => item.type.toLowerCase().includes(query));  
+        const filtered = clothes.filter((item) => item.type.toLowerCase().includes(query));
         setFilteredItems(filtered);
     }
 
@@ -93,6 +94,7 @@ export const ClothesProvider = ({
             if (response.status !== 200) {
                 throw new Error('Network response was not ok');
             }
+            setAddedToCart(true);
 
             // navigate(`/`);
 
@@ -114,6 +116,9 @@ export const ClothesProvider = ({
             clothesFilter,
             filteredItems,
             setFilteredItems,
+            addedToCart,
+            setAddedToCart,
+            
         }}>
             {children}
         </ClothesContext.Provider>
