@@ -141,6 +141,7 @@ export const Shoppingcart = () => {
     return (
         <div>
             <h1 className={`${shopingcartCSS["text"]}`}>Your Shopping Cart</h1>
+            <section className={`${shopingcartCSS["total-price-section"]}`}>Total Price: 15 €</section>
             <div className={`${shopingcartCSS["shoppingcart"]}`}>
                 {renderItems()}
                 {invoice && (
