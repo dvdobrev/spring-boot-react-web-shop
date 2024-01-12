@@ -1,3 +1,10 @@
+.cards-section {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1vw;
+    margin-top: 10vh;
+}
+
 .normal-cards {
     /* background-color: rgb(128, 208, 151); */
     /* background-color: red; */
@@ -13,11 +20,15 @@
     /* background-color: aqua; */
     margin-top: 4vh;
     margin-bottom: 4vh;
-    /* display: flex; */
-    /* flex-wrap: wrap; */
+    /* display: flex;
+    flex-wrap: wrap; */
     /* gap: 1vw; */
 }
 
 .text {
     color: white;
+}
+
+.shp-button {
+    margin-top: 3vh;
 }

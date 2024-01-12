@@ -57,28 +57,31 @@ export const Shoppingcart = () => {
     const renderItems = () => {
         if (items.length > 0) {
             return (
-                <>
-                    {items.map((item, index) => (
-                        <div key={item.item.itemId} className={`${shopingcartCSS["normal-cards"]}`}>
-                            <img
-                                className={`card-img-top ${cardsCSS["card-img"]}`}
-                                src={item.item.img_link}
-                                alt="Card"
-                            />
-                            <div className={`${cardsCSS["card-body"]}`}>
-                                <span className={`${cardsCSS["card-text"]}`}>Type: {item.item.type}</span>
-                                <span className={`${cardsCSS["card-text"]}`}>Size: {item.item.size} </span>
-                                <span className={`${cardsCSS["card-text"]}`}>Quantity: {item.quantity}</span>
-                                <span className={`${cardsCSS["card-text"]}`}>Price: {item.item.price} €</span>
-                                <span className={`${cardsCSS["card-text"]}`}>Total Price: {item.quantity * item.item.price} €</span>
-                                <button onClick={() => deleteItem(userData.customerId, item.item.itemId)} className="btn btn-danger">Delete Item</button>
+                <div>
+                    <div className={`${shopingcartCSS["cards-section"]}`}>
+                        {items.map((item, index) => (
+                            <div key={item.item.itemId} className={`${shopingcartCSS["normal-cards"]}`}>
+                                <img
+                                    className={`card-img-top ${cardsCSS["card-img"]}`}
+                                    src={item.item.img_link}
+                                    alt="Card"
+                                />
+                                <div className={`${cardsCSS["card-body"]}`}>
+                                    <span className={`${cardsCSS["card-text"]}`}>Type: {item.item.type}</span>
+                                    <span className={`${cardsCSS["card-text"]}`}>Size: {item.item.size} </span>
+                                    <span className={`${cardsCSS["card-text"]}`}>Quantity: {item.quantity}</span>
+                                    <span className={`${cardsCSS["card-text"]}`}>Price: {item.item.price} €</span>
+                                    <span className={`${cardsCSS["card-text"]}`}>Total Price: {item.quantity * item.item.price} €</span>
+                                    <button onClick={() => deleteItem(userData.customerId, item.item.itemId)} className="btn btn-danger">Delete Item</button>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                     {!invoice && (
-                        <button onClick={buyHandler} className="btn btn-lg btn-primary">Buy Item(s)</button>
+                        <button onClick={buyHandler} className={`btn btn-lg btn-primary ${shopingcartCSS["shp-button"]}`}>Buy Item(s)</button>
                     )}
-                </>
+
+                </div>
             );
         } else {
             return (
