@@ -12,7 +12,12 @@
 .shoppingcart {
     /* background-color: aqua; */
     margin-top: 4vh;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1vw;
+    margin-bottom: 4vh;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
+    /* gap: 1vw; */
+}
+
+.text {
+    color: white;
 }

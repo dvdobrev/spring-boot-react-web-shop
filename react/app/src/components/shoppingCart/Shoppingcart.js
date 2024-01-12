@@ -1,13 +1,12 @@
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import springUrl from "../springUrl";
-import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import cardsCSS from "../../components/cards.module.css";
 import shopingcartCSS from "../../components/shoppingCart/shopincart.module.css";
 import { useNavigate } from "react-router-dom";
 
 export const Shoppingcart = () => {
-
     const { userData } = useContext(UserContext);
 
     const [items, setItems] = useState([]);
@@ -23,6 +22,10 @@ export const Shoppingcart = () => {
     const deleteUrl = "/delete";
     const invoiceUrl = "/invoice";
 
+    useEffect(() => {
+        getShoppingCartItems();
+    }, []);
+
     const getShoppingCartItems = async () => {
         try {
             const response = await axios.get(springUrl + shoppingUrl, { headers });
@@ -32,35 +35,63 @@ export const Shoppingcart = () => {
             }
             const data = response.data;
             setItems(data);
-
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
-    const renderItems = () => {
-        return items.map((item, index) => (
-            <div key={item.item.itemId} className={`${shopingcartCSS["normal-cards"]}`}>
-                <img
-                    className={`card-img-top ${cardsCSS["card-img"]}`}
-                    src={item.item.img_link}
-                    alt="Card"
-                />
-                <div className={`${cardsCSS["card-body"]}`}>
-                    <span className={`${cardsCSS["card-text"]}`}>Type: {item.item.type}</span>
-                    {/* <span className={`${cardsCSS["card-text"]}`}>Description: {item.item.description}</span> */}
-                    <span className={`${cardsCSS["card-text"]}`}>Size: {item.item.size} </span>
-                    <span className={`${cardsCSS["card-text"]}`}>Quantity: {item.quantity}</span>
-                    <span className={`${cardsCSS["card-text"]}`}>Price: {item.item.price} €</span>
-                    <span className={`${cardsCSS["card-text"]}`}>Total Price: {item.quantity * item.item.price} €</span>
-                </div>
-            </div>
-        ));
+    const deleteItem = async (customerId, itemId) => {
+        try {
+            const response = await axios.delete(`${springUrl}${deleteUrl}/${customerId}/${itemId}`, {});
+
+            if (response.status === 200) {
+                getShoppingCartItems();
+            } else {
+                console.error(`Failed to delete clothe with ID ${itemId}`);
+            }
+        } catch (error) {
+            console.error('Error deleting clothe:', error);
+        }
     };
 
-    useEffect(() => {
-        getShoppingCartItems();
-    }, []);
+    const renderItems = () => {
+        if (items.length > 0) {
+            return (
+                <>
+                    {items.map((item, index) => (
+                        <div key={item.item.itemId} className={`${shopingcartCSS["normal-cards"]}`}>
+                            <img
+                                className={`card-img-top ${cardsCSS["card-img"]}`}
+                                src={item.item.img_link}
+                                alt="Card"
+                            />
+                            <div className={`${cardsCSS["card-body"]}`}>
+                                <span className={`${cardsCSS["card-text"]}`}>Type: {item.item.type}</span>
+                                <span className={`${cardsCSS["card-text"]}`}>Size: {item.item.size} </span>
+                                <span className={`${cardsCSS["card-text"]}`}>Quantity: {item.quantity}</span>
+                                <span className={`${cardsCSS["card-text"]}`}>Price: {item.item.price} €</span>
+                                <span className={`${cardsCSS["card-text"]}`}>Total Price: {item.quantity * item.item.price} €</span>
+                                <button onClick={() => deleteItem(userData.customerId, item.item.itemId)} className="btn btn-danger">Delete Item</button>
+                            </div>
+                        </div>
+                    ))}
+                    {!invoice && (
+                        <button onClick={buyHandler} className="btn btn-lg btn-primary">Buy Item(s)</button>
+                    )}
+                </>
+            );
+        } else {
+            return (
+                <div>
+                    {invoice ? (
+                        <h1 className={`${shopingcartCSS["text"]}`}>Thank you for your Order. You can download your invoice.</h1>
+                    ) : (
+                        <h1 className={`${shopingcartCSS["text"]}`}>Your shopping cart is empty.</h1>
+                    )}
+                </div>
+            );
+        }
+    };
 
     const buyHandler = async (e) => {
         e.preventDefault();
@@ -68,12 +99,11 @@ export const Shoppingcart = () => {
         const confirmed = window.confirm("Are you sure you want to buy the items?");
 
         if (confirmed) {
-
             const response = await axios.post(springUrl + shoppingUrl + deleteUrl, items);
 
             if (response.status === 200) {
-                // setItems([])
-                setInvoice(true)
+                setInvoice(true);
+                setItems([]);
                 navigate(`/shoppingCart`);
             }
         }
@@ -85,12 +115,10 @@ export const Shoppingcart = () => {
         const createInvoice = await axios.post(springUrl + invoiceUrl, items);
 
         try {
-            // Abrufen des Dateinamens
             const response = await axios.get('http://localhost:8080/download/file');
             const fileName = response.data;
 
             if (fileName) {
-                // Herunterladen des PDFs mit dem erhaltenen Dateinamen
                 const pdfResponse = await axios.get(`http://localhost:8080/download/${fileName}`, {
                     responseType: 'arraybuffer',
                 });
@@ -98,7 +126,6 @@ export const Shoppingcart = () => {
                 const blob = new Blob([pdfResponse.data], { type: 'application/pdf' });
                 const url = window.URL.createObjectURL(blob);
 
-                // Öffnet das PDF in einem neuen Tab
                 window.open(url, '_blank');
             } else {
                 console.error('Keine PDF-Datei vorhanden.');
@@ -110,20 +137,13 @@ export const Shoppingcart = () => {
 
     return (
         <div>
-            <h2>Your Shopping Cart</h2>
+            <h1 className={`${shopingcartCSS["text"]}`}>Your Shopping Cart</h1>
             <div className={`${shopingcartCSS["shoppingcart"]}`}>
-
-                {items.length > 0 ? (
-                    renderItems()
-                ) : (
-                    <p>Your shopping cart is empty.</p>
+                {renderItems()}
+                {invoice && (
+                    <button onClick={downloadPDF} className="btn btn-primary">Download Invoice</button>
                 )}
             </div>
-            <button onClick={buyHandler} className="btn btn-primary">Buy Item(s)</button>
-
-            {invoice &&
-                <button onClick={downloadPDF} className="btn btn-primary">Download Invoice</button>
-            }
         </div>
     );
 };

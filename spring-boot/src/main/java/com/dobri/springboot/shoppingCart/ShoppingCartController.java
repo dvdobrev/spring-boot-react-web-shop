@@ -76,4 +76,18 @@ public class ShoppingCartController {
                     .body("Error deleting ShoppingCart items: " + e.getMessage());
         }
     }
+
+    @DeleteMapping("/delete/{customerId}/{itemId}")
+    public ResponseEntity<String> removeItemFromCart(@PathVariable Long customerId, @PathVariable Long itemId) {
+        try {
+            ShoppingCart cart = shoppingCartService.findShoppingCartByItemIdAndCustomerId(itemId, customerId);
+            Long shoppingCartId = cart.getShoppingCartId();
+
+            shoppingCartService.deleteShoppingCartById(shoppingCartId);
+
+            return new ResponseEntity<>("Item removed successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Failed to remove item from cart", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

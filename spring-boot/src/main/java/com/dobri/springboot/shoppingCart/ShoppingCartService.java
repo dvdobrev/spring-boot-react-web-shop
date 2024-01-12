@@ -24,17 +24,25 @@ public class ShoppingCartService {
         return shoppingCartRepository.findByItem(item);
     }
 
+//    public void removeItemFromCart(Long customerId, Long itemId) {
+//        shoppingCartRepository.deleteItemByCustomerIdAndItemId(customerId, itemId);
+//    }
+
+//    public void removeItemFromCart(Long customerId, Long itemId) {
+//        shoppingCartRepository.deleteItemByCustomerIdAndItemId(customerId, itemId);
+//    }
+
+    public void removeItemFromCart(Long customerId, Long itemId) {
+        shoppingCartRepository.deleteByUserCustomerIdAndItemItemId(customerId, itemId);
+    }
+
     public List<ShoppingCart> findItemsByCustomerId(Long customerId) {
         return shoppingCartRepository.findByUserCustomerId(customerId);
     }
 
     public ShoppingCart findShoppingCartByItemIdAndCustomerId(Long itemId, Long customerId) {
-        System.out.println("===================================");
-        System.out.println("Shopping Cart: " + shoppingCartRepository.findShoppingCartByItemIdAndCustomerId(itemId, customerId) );
-        System.out.println("===================================");
         return shoppingCartRepository.findShoppingCartByItemIdAndCustomerId(itemId, customerId);
     }
-
 
     public ShoppingCart saveShoppingCart(ShoppingCart shoppingCart) {
 
@@ -45,7 +53,4 @@ public class ShoppingCartService {
         shoppingCartRepository.deleteById(shoppingCartId);
     }
 
-//    public ShoppingCart findShoppingCartByCustomerAndItemId(Long itemId, Long currentCustomerId) {
-//        return shoppingCartRepository.findShoppingCartByItemIdAndCustomerId(itemId, currentCustomerId);
-//    }
 }

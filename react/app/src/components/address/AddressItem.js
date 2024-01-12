@@ -8,8 +8,6 @@ export const AddressItem = ({ address }) => {
 
     const { deleteHandler } = useContext(AddressContext);
 
-
-    
     return (
         <div className={`card ${cardsCSS["cards"]}`}>
             <div className="card-body">
