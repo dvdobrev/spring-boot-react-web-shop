@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import cardsCSS from "../../components/cards.module.css";
+import profileCSS from "../profile/profile.module.css";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { AddressContext } from "../../context/AddressContext";
@@ -49,7 +50,7 @@ export const Profile = () => {
     }
 
     return (
-        <>
+        <div className={`${profileCSS["profile-section"]}`}>
             <div className={`card ${cardsCSS["cards"]}`}>
                 <div className="card-body">
                     {/* <p className="card-text">Gender: </p> */}
@@ -78,6 +79,6 @@ export const Profile = () => {
                 )}
             </div>
 
-        </>
+        </div>
     );
 };
