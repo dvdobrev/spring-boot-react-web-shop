@@ -23,17 +23,16 @@ public class PdfController {
 
     @GetMapping("/download/file")
     public String getPdfFileName() {
-        // Pfade und Dateinamen anpassen
+
         String pdfDirectory = "src/main/java/com/dobri/springboot/invoice/pdf/";
 
         File directory = new File(pdfDirectory);
         File[] files = directory.listFiles();
 
         if (files != null && files.length > 0) {
-            // Nehmen Sie den ersten Dateinamen. Sie können Ihre eigene Logik hier implementieren.
             return files[0].getName();
         } else {
-            return null; // Wenn keine Datei vorhanden ist
+            return null;
         }
     }
 

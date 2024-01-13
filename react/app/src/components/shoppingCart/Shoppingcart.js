@@ -20,7 +20,7 @@ export const Shoppingcart = () => {
     };
 
     const shoppingUrl = "/shoppingCart";
-    const deleteUrl = "/delete";
+    const buyUrl = "/invoice";
     const invoiceUrl = "/invoice";
 
     useEffect(() => {
@@ -53,7 +53,7 @@ export const Shoppingcart = () => {
 
     const deleteItem = async (customerId, itemId) => {
         try {
-            const response = await axios.delete(`${springUrl}${deleteUrl}/${customerId}/${itemId}`, {});
+            const response = await axios.delete(`${springUrl}${buyUrl}/${customerId}/${itemId}`, {});
 
             if (response.status === 200) {
                 getShoppingCartItems();
@@ -113,7 +113,7 @@ export const Shoppingcart = () => {
         const confirmed = window.confirm("Are you sure you want to buy the items?");
 
         if (confirmed) {
-            const response = await axios.post(springUrl + shoppingUrl + deleteUrl, items);
+            const response = await axios.post(springUrl + buyUrl, items);
 
             if (response.status === 200) {
                 setInvoice(true);
@@ -127,7 +127,7 @@ export const Shoppingcart = () => {
     const downloadPDF = async (e) => {
         e.preventDefault();
 
-        const createInvoice = await axios.post(springUrl + invoiceUrl, items);
+        // const createInvoice = await axios.get(springUrl + invoiceUrl, items);
 
         try {
             const response = await axios.get('http://localhost:8080/download/file');

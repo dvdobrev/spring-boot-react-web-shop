@@ -2,20 +2,19 @@ package com.dobri.springboot.invoice;
 
 import com.dobri.springboot.address.Address;
 import com.dobri.springboot.address.AddressService;
-import com.dobri.springboot.invoice.InvoiceItem;
-import com.dobri.springboot.invoice.PdfInvoiceService;
 import com.dobri.springboot.shoppingCart.ShoppingCart;
+import com.dobri.springboot.shoppingCart.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,25 +24,43 @@ public class InvoiceController {
     private PdfInvoiceService pdfInvoiceService;
 
     @Autowired
+    ShoppingCartService shoppingCartService;
+
+
+    @Autowired
     AddressService addressService;
 
+
     @PostMapping("/invoice")
-    public void generateInvoiceAndSaveToDatabase(@RequestBody List <ShoppingCart> shoppingCart) throws MalformedURLException, SQLException, FileNotFoundException {
+    public ResponseEntity<String> generateInvoiceAndSaveToDatabase(@RequestBody List <ShoppingCart> shoppingCartList) throws MalformedURLException, SQLException, FileNotFoundException {
         System.out.println("++++++++++++++++++++++++++++++Invoice");
         
-        System.out.println("SHoppingCart: " + shoppingCart);
+        System.out.println("shoppingCartList: " + shoppingCartList);
 
-        Long customerId = shoppingCart.get(0).getUser().getCustomerId();
+        Long customerId = shoppingCartList.get(0).getUser().getCustomerId();
 
         Address address = addressService.findAddressesByCustomerId(customerId).get(0);
 
         CreateInvoice createInvoice = new CreateInvoice();
-        createInvoice.createInvoice(shoppingCart, address);
+        createInvoice.createInvoice(shoppingCartList, address);
 
-        for (ShoppingCart cart : shoppingCart) {
-            System.out.println(cart.getShoppingCartId());
-            System.out.println(cart.getItem().getPrice());
+
+        try {
+            for (ShoppingCart shoppingCart : shoppingCartList) {
+                Long shoppingCartId = shoppingCart.getShoppingCartId();
+                shoppingCartService.deleteShoppingCartById(shoppingCartId);
+            }
+            return ResponseEntity.ok("ShoppingCart items deleted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error deleting ShoppingCart items: " + e.getMessage());
         }
+
+
+//        for (ShoppingCart cart : shoppingCart) {
+//            System.out.println(cart.getShoppingCartId());
+//            System.out.println(cart.getItem().getPrice());
+//        }
         
 //        List<InvoiceItem> items = new ArrayList<>();
 //        items.add(new InvoiceItem("Item 1", 10.0));

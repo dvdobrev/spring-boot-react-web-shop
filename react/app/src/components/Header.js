@@ -5,11 +5,7 @@ import { UserContext } from '../context/UserContext';
 import { ClothesContext } from '../context/ClothesContext';
 
 
-//TODO: Add delete item from card functionality
-//TODO: Add Total Price in the shoppingcart
-//TODO: Add Check pdf downloading
-//TODO: Make the css for cards // Make cards effect on hover
-//TODO: Make the css for Login and register 
+//TODO: Make the css for *Login *register  *profile * address
 
 //TODO: Make Footer
 
@@ -20,6 +16,7 @@ import { ClothesContext } from '../context/ClothesContext';
 //TODO: Delete all <h1> Tags auf de seite like (Home, Filter Page ....)
 
 // TODO: Make the carousel autoplay - uncomment "autoPlay" in the Home.js
+// TODO: Comment out the email sending method in "RegistrationCompleteEventListener" line 46
 
 // Keep it for the project description. You can describe what you did in yor project
 //TODO: ERLEDIGT Get the token, in the intellij and check if it expiered, if it is, delete the user and the token
