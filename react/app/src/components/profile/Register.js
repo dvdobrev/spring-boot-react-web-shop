@@ -58,7 +58,7 @@ export const Register = () => {
         }
 
         try {
-            
+
             // Send a POST request to the Spring Boot backend
             const response = await axios.post(springUrl + url, formData);
 
@@ -98,11 +98,10 @@ export const Register = () => {
 
 
     return (
-        <div>
-            <form onSubmit={submitHandler}>
-
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <form onSubmit={submitHandler} className="p-4 bg-light rounded shadow col-md-4">
                 <div className="form-row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-12">
                         <label htmlFor="inputEmail4">Email</label>
                         <input
                             type="email"
@@ -111,10 +110,11 @@ export const Register = () => {
                             name="email"
                             placeholder="Email"
                             onChange={handleChange}
-                            required />
+                            required
+                        />
                     </div>
 
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-12">
                         <label htmlFor="inputPassword4">Password</label>
                         <input
                             type="password"
@@ -123,9 +123,11 @@ export const Register = () => {
                             name="password"
                             placeholder="Password"
                             onChange={handleChange}
-                            required />
+                            required
+                        />
                     </div>
-                    <div className="form-group col-md-6">
+
+                    <div className="form-group col-md-12">
                         <label htmlFor="inputPassword4">Confirm Password</label>
                         <input
                             type="password"
@@ -133,77 +135,16 @@ export const Register = () => {
                             name="confirmPassword"
                             placeholder="Confirm Password"
                             onChange={handleChange}
-                            required />
+                            required
+                        />
                     </div>
-
                 </div>
 
-                {/* <div className="form-row">
+                <button type="submit" className="btn btn-primary">
+                    Sign in
+                </button>
 
-                    <div className="form-group col-md-6">
-                        <label htmlFor="inputCity">Country</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="inputCity"
-                            name="country"
-                            placeholder="Country"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="form-group col-md-6">
-                        <label htmlFor="inputCity">City</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="inputCity"
-                            name="city"
-                            placeholder="City"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="form-group col-md-6">
-                        <label htmlFor="inputAddress">Address</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="inputAddress"
-                            name="addres"
-                            placeholder="Main Street"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="form-group col-md-6">
-                        <label htmlFor="inputAddress">House Number</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            name="houseNumber"
-                            placeholder="1234"
-                            onChange={handleChange}
-                        />
-                    </div>
-
-                    <div className="form-group col-md-6">
-                        <label htmlFor="inputZip">Post code</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="inputZip"
-                            name="postcode"
-                            placeholder="Post Code"
-                            onChange={handleChange}
-                        />
-                    </div>
-                </div> */}
-                <button type="submit" className="btn btn-primary">Sign in</button>
-
-                {hasError && (
-                    <p>{hasError}</p>
-                )}
+                {hasError && <p>{hasError}</p>}
             </form>
         </div>
     );

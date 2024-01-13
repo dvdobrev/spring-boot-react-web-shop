@@ -28,7 +28,7 @@ export const EditProfile = () => {
 
     const onBlur = (e) => {
         const { name, value } = e.target;
-    
+
         setFormData({ ...formData, [name]: value });
 
         console.log(formData);
@@ -56,66 +56,50 @@ export const EditProfile = () => {
     };
 
     return (
-        <div>
-            <h1>Your Profile</h1>
-            <form onSubmit={onSubmit}>
-                {/* <div>
-                    <label>gender:</label>
-                    <select
-                        id="gender"
-                        name="gender"
-                        // defaultValue=""
-                        onBlur={onBlur}
-                        required
-                    >
-                        <option value="" hidden>
-                            Choose gender
-                        </option>
-                        <optgroup label="Choose gender">
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                        </optgroup>
-                    </select>
-                </div> */}
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <form onSubmit={onSubmit} className="p-4 bg-light rounded shadow col-md-4">
+                <h1>Edit Your Profile</h1>
 
-                <div>
+                <div className="form-group">
                     <label>Firstname:</label>
                     <input
                         type="text"
                         name="firstName"
                         defaultValue={userData.firstName}
                         onBlur={onBlur}
-
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label>Lastname:</label>
                     <input
                         type="text"
                         name="lastName"
                         defaultValue={userData.lastName}
                         onBlur={onBlur}
-
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
-                    <label>EmaiL:</label>
+                <div className="form-group">
+                    <label>Email:</label>
                     <input
                         type="email"
                         name="email"
                         defaultValue={userData.email}
                         onBlur={onBlur}
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <button type="submit">Edit</button>
+                <button type="submit" className="btn btn-primary">
+                    Edit
+                </button>
             </form>
         </div>
-
     );
 };

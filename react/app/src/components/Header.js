@@ -5,8 +5,6 @@ import { UserContext } from '../context/UserContext';
 import { ClothesContext } from '../context/ClothesContext';
 
 
-//TODO: Make the css for *Login *register  *profile * address
-
 //TODO: Make Footer
 
 //TODO: Delete all console.log

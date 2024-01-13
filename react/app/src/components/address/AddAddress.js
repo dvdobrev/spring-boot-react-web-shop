@@ -49,10 +49,6 @@ export const AddAddress = () => {
                 user: {},
             });
 
-            // if (response.status === 201) {
-            //     updateClothes(response.data);
-            // }
-
             navigate(`/profile`);
 
         } catch (error) {
@@ -65,11 +61,11 @@ export const AddAddress = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Add Address</h2>
-            <form onSubmit={onSubmit}>
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <form onSubmit={onSubmit} className="p-4 bg-light rounded shadow col-md-4">
+                <h2>Add Address</h2>
 
-                <div>
+                <div className="form-group col-md-12">
                     <label>Country:</label>
                     <input
                         type="text"
@@ -77,11 +73,12 @@ export const AddAddress = () => {
                         value={formData.country}
                         onChange={onChange}
                         placeholder="country"
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group col-md-12">
                     <label>City:</label>
                     <input
                         type="text"
@@ -89,11 +86,12 @@ export const AddAddress = () => {
                         value={formData.city}
                         onChange={onChange}
                         placeholder="city"
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group col-md-12">
                     <label>Street:</label>
                     <input
                         type="text"
@@ -101,11 +99,12 @@ export const AddAddress = () => {
                         value={formData.street}
                         onChange={onChange}
                         placeholder="street"
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group col-md-12">
                     <label>Street number:</label>
                     <input
                         type="text"
@@ -113,11 +112,12 @@ export const AddAddress = () => {
                         value={formData.streetNumber}
                         onChange={onChange}
                         placeholder="street number"
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group col-md-12">
                     <label>Post code:</label>
                     <input
                         type="text"
@@ -125,11 +125,14 @@ export const AddAddress = () => {
                         value={formData.postCode}
                         onChange={onChange}
                         placeholder="post code"
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <button type="submit">Add Address</button>
+                <button type="submit" className="btn btn-primary">
+                    Add Address
+                </button>
             </form>
         </div>
     );

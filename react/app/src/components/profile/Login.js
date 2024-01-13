@@ -67,7 +67,7 @@ export const Login = () => {
             }
 
         } catch (error) {
-            setErrorMessage({"inputMessage": 'The email is not valid'})
+            setErrorMessage({ "inputMessage": 'The email is not valid' })
         }
     };
 
@@ -85,11 +85,10 @@ export const Login = () => {
 
 
     return (
-        <div>
-            <form onSubmit={submitHandler}>
-
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <form onSubmit={submitHandler} className="p-4 bg-light rounded shadow col-md-4">
                 <div className="form-row">
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-12">
                         <label htmlFor="inputEmail4">Email</label>
                         <input
                             type="email"
@@ -98,10 +97,11 @@ export const Login = () => {
                             name="email"
                             placeholder="Email"
                             onChange={handleChange}
-                            required />
+                            required
+                        />
                     </div>
 
-                    <div className="form-group col-md-6">
+                    <div className="form-group col-md-12">
                         <label htmlFor="inputPassword4">Password</label>
                         <input
                             type="password"
@@ -110,15 +110,16 @@ export const Login = () => {
                             name="password"
                             placeholder="Password"
                             onChange={handleChange}
-                            required />
+                            required
+                        />
                     </div>
-
                 </div>
-                <button type="submit" className="btn btn-primary">Sign in</button>
 
-                {hasError && (
-                    <p>{hasError}</p>
-                )}
+                <button type="submit" className="btn btn-primary">
+                    Sign in
+                </button>
+
+                {hasError && <p>{hasError}</p>}
             </form>
         </div>
     );

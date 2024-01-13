@@ -123,7 +123,11 @@ export const Shoppingcart = () => {
         e.preventDefault();
 
         if (addresses.length === 0 || userData.firstName === null || userData.lastName == null) {
-            const confirmed = window.alert("You have to complete your profile data(go to profile and add Name and address) to buy some product!");
+            // const confirmed = window.alert("You have to complete your profile data(go to profile and add Name and address) to buy some product!");
+            alert({
+                title: 'Cellular Data is Turned Off for "Safari"',
+                message: 'You can turn on cellular data for this app in Settings.'
+            });
             return
         }
 

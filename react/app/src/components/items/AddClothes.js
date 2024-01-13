@@ -50,35 +50,38 @@ export const AddClothes = () => {
 
 
     return (
-        <div>
-            <h2>Add Clothes</h2>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label>gender:</label>
+        <div className="d-flex justify-content-center align-items-center">
+            <form onSubmit={onSubmit} className="p-4 bg-light rounded shadow col-md-4">
+                <h2>Add Clothes</h2>
+
+                {/* <div className="form-group">
+                    <label>Gender:</label>
                     <select
                         id="gender"
                         name="gender"
                         value={formData.gender}
                         onChange={onChange}
+                        className="form-control"
                         required
                     >
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
-                </div>
+                </div> */}
 
-                <div>
+                <div className="form-group">
                     <label>Color:</label>
                     <input
                         type="text"
                         name="color"
                         value={formData.color}
                         onChange={onChange}
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label>Description:</label>
                     <textarea
                         type="textarea"
@@ -86,66 +89,74 @@ export const AddClothes = () => {
                         value={formData.description}
                         onChange={onChange}
                         rows="4"
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label>Img Link:</label>
                     <input
                         type="text"
                         name="img_link"
                         value={formData.img_link}
                         onChange={onChange}
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label>Price:</label>
                     <input
                         type="text"
                         name="price"
                         value={formData.price}
                         onChange={onChange}
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label>Quantity:</label>
                     <input
                         type="text"
                         name="quantity"
                         value={formData.quantity}
                         onChange={onChange}
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label>Size:</label>
                     <input
                         type="text"
                         name="size"
                         value={formData.size}
                         onChange={onChange}
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <div>
+                <div className="form-group">
                     <label>Type:</label>
                     <input
                         type="text"
                         name="type"
                         value={formData.type}
                         onChange={onChange}
+                        className="form-control"
                         required
                     />
                 </div>
 
-                <button type="submit">Add</button>
+                <button type="submit" className="btn btn-primary">
+                    Add
+                </button>
             </form>
         </div>
     );
