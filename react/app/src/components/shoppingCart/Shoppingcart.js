@@ -5,9 +5,11 @@ import { UserContext } from "../../context/UserContext";
 import cardsCSS from "../../components/cards.module.css";
 import shopingcartCSS from "../../components/shoppingCart/shopincart.module.css";
 import { useNavigate } from "react-router-dom";
+import { AddressContext } from "../../context/AddressContext";
 
 export const Shoppingcart = () => {
     const { userData } = useContext(UserContext);
+    const { getAddresses, allAddresses, addressesCalled } = useContext(AddressContext);
 
     const [items, setItems] = useState([]);
     const [invoice, setInvoice] = useState(false);
@@ -18,6 +20,16 @@ export const Shoppingcart = () => {
     const headers = {
         "X-Customer-Id": userData.customerId,
     };
+
+    useEffect(() => {
+        if(allAddresses.length === 0 && !addressesCalled) {
+            getAddresses()
+        }
+
+    }, [allAddresses]);
+
+    const addresses = allAddresses;
+    console.log('addresses: ', addresses);
 
     const shoppingUrl = "/shoppingCart";
     const buyUrl = "/invoice";
@@ -41,10 +53,10 @@ export const Shoppingcart = () => {
 
             let price = 0
             data.forEach(item => {
-                price += item.item.price * item.quantity;   
+                price += item.item.price * item.quantity;
             });
             setTotalPrice(price);
-            
+
 
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -110,6 +122,11 @@ export const Shoppingcart = () => {
     const buyHandler = async (e) => {
         e.preventDefault();
 
+        if (addresses.length === 0 || userData.firstName === null || userData.lastName == null) {
+            const confirmed = window.alert("You have to complete your profile data(go to profile and add Name and address) to buy some product!");
+            return
+        }
+
         const confirmed = window.confirm("Are you sure you want to buy the items?");
 
         if (confirmed) {
@@ -153,7 +170,7 @@ export const Shoppingcart = () => {
     return (
         <div>
             <h1 className={`${shopingcartCSS["text"]}`}>Your Shopping Cart</h1>
-            {totalPrice !==0 && <section className={`${shopingcartCSS["total-price-section"]}`}>Total Price: {totalPrice} €</section>}
+            {totalPrice !== 0 && <section className={`${shopingcartCSS["total-price-section"]}`}>Total Price: {totalPrice} €</section>}
             <div className={`${shopingcartCSS["shoppingcart"]}`}>
                 {renderItems()}
                 {invoice && (

@@ -6,7 +6,7 @@ import { AddressContext } from "../../context/AddressContext";
 export const Logout = () => {
     const navigate = useNavigate();
     const { logoutHandler } = useContext(UserContext);
-    const {clearAddresses} = useContext(AddressContext);
+    const {clearAddresses, } = useContext(AddressContext);
 
 
 

@@ -17,9 +17,11 @@ export const AddressProvider = ({
     const navigate = useNavigate();
 
     const [allAddresses, setAllAddresses] = useState([]);
+    const [addressesCalled, setAddressesCalled] = useState(false);
 
     const clearAddresses = () => {
         setAllAddresses([]);
+        setAddressesCalled(false);
     }
 
     const getAddresses = () => {
@@ -38,9 +40,10 @@ export const AddressProvider = ({
             })
             .then((data) => {
                 setAllAddresses(data);
+                setAddressesCalled(true); 
             })
         .catch((error) => {
-            console.log("Error: Dobriiiiii---------" + error);
+            console.log("Error: " + error);
         });
             // Handle the error, e.g., setError(error);
     };
@@ -78,6 +81,7 @@ export const AddressProvider = ({
             getAddresses: getAddresses,
             clearAddresses: clearAddresses,
             deleteHandler: deleteHandler,
+            addressesCalled: addressesCalled,
         }}>
 
             {children}

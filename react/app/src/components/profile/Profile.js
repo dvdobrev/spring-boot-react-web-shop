@@ -13,7 +13,8 @@ export const Profile = () => {
 
     const { userData, logoutHandler } = useContext(UserContext);
 
-    const { allAddresses, getAddresses } = useContext(AddressContext);
+    const { allAddresses, getAddresses, addressesCalled } = useContext(AddressContext);
+    console.log('addressesCalled: ', addressesCalled);
 
     const url = '/profile/delete';
     const navigate = useNavigate();
