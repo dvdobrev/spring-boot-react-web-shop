@@ -3,13 +3,16 @@ import 'react-multi-carousel/lib/styles.css';
 import { useContext, useEffect, useState } from "react";
 
 
-import cardsCSS from "../components/cards.module.css";
-import { ClothesContext } from "../context/ClothesContext";
-import { ClothesItem } from "./items/ClothesItem";
+import cardsCSS from "../home/cards.module.css";
+import homeCSS from "../home/home.module.css";
+import { ClothesContext } from "../../context/ClothesContext";
+import { ClothesItem } from "../items/ClothesItem";
 
 export const Home = () => {
 
     const { clothes, addedToCart, setAddedToCart } = useContext(ClothesContext);
+
+    const message = "You have to register first a user and set his role to be ADMIN in the database to add some articles from the \"Add Clothes\" tab. After that the users can see/buy items.\nYou can read the Readme.file for more information"
 
 
     const responsive = {
@@ -47,7 +50,10 @@ export const Home = () => {
 
     return (
 
-        <div>
+        <section className={`${homeCSS["home-section"]}`}>
+            {clothes.length === 0 && (<h1 className="bg-dark fz-container"
+                style={{ color: "white", minHeight: "6vh" }}>{message}</h1>)}
+
             {addedToCart && <span style={{
                 color: 'yellow',
                 backgroundColor: 'grey',
@@ -74,7 +80,7 @@ export const Home = () => {
                     <ClothesItem key={cloth.itemId} cloth={cloth} />
                 ))}
             </Carousel>
-        </div>
+        </section>
 
     );
 };

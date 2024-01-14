@@ -1,11 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import headerCSS from '../components/header.module.css';
+import headerCSS from './header.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { UserContext } from '../context/UserContext';
-import { ClothesContext } from '../context/ClothesContext';
+import { UserContext } from '../../context/UserContext';
+import { ClothesContext } from '../../context/ClothesContext';
 
-
-// TODO: Make the carousel autoplay - uncomment "autoPlay" in the Home.js
 // TODO: Comment out the email sending method in "RegistrationCompleteEventListener" line 46
 // TODO: Check the admin guard
 // TODO: Deploy in dockerhub

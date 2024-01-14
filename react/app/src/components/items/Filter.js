@@ -3,7 +3,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { useContext } from "react";
 
 
-import cardsCSS from "../../components/cards.module.css";
+import cardsCSS from "../../components/home/cards.module.css";
 import { ClothesContext } from "../../context/ClothesContext";
 import { ClothesItem } from "./ClothesItem";
 import { useNavigate } from "react-router-dom";

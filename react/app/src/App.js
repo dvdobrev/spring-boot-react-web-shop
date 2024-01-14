@@ -3,12 +3,12 @@ import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
-import { Header } from './components/Header';
+import { Header } from './components/header/Header';
 import { Login } from './components/profile/Login';
 import { Routes, Route } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import { ClothesProvider } from './context/ClothesContext';
-import { Home } from './components/Home';
+import { Home } from './components/home/Home';
 import { Register } from './components/profile/Register';
 import { AboutUs } from './components/AboutUs';
 import { Offers } from './components/Offers';

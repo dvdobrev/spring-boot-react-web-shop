@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import cardsCSS from "../../components/cards.module.css";
+import cardsCSS from "../../components/home/cards.module.css";
 import { ClothesContext } from "../../context/ClothesContext";
 import { Link } from 'react-router-dom';
 import { UserContext } from "../../context/UserContext";

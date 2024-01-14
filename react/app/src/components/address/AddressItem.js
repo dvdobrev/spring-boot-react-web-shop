@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import cardsCSS from "../../components/cards.module.css";
+import cardsCSS from "../../components/home/cards.module.css";
 import { AddressContext } from "../../context/AddressContext";
 import { Link } from "react-router-dom";
 

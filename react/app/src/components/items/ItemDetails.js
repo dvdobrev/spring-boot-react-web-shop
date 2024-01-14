@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ClothesContext } from "../../context/ClothesContext";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import cardsCSS from "../../components/cards.module.css";
+import cardsCSS from "../../components/home/cards.module.css";
 
 import springUrl from "../springUrl";
 import { UserContext } from "../../context/UserContext";

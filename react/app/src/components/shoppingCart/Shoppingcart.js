@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import springUrl from "../springUrl";
 import { UserContext } from "../../context/UserContext";
-import cardsCSS from "../../components/cards.module.css";
+import cardsCSS from "../home/cards.module.css";
 import shopingcartCSS from "../../components/shoppingCart/shopincart.module.css";
 import { useNavigate } from "react-router-dom";
 import { AddressContext } from "../../context/AddressContext";

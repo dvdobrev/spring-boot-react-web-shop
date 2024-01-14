@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import cardsCSS from "../../components/cards.module.css";
+import cardsCSS from "../../components/home/cards.module.css";
 import profileCSS from "../profile/profile.module.css";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
