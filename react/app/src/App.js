@@ -27,6 +27,7 @@ import { AddAddress } from './components/address/AddAddress';
 import { AddressProvider } from './context/AddressContext';
 import { EditAddress } from './components/address/EditAddress';
 import { Filter } from './components/items/Filter';
+import { Footer } from './components/footer/Footer';
 
 const App = () => {
     return (
@@ -76,7 +77,7 @@ const App = () => {
                     <Route path="/about" element={<AboutUs />} />
                     {/* <Route path="/offers" element={<Offers />} /> */}
                 </Routes>
-
+                <Footer />
             </div >
 
         </UserProvider >

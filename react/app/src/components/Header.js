@@ -5,8 +5,6 @@ import { UserContext } from '../context/UserContext';
 import { ClothesContext } from '../context/ClothesContext';
 
 
-//TODO: Make Footer
-
 //TODO: Delete all console.log
 
 //TODO: Make the price validation when the project is done (seen the commented code in EditItem)
@@ -15,6 +13,7 @@ import { ClothesContext } from '../context/ClothesContext';
 
 // TODO: Make the carousel autoplay - uncomment "autoPlay" in the Home.js
 // TODO: Comment out the email sending method in "RegistrationCompleteEventListener" line 46
+// TODO: Deploy in dockerhub
 
 // Keep it for the project description. You can describe what you did in yor project
 //TODO: ERLEDIGT Get the token, in the intellij and check if it expiered, if it is, delete the user and the token
