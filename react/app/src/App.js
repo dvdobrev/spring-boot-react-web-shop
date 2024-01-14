@@ -14,7 +14,6 @@ import { AboutUs } from './components/AboutUs';
 import { Offers } from './components/Offers';
 import { Shoppingcart } from './components/shoppingCart/Shoppingcart';
 import { Logout } from './components/profile/Logout';
-import { AddClothes } from './components/items/AddClothes';
 import { Itemdetails } from './components/items/ItemDetails';
 import { EditItem } from './components/items/EditItem';
 import { AdminGuard } from './components/routGuards/AdminGuard';
@@ -28,6 +27,7 @@ import { AddressProvider } from './context/AddressContext';
 import { EditAddress } from './components/address/EditAddress';
 import { Filter } from './components/items/Filter';
 import { Footer } from './components/footer/Footer';
+import { AddItem } from './components/items/AddItem';
 
 const App = () => {
     return (
@@ -43,7 +43,7 @@ const App = () => {
                         <Route path="/clothes/details/:itemId" element={<Itemdetails />} />
                         <Route path="/clothes/edit/:itemId" element={<EditItem />} />
                         <Route element={<AdminGuard />}>
-                            <Route path="/addClothes" element={<AddClothes />} />
+                            <Route path="/addClothes" element={<AddItem />} />
                         </Route>
 
                     </Routes>

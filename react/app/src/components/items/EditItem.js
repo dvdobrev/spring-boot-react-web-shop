@@ -11,7 +11,7 @@ export const EditItem = () => {
 
     const [item, setItem] = useState({});
     const [error, setError] = useState('');
-    const [validPrice, setValidPrice] = useState('false')
+    const [isPriceValid, setIsPriceValid] = useState(false)
     const [priceError, setPriceError] = useState("");
 
     const navigate = useNavigate();
@@ -59,20 +59,20 @@ export const EditItem = () => {
     const onChange = (e) => {
         const { name, value } = e.target;
 
-        if (name === 'price') {
-            priceValidation(value)
-        }
+        // if (name === 'price') {
+        //     priceValidation(value)
+        // }
 
         setFormData({ ...formData, [name]: value });
-
     };
 
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        console.log('isPriceValid: ', isPriceValid);
 
-        if (validPrice === 'false') {
-            return;
+        if (!isPriceValid) {
+            return
         }
 
         try {
@@ -92,16 +92,19 @@ export const EditItem = () => {
         }
     };
 
-    const priceValidation = (value) => {
-        const isValid = /^\d+(\.\d{2})$/.test(value);
+    const priceValidation = (e) => {
+        const value = e.target.value;
+
+        // Check if the value is a valid positive floating-point number with two decimal places
+        const isValid = /^\d+\.\d{2}$/.test(value);
 
         if (isValid) {
-            setValidPrice("true");
-            setPriceError(""); // Clear the price error message
+            setIsPriceValid(true);
+            setPriceError("");
         } else {
-            setValidPrice("false");
+            setIsPriceValid(false);
             setPriceError(
-                "Price must be a valid positive floating-point number with two decimal places."
+                "Price must be a valid positive floating-point number with exactly two decimal places."
             );
         };
     };
@@ -112,10 +115,10 @@ export const EditItem = () => {
         }, [itemId]);
 
         return (
-            <div>
+            <div className="d-flex justify-content-center align-items-center">
                 <h1>Edit Item</h1>
-                <form onSubmit={onSubmit}>
-                    <div>
+                <form onSubmit={onSubmit} className="p-4 bg-light rounded shadow col-md-4">
+                    {/* <div>
                         <label>gender:</label>
                         <select
                             id="gender"
@@ -128,21 +131,21 @@ export const EditItem = () => {
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                         </select>
-                    </div>
+                    </div> */}
 
-                    <div>
+                    <div className="form-group">
                         <label>Color:</label>
                         <input
                             type="text"
                             name="color"
                             defaultValue={item.color}
                             onChange={onChange}
-
+                            className="form-control"
                             required
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label>Description:</label>
                         <textarea
                             type="text"
@@ -150,22 +153,24 @@ export const EditItem = () => {
                             defaultValue={item.description}
                             onChange={onChange}
                             rows="4"
+                            className="form-control"
                             required
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label>Img Link:</label>
                         <input
                             type="text"
                             name="img_link"
                             defaultValue={item.img_link}
                             onChange={onChange}
+                            className="form-control"
                             required
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label>Price:</label>
                         <input
                             type="text"
@@ -173,42 +178,46 @@ export const EditItem = () => {
                             defaultValue={item.price}
                             onChange={onChange}
                             required
-                            onBlur={priceValidation}
+                            onBlur={(e) => priceValidation(e)}
+                            className="form-control"
                         />
                         {priceError && (
                             <div style={{ color: "red" }}>{priceError}</div>
                         )}
                     </div>
 
-                    <div>
+                    {/* <div className="form-group">
                         <label>Quantity:</label>
                         <input
                             type="text"
                             name="quantity"
                             defaultValue={item.quantity}
                             onChange={onChange}
+                            className="form-control"
                             required
                         />
-                    </div>
+                    </div> */}
 
-                    <div>
+                    <div className="form-group">
                         <label>Size:</label>
                         <input
                             type="text"
                             name="size"
                             defaultValue={item.size}
                             onChange={onChange}
+                            className="form-control"
                             required
                         />
                     </div>
 
-                    <div>
+                    <div className="form-group">
                         <label>Type:</label>
                         <input
                             type="text"
                             name="type"
                             defaultValue={item.type}
                             onChange={onChange}
+                            className="form-control"
                             required
                         />
                     </div>
