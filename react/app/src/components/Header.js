@@ -5,10 +5,6 @@ import { UserContext } from '../context/UserContext';
 import { ClothesContext } from '../context/ClothesContext';
 
 
-//TODO: Make the price validation when the project is done (seen the commented code in EditItem)
-
-//TODO: Delete all <h1> Tags auf de seite like (Home, Filter Page ....)
-
 // TODO: Make the carousel autoplay - uncomment "autoPlay" in the Home.js
 // TODO: Comment out the email sending method in "RegistrationCompleteEventListener" line 46
 // TODO: Check the admin guard

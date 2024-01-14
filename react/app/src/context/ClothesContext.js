@@ -2,6 +2,7 @@ import { useState, useEffect, useContext, createContext } from "react";
 
 import axios from "axios";
 import springUrl from "../components/springUrl";
+import { useNavigate } from "react-router-dom";
 
 export const ClothesContext = createContext();
 
@@ -14,6 +15,9 @@ export const ClothesProvider = ({
     const [error, setError] = useState(null);
     const [filteredItems, setFilteredItems] = useState('');
     const [addedToCart, setAddedToCart] = useState(false);
+
+    const navigate = useNavigate();
+
 
 
     const updateClothes = (newItem) => {
@@ -65,6 +69,8 @@ export const ClothesProvider = ({
     const deleteHandler = async (id) => {
         if (window.confirm('Are you sure you want to delete this item?')) {
             deleteClothes(id);
+            navigate(`/`);
+
         };
     };
 
@@ -117,7 +123,7 @@ export const ClothesProvider = ({
             setFilteredItems,
             addedToCart,
             setAddedToCart,
-            
+
         }}>
             {children}
         </ClothesContext.Provider>

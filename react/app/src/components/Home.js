@@ -48,7 +48,6 @@ export const Home = () => {
     return (
 
         <div>
-            <h1>Home</h1>
             {addedToCart && <span style={{
                 color: 'yellow',
                 backgroundColor: 'grey',
@@ -62,7 +61,7 @@ export const Home = () => {
                 showDots={true}
                 ssr={true}
                 infinite={true}
-                // autoPlay={true}
+                autoPlay={true}
                 autoPlaySpeed={3000}
                 keyBoardControl={true}
                 customTransition="all 2.5"

@@ -44,7 +44,6 @@ export const Filter = () => {
     return (
 
         <div>
-            <h1>Filter Page</h1>
             {filteredItems.length > 0 ? (
                 <Carousel
                     responsive={responsive}

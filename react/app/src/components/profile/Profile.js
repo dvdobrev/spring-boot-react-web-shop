@@ -50,6 +50,7 @@ export const Profile = () => {
 
     return (
         <div className={`${profileCSS["profile-section"]}`}>
+            <h1 style={{color: "white"}}> Your Profile</h1>
             <div className={`card ${cardsCSS["cards"]}`}>
                 <div className="card-body">
                     {/* <p className="card-text">Gender: </p> */}
