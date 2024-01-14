@@ -35,12 +35,3 @@ spring:
                     auth: true
                     starttls:
                         enable: true
-
-    security:
-        oauth2:
-            client:
-                registration:
-                    google:
-                        client-id: 1083571113554-7j9jqer64chh247iac6n8pph3c4ju5dp.apps.googleusercontent.com
-                        client-secret: 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
-                        redirect-uri: http://localhost:8080/login/oauth2/code/google

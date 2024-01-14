@@ -54,7 +54,6 @@ public class UserRegistrationSecurityConfig {
                                 .anyRequest().permitAll()
                 )
                 .csrf().disable()
-                .oauth2Login(Customizer.withDefaults())
                 .formLogin().disable();
 
         return http.build();
