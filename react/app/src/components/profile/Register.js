@@ -50,9 +50,6 @@ export const Register = () => {
 
         const passwordMatch = confirmPassword(formData.password, formData.confirmPassword)
 
-        console.log("Password: " + formData.password);
-        console.log("Confirm Password: " + formData.confirmPassword);
-
         if (!passwordMatch) {
             return;
         }

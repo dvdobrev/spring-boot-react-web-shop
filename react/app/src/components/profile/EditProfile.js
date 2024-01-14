@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 export const EditProfile = () => {
 
     const { userData, userDataHandler } = useContext(UserContext);
-    console.log('userData: ', userData);
 
     const url = `/profile/edit`;
     const navigate = useNavigate();
@@ -30,8 +29,6 @@ export const EditProfile = () => {
         const { name, value } = e.target;
 
         setFormData({ ...formData, [name]: value });
-
-        console.log(formData);
 
     };
 

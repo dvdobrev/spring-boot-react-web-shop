@@ -45,7 +45,6 @@ export const AddressProvider = ({
         .catch((error) => {
             console.log("Error: " + error);
         });
-            // Handle the error, e.g., setError(error);
     };
 
     const deleteHandler = async (id) => {
@@ -61,10 +60,8 @@ export const AddressProvider = ({
 
             if (response.status === 200) {
                 // Delete was successful, you can update your UI accordingly
-                console.log(`Address with ID ${id} deleted.`);
                 getAddresses();
                 navigate(`/profile`);
-
             } else {
                 console.error(`Failed to delete address with ID ${id}`);
             }

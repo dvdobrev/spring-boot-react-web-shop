@@ -75,7 +75,6 @@ export const ClothesProvider = ({
 
             if (response.status === 200) {
                 // Delete was successful, you can update your UI accordingly
-                console.log(`Clothe with ID ${id} deleted.`);
                 getItems();
 
             } else {

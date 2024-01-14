@@ -29,7 +29,6 @@ export const Shoppingcart = () => {
     }, [allAddresses]);
 
     const addresses = allAddresses;
-    console.log('addresses: ', addresses);
 
     const shoppingUrl = "/shoppingCart";
     const buyUrl = "/invoice";
@@ -47,7 +46,6 @@ export const Shoppingcart = () => {
                 throw new Error('Network response was not ok');
             }
             const data = response.data;
-            console.log('data: ', data);
 
             setItems(data);
 
