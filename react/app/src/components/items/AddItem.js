@@ -6,7 +6,7 @@ import { ClothesContext } from "../../context/ClothesContext";
 import springUrl from "../springUrl";
 
 
-export const AddClothes = () => {
+export const AddItem = () => {
 
     const { updateClothes } = useContext(ClothesContext);
 
