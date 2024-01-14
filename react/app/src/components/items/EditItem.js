@@ -71,9 +71,9 @@ export const EditItem = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        // if (validPrice === 'false') {
-        //     return;
-        // }
+        if (validPrice === 'false') {
+            return;
+        }
 
         try {
 
@@ -173,6 +173,7 @@ export const EditItem = () => {
                             defaultValue={item.price}
                             onChange={onChange}
                             required
+                            onBlur={priceValidation}
                         />
                         {priceError && (
                             <div style={{ color: "red" }}>{priceError}</div>

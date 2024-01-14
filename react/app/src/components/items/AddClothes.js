@@ -25,6 +25,9 @@ export const AddClothes = () => {
 
     });
 
+    const [isPriceValid, setIsPriceValid] = useState(false)
+    const [priceError, setPriceError] = useState("");
+
     const onChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -32,6 +35,10 @@ export const AddClothes = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+
+        if (!isPriceValid) {
+            return
+        }
 
         try {
 
@@ -46,6 +53,23 @@ export const AddClothes = () => {
         } catch (error) {
             console.error('Error adding clothes:', error);
         }
+    };
+
+    const priceValidation = (e) => {
+        const value = e.target.value;
+
+        // Check if the value is a valid positive floating-point number with two decimal places
+        const isValid = /^\d+\.\d{2}$/.test(value);
+
+        if (isValid) {
+            setIsPriceValid(true);
+            setPriceError(""); // Clear the price error message
+        } else {
+            setIsPriceValid(false);
+            setPriceError(
+                "Price must be a valid positive floating-point number with exactly two decimal places."
+            );
+        };
     };
 
 
@@ -113,12 +137,16 @@ export const AddClothes = () => {
                         name="price"
                         value={formData.price}
                         onChange={onChange}
+                        onBlur={(e) => priceValidation(e)}
                         className="form-control"
                         required
                     />
+                    {priceError && (
+                        <div style={{ color: "red" }}>{priceError}</div>
+                    )}
                 </div>
 
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label>Quantity:</label>
                     <input
                         type="text"
@@ -128,7 +156,7 @@ export const AddClothes = () => {
                         className="form-control"
                         required
                     />
-                </div>
+                </div> */}
 
                 <div className="form-group">
                     <label>Size:</label>
