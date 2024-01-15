@@ -3,15 +3,7 @@ import headerCSS from './header.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
 import { ClothesContext } from '../../context/ClothesContext';
-
-// TODO: Comment out the email sending method in "RegistrationCompleteEventListener" line 46
-// TODO: Check the admin guard
-// TODO: Deploy in dockerhub
-
-// Keep it for the project description. You can describe what you did in yor project
-//TODO: ERLEDIGT Get the token, in the intellij and check if it expiered, if it is, delete the user and the token
-//TODO: ERLEDIGT make delete customer if its not validated
-//TODO: ERLEDIGT delete user option from the profile menu
+import logo from '../../images/Logo.jpg'
 
 
 export const Header = () => {
@@ -35,7 +27,8 @@ export const Header = () => {
     return (
         <nav id={headerCSS["navbar"]} className="navbar navbar-expand-lg navbar-light container-fluid">
             <NavLink className="nav-link" to="/">
-                Logo
+            <img className={`${headerCSS["logo-img"]}`} src={logo} alt="Logo" />
+
             </NavLink>
             <button
                 className="navbar-toggler"
