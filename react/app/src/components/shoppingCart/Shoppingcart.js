@@ -170,7 +170,7 @@ export const Shoppingcart = () => {
     };
 
     return (
-        <div>
+        <section className={`${shopingcartCSS["shoppincart-section"]}`}>
             <h1 className={`${shopingcartCSS["text"]}`}>Your Shopping Cart</h1>
             {totalPrice !== 0 && <section className={`${shopingcartCSS["total-price-section"]}`}>Total Price: {totalPrice} €</section>}
             <div className={`${shopingcartCSS["shoppingcart"]}`}>
@@ -179,6 +179,6 @@ export const Shoppingcart = () => {
                     <button onClick={downloadPDF} className="btn btn-primary">Download Invoice</button>
                 )}
             </div>
-        </div>
+        </section>
     );
 };
