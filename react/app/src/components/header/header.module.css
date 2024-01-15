@@ -12,3 +12,8 @@
     flex-direction: row-reverse;
     justify-content: space-around;
 }
+
+.logo-img {
+    height: 10vh;
+    width: 8vw;
+}
