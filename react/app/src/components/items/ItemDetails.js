@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ClothesContext } from "../../context/ClothesContext";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import cardsCSS from "../../components/home/cards.module.css";
+import { Link, useParams } from "react-router-dom";
+import itemDetailsCSS from "../../components/items/itemDetails.module.css";
 
 import springUrl from "../springUrl";
 import { UserContext } from "../../context/UserContext";
-import axios from "axios";
 import { useUserItemData } from "../../hooks/UseUserItemData";
 
 export const Itemdetails = () => {
@@ -15,16 +14,14 @@ export const Itemdetails = () => {
     const { itemId } = useParams();
     const { deleteHandler, addToShoppingCart } = useContext(ClothesContext);
     const { userData } = useContext(UserContext);
-    const [error, setError] = useState('');
-
-    const navigate = useNavigate();
+    console.log('userData: ', userData);
 
     const userItemData = useUserItemData(itemId, userData);
 
     return (
-        <div className={`card ${cardsCSS["cards"]}`}>
+        <div className={`card ${itemDetailsCSS["cards"]}`}>
             <img
-                className={`card-img-top ${cardsCSS["card-img"]}`}
+                className={`card-img-top ${itemDetailsCSS["card-img"]}`}
                 src={userItemData.item.img_link}
                 alt="Card"
             />
@@ -32,11 +29,13 @@ export const Itemdetails = () => {
                 <h5 className="card-title">Name: {userItemData.item.type}</h5>
                 <p className="card-text">Price: {userItemData.item.price}</p>
                 <p className="card-text">Description (ID): {userItemData.item.itemId}</p>
-                <button onClick={
-                    () => addToShoppingCart(springUrl, url, userItemData)}
-                    className="btn btn-primary">
-                    Add to Cart
-                </button>
+                {userData.email &&
+                    <button onClick={
+                        () => addToShoppingCart(springUrl, url, userItemData)}
+                        className="btn btn-primary">
+                        Add to Cart
+                    </button>
+                }
 
                 {userData.userRole === "ADMIN" &&
                     <>
