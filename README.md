@@ -1,7 +1,6 @@
- ===============================================================================================================
+ ------------------------------------------------------------------------------------------------------
 This project does not prioritize extensive design and styling of the pages. Instead, its primary purpose is for me to learn Spring Boot and how to integrate backend and frontend.
- ===============================================================================================================
-
+ ------------------------------------------------------------------------------------------------------
 To start the application, clone the repository and run the docker-compose file (execute "docker-compose up --build").
 
 The URL of the app is http://localhost:3000/.
