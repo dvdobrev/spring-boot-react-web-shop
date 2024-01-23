@@ -8,10 +8,12 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install app-level dependencies
-RUN npm install && npm install axios && npm install react-multi-carousel
+RUN npm install
 
+# Install additional dependencies
+RUN npm install axios react-multi-carousel @fortawesome/fontawesome-free
 # Copy the rest of the app's source code
-COPY . . 
+COPY . .
 
 # Expose the port your React app will run on (usually 3000)
 EXPOSE 3000
