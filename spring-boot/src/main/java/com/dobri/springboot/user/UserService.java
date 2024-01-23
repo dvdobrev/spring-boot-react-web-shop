@@ -22,10 +22,26 @@ public class UserService implements IUserService{
 
     private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
 
+    private final static String ADMIN_EMAIL = "admin@gmail.com";
+    private final static String ADMIN_PASSWORD = "admin";
+    private final static String ADMIN_ROLE = "ADMIN";
+    private final static boolean IS_ADMIN_ENABLED = true;
+
 
     @Override
     public List<User> getUsers() {
         return userRepository.findAll();
+    }
+
+    public void createAdminUser() {
+
+        User admin = new User();
+        admin.setEmail(ADMIN_EMAIL);
+        admin.setPassword(passwordEncoder.encode(ADMIN_PASSWORD));
+        admin.setUserRole(ADMIN_ROLE);
+        admin.setIsEnabled(IS_ADMIN_ENABLED);
+
+        userRepository.save(admin);
     }
 
     @Override

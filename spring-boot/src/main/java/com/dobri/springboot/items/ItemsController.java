@@ -1,6 +1,8 @@
 package com.dobri.springboot.items;
 
 import com.dobri.springboot.Constants;
+import com.dobri.springboot.user.User;
+import com.dobri.springboot.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +24,30 @@ public class ItemsController {
     @Autowired
     ItemsService itemsService;
 
+    @Autowired
+    private UserService userService;
+
+// For production
+//    @GetMapping("/")
+//    public List<Items> getAllItems() {
+//
+//        return itemsService.getAllItems();
+//    }
+
+// For Testing - It generates an admin user with ADMIN role
     @GetMapping("/")
     public List<Items> getAllItems() {
+
+        User admin = userService.findByEmail("admin@gmail.com");
+        
+        System.out.println("In Items Controller is admin created: " + admin);
+
+        if (admin == null) {
+            userService.createAdminUser();
+        }
+
+        System.out.println("In Items Controller is admin created: " + admin);
+
 
         return itemsService.getAllItems();
     }
