@@ -9,6 +9,7 @@ There are two type of users - ADMIN and USER.
 
 
     -------Admin Role --------
+    All users have default "USER" role 
     The USER role can be changed to ADMIN role only manually in the database
 
     An admin user is automatically created
@@ -22,8 +23,7 @@ There are two type of users - ADMIN and USER.
 
     -------User Role --------
 
-
-    After registration the user get per email a validation link. This link is only 10 min valid.Each user has to validate his registration to be able to login. A message is show with the validation time. If a user do not validate his email in 10 min, he can register again with the same email.
+    After registration the user get per email a validation link. This link is only 10 min valid. Each user has to validate his registration to be able to login. A message is show with the validation time. If a user do not validate his email in 10 min, he can register again with the same email.
 
     Reguler user can do: 
     -- buy articles, but they have to add atleast one address and his/her full name
