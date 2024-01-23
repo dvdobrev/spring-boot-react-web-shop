@@ -4,6 +4,7 @@ The URL of the app is  http://localhost:3000/
 
 
 ============= App description ================
+
 There are two type of users - ADMIN and USER.
 
 
