@@ -1,35 +1,33 @@
-To start the application just clone the repository and run the docker-compose file (do "docker-compose up --build" )
+To start the application, clone the repository and run the docker-compose file (execute "docker-compose up --build").
 
-The URL of the app is  http://localhost:3000/
+The URL of the app is http://localhost:3000/.
 
+============= App Description ================
 
-============= App description ================
-
-There are two type of users - ADMIN and USER.
-
+There are two types of users: ADMIN and USER.
 
     -------Admin Role --------
-    All users have default "USER" role 
-    The USER role can be changed to ADMIN role only manually in the database
+    All users have the default "USER" role. 
+    The USER role can be changed to the ADMIN role only manually in the database.
 
-    An admin user is automatically created
+    An admin user is automatically created.
 
     Default admin user credentials:
     -- email: admin@gmail.com
-    -- passwod: admin
+    -- password: admin
 
-
-    An admin can make all CRUD operations to the clothes(items).
+    An admin can perform all CRUD operations on the clothes (items).
 
     -------User Role --------
 
-    After registration the user get per email a validation link. This link is only 10 min valid. Each user has to validate his registration to be able to login. A message is show with the validation time. If a user do not validate his email in 10 min, he can register again with the same email.
+    After registration, the user receives a validation link via email. This link is valid for only 10 minutes. Each user must validate their registration to be able to log in. A message is shown with the validation time. If a user does not validate their email within 10 minutes, they can register again with the same email.
 
-    Reguler user can do: 
-    -- buy articles, but they have to add atleast one address and his/her full name
-    -- edit and delete there profile
-    -- create, edit and delete their addresses
+    Regular users can:
+    -- purchase articles, but they must add at least one address and their full name
+    -- edit and delete their profile
+    -- create, edit, and delete their addresses
 
+    After "buying" items, an invoice will be generated and can be downloaded.
 
-There are some routes access validations (route guards). But not for all urls.
-
+There are some route access validations (route guards), but not for all URLs.
+There are also some input validations, but not for everything.
