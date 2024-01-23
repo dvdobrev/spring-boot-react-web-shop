@@ -5,6 +5,7 @@ import { UserContext } from '../../context/UserContext';
 import { ClothesContext } from '../../context/ClothesContext';
 import logo from '../../images/Logo.jpg'
 
+// TODO: If you make changes build the app again using   "mvn clean install"
 
 export const Header = () => {
 

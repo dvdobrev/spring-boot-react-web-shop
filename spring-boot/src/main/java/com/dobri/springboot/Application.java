@@ -17,6 +17,8 @@ import java.util.Optional;
 @Validated
 public class Application {
 
+    // TODO: If you make changes build the app again using   "mvn clean install"
+
 //    private final String reactURL = "http://localhost:3000";
 
     private final UserService userService;
