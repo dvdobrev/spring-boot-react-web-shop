@@ -12,7 +12,7 @@ export const Home = () => {
 
     const { clothes, addedToCart, setAddedToCart } = useContext(ClothesContext);
 
-    const message = "See the README file to get the admin user credentials."
+    const message = "To add a new item --> login with email: admin@gmail.com ; password: admin"
 
 
     const responsive = {
@@ -51,8 +51,8 @@ export const Home = () => {
     return (
 
         <section className={`${homeCSS["home-section"]}`}>
-            <h1 className="bg-dark fz-container"
-                style={{ color: "white", minHeight: "6vh" }}>{message}</h1>
+            <h3 className="bg-dark fz-container"
+                style={{ color: "white", minHeight: "6vh" }}>{message}</h3>
 
             {addedToCart && <span style={{
                 color: 'yellow',
