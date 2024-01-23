@@ -12,7 +12,7 @@ export const Home = () => {
 
     const { clothes, addedToCart, setAddedToCart } = useContext(ClothesContext);
 
-    const message = "You have to register first a user and set his role to be ADMIN in the database to add some articles from the \"Add Clothes\" tab. After that the users can see/buy items.\nYou can read the Readme.file for more information"
+    const message = "See the README file to get the admin user credentials."
 
 
     const responsive = {
@@ -51,8 +51,8 @@ export const Home = () => {
     return (
 
         <section className={`${homeCSS["home-section"]}`}>
-            {clothes.length === 0 && (<h1 className="bg-dark fz-container"
-                style={{ color: "white", minHeight: "6vh" }}>{message}</h1>)}
+            <h1 className="bg-dark fz-container"
+                style={{ color: "white", minHeight: "6vh" }}>{message}</h1>
 
             {addedToCart && <span style={{
                 color: 'yellow',
