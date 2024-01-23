@@ -117,7 +117,6 @@ export const EditItem = () => {
 
         return (
             <div className="d-flex justify-content-center align-items-center">
-                <h1>Edit Item</h1>
                 <form onSubmit={onSubmit} className="p-4 bg-light rounded shadow col-md-4">
                     {/* <div>
                         <label>gender:</label>
