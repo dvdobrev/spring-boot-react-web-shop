@@ -11,7 +11,7 @@ export const EditItem = () => {
 
     const [item, setItem] = useState({});
     const [error, setError] = useState('');
-    const [isPriceValid, setIsPriceValid] = useState(false)
+    const [isPriceValid, setIsPriceValid] = useState(true)
     const [priceError, setPriceError] = useState("");
 
     const navigate = useNavigate();
@@ -69,7 +69,6 @@ export const EditItem = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log('isPriceValid: ', isPriceValid);
 
         if (!isPriceValid) {
             return
@@ -92,8 +91,10 @@ export const EditItem = () => {
         }
     };
 
+
     const priceValidation = (e) => {
         const value = e.target.value;
+        console.log('value: ', value);
 
         // Check if the value is a valid positive floating-point number with two decimal places
         const isValid = /^\d+\.\d{2}$/.test(value);
@@ -175,7 +176,7 @@ export const EditItem = () => {
                         <input
                             type="text"
                             name="price"
-                            defaultValue={item.price}
+                            defaultValue={item.price !== undefined ? item.price.toFixed(2) : ""}
                             onChange={onChange}
                             required
                             onBlur={(e) => priceValidation(e)}

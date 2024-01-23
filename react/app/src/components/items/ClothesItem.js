@@ -19,6 +19,8 @@ export const ClothesItem = ({ cloth }) => {
     const { userData } = useContext(UserContext);
 
     const userItemData = useUserItemData(itemId, userData);
+    console.log("Price is: " + userItemData.item.price);
+
 
     return (
         <div className={`card ${cardsCSS["cards"]}`}>
@@ -32,7 +34,7 @@ export const ClothesItem = ({ cloth }) => {
                 <span className={`${cardsCSS["card-text"]}`}>Type: {cloth.type}</span>
                 {/* <span className={`${cardsCSS["card-text"]}`}>Description: {cloth.description}</span> */}
                 <span className={`${cardsCSS["card-text"]}`}>Size: {cloth.size} </span>
-                <span className={`${cardsCSS["card-text"]}`}>Price: {cloth.price} €</span>
+                <span className={`${cardsCSS["card-text"]}`}>Price: {cloth.price.toFixed(2)} €</span>
                 <div className={`${cardsCSS["card-buttons-div"]}`}>
                     {userData.customerId > 0 &&
                         <button onClick={

@@ -14,9 +14,11 @@ export const Itemdetails = () => {
     const { itemId } = useParams();
     const { deleteHandler, addToShoppingCart } = useContext(ClothesContext);
     const { userData } = useContext(UserContext);
-    console.log('userData: ', userData);
 
     const userItemData = useUserItemData(itemId, userData);
+    console.log("Price is: " + userItemData.item.price);
+    const price = userItemData.item.price;
+    console.log('price: ', price);
 
     return (
         <div className={`card ${itemDetailsCSS["cards"]}`}>
@@ -27,8 +29,9 @@ export const Itemdetails = () => {
             />
             <div className="card-body">
                 <h5 className="card-title">Name: {userItemData.item.type}</h5>
-                <p className="card-text">Price: {userItemData.item.price}</p>
-                <p className="card-text">Description (ID): {userItemData.item.itemId}</p>
+                {userItemData.item.price !== undefined &&
+                    <p className="card-text">Price: {userItemData.item.price.toFixed(2)}</p>
+                }                <p className="card-text">Description (ID): {userItemData.item.itemId}</p>
                 {userData.email &&
                     <button onClick={
                         () => addToShoppingCart(springUrl, url, userItemData)}
