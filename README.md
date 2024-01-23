@@ -4,9 +4,9 @@ The URL of the app is http://localhost:3000/.
 
 ============= App Description ================
 
-There are two types of users: ADMIN and USER.
+There are two types of users (of user roles): ADMIN and USER.
 
-    -------Admin Role --------
+    ------- Admin Role --------
     All users have the default "USER" role. 
     The USER role can be changed to the ADMIN role only manually in the database.
 
@@ -18,7 +18,7 @@ There are two types of users: ADMIN and USER.
 
     An admin can perform all CRUD operations on the clothes (items).
 
-    -------User Role --------
+    ------- User Role --------
 
     After registration, the user receives a validation link via email. This link is valid for only 10 minutes. Each user must validate their registration to be able to log in. A message is shown with the validation time. If a user does not validate their email within 10 minutes, they can register again with the same email.
 
@@ -30,4 +30,5 @@ There are two types of users: ADMIN and USER.
     After "buying" items, an invoice will be generated and can be downloaded.
 
 There are some route access validations (route guards), but not for all URLs.
+
 There are also some input validations, but not for everything.
