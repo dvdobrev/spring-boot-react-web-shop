@@ -7,6 +7,7 @@ The URL of the app is http://localhost:3000/.
 There are two types of users (of user roles): ADMIN and USER.
 
 ------- Admin Role --------
+
 All users have the default "USER" role. 
 The USER role can be changed to the ADMIN role only manually in the database.
 
